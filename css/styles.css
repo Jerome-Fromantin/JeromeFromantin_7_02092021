@@ -1,0 +1,82 @@
+body {
+    position: relative;                       /* GARDER ?? */
+    font-family: "DM Sans", sans-serif;
+    width: 1240px;
+    padding: 40px 100px;
+    border: 1px black solid;                   /* SUPPRIMER */
+    margin: 0;
+}
+
+header {
+    width: 1240px;
+    color: #D04F4F;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#logo-p {
+    line-height: 0;
+    margin: auto 0;
+}
+
+h1 {
+    width: 268px;
+    height: 47px;
+    margin: 0 auto 20px auto;
+}
+
+#search {
+    display: flex;
+    justify-content: center;
+}
+
+#search-input, #search-button {
+    background: #E7E7E7;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    width: 1130px;
+    height: 65px;
+    padding: 0 20px;
+    border-radius: 5px 0 0 5px;
+}
+#search-input:focus {
+    outline: none;
+}
+
+#search-button {
+    width: 70px;
+    height: 69px;
+    padding: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+#loupe {
+    margin: 19px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px green solid;                   /* SUPPRIMER */
+    margin-top: 10px;
+}
+
+.test-article {
+    width: 380px;
+    height: 364px;
+    margin-bottom: 50px;
+}
+
+.article-top {
+    background: #C7BEBE;
+    width: 380px;
+    height: 178px;
+}
+
+.article-bottom {
+    background: #E7E7E7;
+    width: 380px;
+    height: 186px;
+}
