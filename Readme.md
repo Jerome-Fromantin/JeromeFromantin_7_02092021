@@ -19,7 +19,9 @@ Travail réalisé :
 - Création du repository sur GitHub,
 - Premier dépôt d'images du site,
 - Premier dépôt des fichiers HTML, CSS et JS,
-- Hébergement du travail sur Git Pages.
+- Hébergement du travail sur Git Pages,
+- Création du contenu d'une carte recette << en dur >> pour les styles CSS,
+- Début de mise en place du JS avec pattern factory pour les cartes recettes.
 
 Travail à faire :
 - Intégration complète de la maquette,
