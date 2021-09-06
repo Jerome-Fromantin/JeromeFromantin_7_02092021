@@ -1,6 +1,6 @@
 // Importation des classes nécessaires pour la classe générale.
-import CardTop from './cardTop';
-import CardBottom from './cardBottom';
+import CardTop from './cardTop.js';
+import CardBottom from './cardBottom.js';
 
 // Cette classe permet de construire la carte pour chaque photographe dans la page d'accueil.
 export default class RecipeFactory {

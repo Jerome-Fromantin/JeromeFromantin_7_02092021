@@ -1,11 +1,9 @@
 // Récupération des données "recipes" du fichier.
-import { getRecipes } from './services';
-// Message console : "... a été bloqué en raison d’un type MIME interdit (« text/html »)."
+import { getRecipes } from './services.js';
 
 // PAGE D'ACCUEIL
 // Récupération des données dynamiques pour chaque carte de la page d'accueil.
-import RecipeFactory from './recipeFactory';
-// Message console : "... a été bloqué en raison d’un type MIME interdit (« text/html »)."
+import RecipeFactory from './recipeFactory.js';
 
 let recipes = [];
 
@@ -19,14 +17,13 @@ showRecipes1();
 // Montre toutes les cartes remplies dynamiquement (2ème partie).
 function showRecipes2(recipes) {
   const mainSection = document.querySelector('#main-section');
-  section.innerText = '';
+  //mainSection.innerText = '';
   for (const recipe of recipes) {
     const card = fillArticle(recipe);
     mainSection.appendChild(card);
   }
 }
 showRecipes2();
-console.log(recipes);
 
 /*
 // Montre les photographes en fonction du tag choisi.
@@ -48,10 +45,9 @@ function fillArticle(recipe) {
   const fullArticle = document.createElement('section');
   fullArticle.className = 'section';
   const top = new RecipeFactory('top', recipe);
-  const bottom = new ArticlePartFactory('bottom', recipe);
+  const bottom = new RecipeFactory('bottom', recipe);
   fullArticle.appendChild(top.toHTML());
   fullArticle.appendChild(bottom.toHTML());
-  console.log(fullArticle);
   return fullArticle;
 }
 

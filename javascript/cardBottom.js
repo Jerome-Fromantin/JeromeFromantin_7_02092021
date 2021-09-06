@@ -16,13 +16,15 @@ export default class CardBottom {
     title.innerText = name;
     const duration = document.createElement('div');
     duration.className = 'bottom-time';
-    duration.innerText = `${time} mn`;
     const timeIcon = document.createElement('img');
     timeIcon.src = 'Images/Temps.png';
     timeIcon.id = 'temps';
     timeIcon.setAttribute('alt', 'Durée');
-    duration.appendChild(timeIcon);
+    const timeText = document.createElement('span');
+    timeText.innerText = `${time} mn`;
     title_Duration.appendChild(title);
+    duration.appendChild(timeIcon);
+    duration.appendChild(timeText);
     title_Duration.appendChild(duration);
     bottom.appendChild(title_Duration);
 
@@ -30,7 +32,17 @@ export default class CardBottom {
     ingredients_Recipe.className = 'bottom-descr';
     const ingr = document.createElement('div');
     ingr.className = 'bottom-ingr';
-    ingr.innerText = ingredients;
+    console.log(ingredients);
+
+    for (const ingred of ingredients) {
+      ingr.innerText = ingred.ingredient + ' : ' + ingred.quantity + ' ' + ingred.unit;
+    }
+
+    /*
+    ingredients.forEach(element =>
+      ingr.innerText = element.ingredient + ' : ' + element.quantity + ' ' + element.unit);
+    */
+    
     const recipe = document.createElement('div');
     recipe.className = 'bottom-recipe';
     recipe.innerText = description;

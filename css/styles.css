@@ -109,7 +109,7 @@ main {
 .bottom-title {
     display: flex;
     align-items: center;
-    width: 255px;
+    width: 250px;
     height: 50px;
 }
 
@@ -118,7 +118,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 85px;
+    width: 90px;
     height: 50px;
     font-weight: bold;
 }
@@ -151,4 +151,8 @@ main {
     font-family: "Roboto", sans-serif;
     width: 170px;
     height: 136px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*padding: 10px;
+    border: 1px black solid;*/
 }

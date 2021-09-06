@@ -1,6 +1,6 @@
-// Récupère l'intégralité du fichier "recipes.js".
+// Récupère l'intégralité du fichier "recipes.json".
 async function getAll() {
-  const data = await fetch('recipes.js').then((res) => res.js());
+  const data = await fetch('recipes.json').then((res) => res.json());
   return data;
 }
 
