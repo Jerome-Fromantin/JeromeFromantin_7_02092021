@@ -21,20 +21,17 @@ Travail réalisé :
 - Premier dépôt des fichiers HTML, CSS et JS,
 - Hébergement du travail sur Git Pages,
 - Création du contenu d'une carte recette << en dur >> pour les styles CSS,
-- Début de mise en place du JS avec pattern factory pour les cartes recettes.
+- Début de mise en place du JS avec pattern factory pour les cartes recettes,
+- Transformation du fichier "recipes.js" en "recipes.json" et correction d'erreurs dans les 20 premières recettes,
+- Affichage des 50 recettes en dynamique grâce au JavaScript.
 
 Travail à faire :
+- Amélioration de l'apparence du texte des cartes,
 - Intégration complète de la maquette,
 - Création de 2 versions d'un algorithme de recherche,
 - Et d'autres choses encore...
 
-Travail du projet précédent à adapter ici :
-- Ajout d'une page par défaut de photographe pour remplissage dynamique à venir,
-- Ajout d'un fichier JSON,
-- Début de mise en place du JavaScript,
-- Mise en place de la version mobile de la page d'accueil,
-- Mise en place des 1ères fonctions et données dynamiques en JS pour la page d'accueil et la page de photographe,
-- Ajout d'images de photographes,
+Travail du projet précédent à adapter éventuellement ici :
 - Installation de WebPack et mise en place de fonctions asynchrones,
 - Ajout d'un champ "description" dans les médias du fichier JSON,
 - Mise en place de la version mobile de la page de photographe,
