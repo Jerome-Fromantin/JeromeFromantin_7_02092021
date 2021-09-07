@@ -1,0 +1,128 @@
+body {
+  position: relative;
+  font-family: "DM Sans", sans-serif;
+  width: 1240px;
+  padding: 40px 100px;
+  border: 1px black solid;
+  margin: 0;
+}
+
+header {
+  width: 1240px;
+  color: #D04F4F;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+header > #logo-p {
+  line-height: 0;
+  margin: auto 0;
+}
+header > h1 {
+  width: 268px;
+  height: 47px;
+  margin: 0 auto 20px auto;
+}
+header > #search {
+  display: flex;
+  justify-content: center;
+}
+header > #search #search-input, header > #search > #search-button {
+  background: #E7E7E7;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  width: 1130px;
+  height: 65px;
+  padding: 0 20px;
+  border-radius: 5px 0 0 5px;
+}
+header > #search #search-input:focus {
+  outline: none;
+}
+header > #search > #search-button {
+  width: 70px;
+  height: 69px;
+  padding: 0;
+  border-radius: 0 5px 5px 0;
+}
+header > #search > #search-button:hover {
+  background: #cecece;
+}
+header > #search > #search-button > #loupe {
+  margin: 19px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px green solid;
+  margin-top: 10px;
+  /***** AJOUTER ICI LES CLASSES ET ID DES MENUS DEROULANTS. *****/
+}
+main > .section {
+  width: 380px;
+  height: 364px;
+  margin-bottom: 50px;
+}
+main > .section > .section-top {
+  background: #C7BEBE;
+  width: 380px;
+  height: 178px;
+}
+main > .section > .section-bottom {
+  background: #E7E7E7;
+  font-family: "Lato", sans-serif;
+  width: 380px;
+  height: 186px;
+}
+main > .section > .section-bottom > .bottom-title-time {
+  display: flex;
+  justify-content: center;
+  width: 340px;
+  height: 50px;
+  font-size: 18px;
+  padding: 0 20px;
+}
+main > .section > .section-bottom > .bottom-title-time > .bottom-title {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  height: 50px;
+}
+main > .section > .section-bottom > .bottom-title-time > .bottom-time {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 90px;
+  height: 50px;
+  font-weight: bold;
+}
+main > .section > .section-bottom > .bottom-title-time > .bottom-time > #temps {
+  margin-right: 5px;
+}
+main > .section > .section-bottom > .bottom-descr {
+  display: flex;
+  justify-content: center;
+  width: 340px;
+  height: 136px;
+  font-size: 12px;
+  padding: 0 20px;
+}
+main > .section > .section-bottom > .bottom-descr > .bottom-ingr {
+  display: flex;
+  align-items: flex-start;
+  width: 170px;
+  height: 136px;
+  padding-right: 10px;
+}
+main > .section > .section-bottom > .bottom-descr > .bottom-recipe {
+  font-family: "Roboto", sans-serif;
+  width: 170px;
+  height: 120px;
+  overflow: hidden;
+  text-overflow: clip;
+  margin-bottom: 16px;
+}
+
+/*# sourceMappingURL=styles.css.map */
