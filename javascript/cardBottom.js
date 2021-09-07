@@ -32,10 +32,19 @@ export default class CardBottom {
     ingredients_Recipe.className = 'bottom-descr';
     const ingr = document.createElement('div');
     ingr.className = 'bottom-ingr';
-    console.log(ingredients);
 
     for (const ingred of ingredients) {
-      ingr.innerText = ingred.ingredient + ' : ' + ingred.quantity + ' ' + ingred.unit;
+      if (ingredients.quantity) {
+        if (ingredients.unit) {
+          ingr.innerText = ingred.ingredient + ' : ' + ingred.quantity + ' ' + ingred.unit;
+        }
+        else {
+          ingr.innerText = ingred.ingredient + ' : ' + ingred.quantity;
+        }
+      }
+      else {
+        ingr.innerText = ingred.ingredient;
+      }
     }
 
     /*
