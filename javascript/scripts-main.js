@@ -1,15 +1,12 @@
 // Récupération des données "recipes" du fichier.
-import { getRecipes } from './services.js';
+import { recipes } from '../recipes.js';
 
 // PAGE D'ACCUEIL
 // Récupération des données dynamiques pour chaque carte de la page d'accueil.
 import RecipeFactory from './recipeFactory.js';
 
-let recipes = [];
-
 // Montre toutes les cartes remplies dynamiquement (1ère partie).
-async function showRecipes1() {
-  recipes = await getRecipes();
+function showRecipes1() {
   showRecipes2(recipes);
 }
 showRecipes1();
@@ -18,6 +15,7 @@ showRecipes1();
 function showRecipes2(recipes) {
   const mainSection = document.querySelector('#main-section');
   //mainSection.innerText = '';
+  console.log(recipes);
   for (const recipe of recipes) {
     const card = fillArticle(recipe);
     mainSection.appendChild(card);

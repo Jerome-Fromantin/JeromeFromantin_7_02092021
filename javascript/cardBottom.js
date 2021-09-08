@@ -32,29 +32,21 @@ export default class CardBottom {
     ingredients_Recipe.className = 'bottom-descr';
     const ingr = document.createElement('div');
     ingr.className = 'bottom-ingr';
-
     for (const ingred of ingredients) {
-      if (ingredients.quantity) {
-        if (ingredients.unit) {
-          ingr.innerText = ingred.ingredient + ' : ' + ingred.quantity + ' ' + ingred.unit;
-        }
-        else {
-          ingr.innerText = ingred.ingredient + ' : ' + ingred.quantity;
-        }
-      }
-      else {
-        ingr.innerText = ingred.ingredient;
-      }
+      const each_Ingr = document.createElement('span');
+      each_Ingr.innerText = `${ingred.ingredient} : ${ingred.quantity ?? ''} ${ingred.unit || ''}`;
+      ingr.appendChild(each_Ingr);
     }
-
-    /*
-    ingredients.forEach(element =>
-      ingr.innerText = element.ingredient + ' : ' + element.quantity + ' ' + element.unit);
-    */
     
     const recipe = document.createElement('div');
     recipe.className = 'bottom-recipe';
-    recipe.innerText = description;
+    if (description.length > 207) {
+      const shortRecipe = description.substring(0, 207);
+      recipe.innerText = shortRecipe + ' ...';
+    }
+    else {
+      recipe.innerText = description;
+    }
     ingredients_Recipe.appendChild(ingr);
     ingredients_Recipe.appendChild(recipe);
     bottom.appendChild(ingredients_Recipe);

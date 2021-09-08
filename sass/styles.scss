@@ -142,8 +142,10 @@ main {
                 >.bottom-ingr {
                     display: flex;
                     align-items: flex-start;
+                    flex-direction: column;
                     width: 170px;
                     height: 136px;
+                    padding-top: 5px;
                     padding-right: 10px;
                 }
 
@@ -153,7 +155,7 @@ main {
                     width: 170px;
                     height: 120px;
                     overflow: hidden;
-                    text-overflow: clip;
+                    padding-top: 5px;
                     margin-bottom: 16px;
                 }
             }
