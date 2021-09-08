@@ -23,9 +23,11 @@ Travail réalisé :
 - Création du contenu d'une carte recette << en dur >> pour les styles CSS,
 - Début de mise en place du JS avec pattern factory pour les cartes recettes,
 - Transformation du fichier "recipes.js" en "recipes.json" et correction d'erreurs dans les 20 premières recettes,
-- Affichage des 50 recettes en dynamique grâce au JavaScript,
+- Affichage partiel des 50 recettes en dynamique grâce au JavaScript,
 - Installation de Sass pour le CSS,
-- Amélioration partielle de l'affichage dynamique des recettes.
+- Installation du transpilateur Webpack,
+- Corrections d'erreurs dans les recettes 21 à 40,
+- Quasi finition de l'affichage dynamique des recettes.
 
 Travail à faire :
 - Amélioration de l'apparence du texte des cartes,
