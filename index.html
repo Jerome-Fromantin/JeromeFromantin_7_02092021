@@ -5,6 +5,8 @@
     <title>Les petits plats</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <!--
       Utilisation de Sass :
       À chaque nouvelle ouverture du terminal, taper la commande
@@ -27,60 +29,39 @@
       </div>
     </header>
 
-    <main id="main-section">
-      <section class="section">
-        <article class="section-top"></article>
-        <article class="section-bottom">
-          <div class="bottom-title-time">
-            <div class="bottom-title">Limonade de Coco</div>
-            <div class="bottom-time">
-              <img src="Images/Temps.png" alt="Durée" id="temps">
-              <span>10 min</span>
-            </div>
+    <!-- TEST DE DROPDOWN BOOTSTRAP -->
+    <!--
+    <div class="container">
+      <h1>Navigation</h1>
+      <div class="row">
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="deroulanta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lien</a>
+          <div class="dropdown-menu" aria-labelledby="deroulanta">
+            <a class="dropdown-item" href="#">Lien</a>
+            <button class="dropdown-item" type="button">Bouton</button>
+            <span class="dropdown-item-text">Texte</span>
           </div>
-          <div class="bottom-descr">
-            <div class="bottom-ingr">
-              <span>Lait de coco: 400ml</span>
-              <span>Jus de citron: 2</span>
-              <span>Crème de coco: 4 cuillères</span>
-              <span>Sucre: 20g</span>
-              <span>Glaçons: 2</span>
-            </div>
-            <div class="bottom-recipe">
-              Mettre les glaçons à votre goût dans le blender,
-              ajouter le lait, la crème de coco, le jus de 2 citrons
-              et le sucre. Mixer jusqu'à avoir la consistence désirée.
-            </div>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="deroulantb" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bouton</button>
+          <div class="dropdown-menu" aria-labelledby="deroulantb">
+            <a class="dropdown-item" href="#">Lien</a>
+            <button class="dropdown-item" type="button">Bouton</button>
+            <span class="dropdown-item-text">Texte</span>
           </div>
-        </article>
-      </section>
-      <section class="section">
-        <article class="section-top"></article>
-        <article class="section-bottom">
-          <div class="bottom-title-time">
-            <div class="bottom-title"></div>
-            <div class="bottom-time"></div>
-          </div>
-          <div class="bottom-descr">
-            <div class="bottom-ingr"></div>
-            <div class="bottom-recipe"></div>
-          </div>
-        </article>
-      </section>
-      <section class="section">
-        <article class="section-top"></article>
-        <article class="section-bottom">
-          <div class="bottom-title-time">
-            <div class="bottom-title"></div>
-            <div class="bottom-time"></div>
-          </div>
-          <div class="bottom-descr">
-            <div class="bottom-ingr"></div>
-            <div class="bottom-recipe"></div>
-          </div>
-        </article>
-      </section>
-    </main>
+        </div>
+      </div>
+    </div>
+    -->
+    <!-- FIN DE TEST -->
+
+    <nav class="dropdown-line">
+      <div class="dropdown" id="drop_Ingr">Ingrédients</div>
+      <div class="dropdown" id="drop_Appa">Appareils</div>
+      <div class="dropdown" id="drop_Uste">Ustensiles</div>
+    </nav>
+
+    <main id="main-section"></main>
 
     <script type="module" src="dist/index.js"></script>
   </body>

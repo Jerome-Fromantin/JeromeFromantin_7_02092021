@@ -3,7 +3,6 @@ body {
   font-family: "DM Sans", sans-serif;
   width: 1240px;
   padding: 40px 100px;
-  border: 1px black solid;
   margin: 0;
 }
 
@@ -52,13 +51,40 @@ header > #search > #search-button > #loupe {
   margin: 19px;
 }
 
+.dropdown-line {
+  display: flex;
+  margin-top: 10px;
+}
+.dropdown-line > .dropdown {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  width: 150px;
+  height: 69px;
+  padding-left: 20px;
+  border-radius: 5px;
+}
+.dropdown-line > #drop_Ingr {
+  background: #3282F7;
+  margin: 0 10px 10px 0;
+}
+.dropdown-line > #drop_Appa {
+  background: #68D9A4;
+  margin: 0 10px 10px 10px;
+}
+.dropdown-line > #drop_Uste {
+  background: #ED6454;
+  margin: 0 0 10px 10px;
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   border: 1px green solid;
   margin-top: 10px;
-  /***** AJOUTER ICI LES CLASSES ET ID DES MENUS DEROULANTS. *****/
 }
 main > .section {
   width: 380px;
@@ -79,9 +105,9 @@ main > .section > .section-bottom {
 main > .section > .section-bottom > .bottom-title-time {
   display: flex;
   justify-content: center;
+  font-size: 18px;
   width: 340px;
   height: 50px;
-  font-size: 18px;
   padding: 0 20px;
 }
 main > .section > .section-bottom > .bottom-title-time > .bottom-title {
@@ -94,9 +120,9 @@ main > .section > .section-bottom > .bottom-title-time > .bottom-time {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-weight: bold;
   width: 90px;
   height: 50px;
-  font-weight: bold;
 }
 main > .section > .section-bottom > .bottom-title-time > .bottom-time > #temps {
   margin-right: 5px;
@@ -104,9 +130,9 @@ main > .section > .section-bottom > .bottom-title-time > .bottom-time > #temps {
 main > .section > .section-bottom > .bottom-descr {
   display: flex;
   justify-content: center;
+  font-size: 12px;
   width: 340px;
   height: 136px;
-  font-size: 12px;
   padding: 0 20px;
 }
 main > .section > .section-bottom > .bottom-descr > .bottom-ingr {
