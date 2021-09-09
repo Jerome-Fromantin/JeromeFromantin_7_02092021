@@ -5,6 +5,7 @@ async function getAll() {
 }
 
 // Récupère l'intégralité du tableau "recipes" du fichier.
+// eslint-disable-next-line import/prefer-default-export
 export const getRecipes = async () => {
   const { recipes } = await getAll();
   return recipes;

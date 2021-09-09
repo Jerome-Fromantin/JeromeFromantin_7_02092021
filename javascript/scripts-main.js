@@ -1,27 +1,41 @@
 // Récupération des données "recipes" du fichier.
-import { recipes } from '../recipes.js';
+import { recipes } from '../recipes';
 
 // PAGE D'ACCUEIL
 // Récupération des données dynamiques pour chaque carte de la page d'accueil.
-import RecipeFactory from './recipeFactory.js';
+import RecipeFactory from './recipeFactory';
+
+// Organise en carte toutes les données précédemment récupérées.
+function fillArticle(recipe) {
+  const fullArticle = document.createElement('section');
+  fullArticle.className = 'section';
+  const top = new RecipeFactory('top', recipe);
+  const bottom = new RecipeFactory('bottom', recipe);
+  fullArticle.appendChild(top.toHTML());
+  fullArticle.appendChild(bottom.toHTML());
+  return fullArticle;
+}
 
 // Montre toutes les cartes remplies dynamiquement (1ère partie).
-function showRecipes1() {
-  showRecipes2(recipes);
-}
-showRecipes1();
-
-// Montre toutes les cartes remplies dynamiquement (2ème partie).
-function showRecipes2(recipes) {
+// eslint-disable-next-line no-shadow
+function showRecipes1(recipes) {
   const mainSection = document.querySelector('#main-section');
-  //mainSection.innerText = '';
+  // mainSection.innerText = '';
+  // eslint-disable-next-line no-console
   console.log(recipes);
+  // eslint-disable-next-line no-restricted-syntax
   for (const recipe of recipes) {
     const card = fillArticle(recipe);
     mainSection.appendChild(card);
   }
 }
+
+// Montre toutes les cartes remplies dynamiquement (2ème partie).
+function showRecipes2() {
+  showRecipes1(recipes);
+}
 showRecipes2();
+// showRecipes2();
 
 /*
 // Montre les photographes en fonction du tag choisi.
@@ -37,17 +51,6 @@ function showByTag(tag) {
   showPhotographers2(photographersByTopTag);
 }
 */
-
-// Organise en carte toutes les données précédemment récupérées.
-function fillArticle(recipe) {
-  const fullArticle = document.createElement('section');
-  fullArticle.className = 'section';
-  const top = new RecipeFactory('top', recipe);
-  const bottom = new RecipeFactory('bottom', recipe);
-  fullArticle.appendChild(top.toHTML());
-  fullArticle.appendChild(bottom.toHTML());
-  return fullArticle;
-}
 
 /*
 // Récupère chacun des tags du haut en desktop et leur valeur pour la fonction suivante.

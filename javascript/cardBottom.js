@@ -1,10 +1,12 @@
-// xxx.
+// Exporte la classe pour "recipeFactory.js".
 export default class CardBottom {
   constructor(data) {
+    // eslint-disable-next-line object-curly-newline
     const { name, time, ingredients, description } = data;
     this.bottom = this.card_Bottom(name, time, ingredients, description);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   card_Bottom(name, time, ingredients, description) {
     const bottom = document.createElement('article');
     bottom.className = 'section-bottom';
@@ -32,17 +34,18 @@ export default class CardBottom {
     ingredients_Recipe.className = 'bottom-descr';
     const ingr = document.createElement('div');
     ingr.className = 'bottom-ingr';
+    // eslint-disable-next-line no-restricted-syntax
     for (const ingred of ingredients) {
       const each_Ingr = document.createElement('span');
       each_Ingr.innerText = `${ingred.ingredient} : ${ingred.quantity ?? ''} ${ingred.unit || ''}`;
       ingr.appendChild(each_Ingr);
     }
-    
+
     const recipe = document.createElement('div');
     recipe.className = 'bottom-recipe';
     if (description.length > 207) {
       const shortRecipe = description.substring(0, 207);
-      recipe.innerText = shortRecipe + ' ...';
+      recipe.innerText = `${shortRecipe} ...`;
     }
     else {
       recipe.innerText = description;
