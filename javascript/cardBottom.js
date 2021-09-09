@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 // Exporte la classe pour "recipeFactory.js".
 export default class CardBottom {
   constructor(data) {
@@ -37,7 +38,19 @@ export default class CardBottom {
     // eslint-disable-next-line no-restricted-syntax
     for (const ingred of ingredients) {
       const each_Ingr = document.createElement('span');
-      each_Ingr.innerText = `${ingred.ingredient} : ${ingred.quantity ?? ''} ${ingred.unit || ''}`;
+      if (ingred.hasOwnProperty('quantity')) {
+        if (ingred.hasOwnProperty('unit')) {
+          each_Ingr.innerText = `${ingred.ingredient} : ${ingred.quantity} ${ingred.unit}`;
+        }
+        else {
+          each_Ingr.innerText = `${ingred.ingredient} : ${ingred.quantity}`;
+        }
+      }
+      else {
+        each_Ingr.innerText = ingred.ingredient;
+      }
+      // each_Ingr.innerText =
+      // `${ingred.ingredient} : ${ingred.quantity ?? ''} ${ingred.unit || ''}`;
       ingr.appendChild(each_Ingr);
     }
 

@@ -20,9 +20,7 @@ function fillArticle(recipe) {
 // eslint-disable-next-line no-shadow
 function showRecipes1(recipes) {
   const mainSection = document.querySelector('#main-section');
-  // mainSection.innerText = '';
-  // eslint-disable-next-line no-console
-  console.log(recipes);
+  mainSection.innerText = '';
   // eslint-disable-next-line no-restricted-syntax
   for (const recipe of recipes) {
     const card = fillArticle(recipe);
@@ -35,7 +33,6 @@ function showRecipes2() {
   showRecipes1(recipes);
 }
 showRecipes2();
-// showRecipes2();
 
 /*
 // Montre les photographes en fonction du tag choisi.
