@@ -27,10 +27,11 @@ Travail réalisé :
 - Installation de Sass pour le CSS,
 - Installation du transpilateur Webpack,
 - Corrections d'erreurs dans les recettes 21 à 40,
-- Quasi finition de l'affichage dynamique des recettes,
 - Installation et configuration de ES Lint et Prettier pour le JS,
 - Correction du code JS en concordance,
-- Corrections d'erreurs dans les recettes 41 à 50.
+- Corrections d'erreurs dans les recettes 41 à 50,
+- Finition de l'affichage dynamique des recettes,
+- Début de mise en place des 3 menus déroulants.
 
 Travail à faire :
 - Amélioration de l'apparence du texte des cartes,
