@@ -1,7 +1,6 @@
 @import "libs/variables.scss";
 
 body {
-    position: relative;                       // GARDER ??
     font-family: "DM Sans", sans-serif;
     width: $page;
     padding: 40px 100px;
@@ -54,7 +53,7 @@ header {
             height: 69px;
             padding: 0;
             border-radius: 0 5px 5px 0;
-            &:hover {
+            &:hover, &:focus {
                 background: darken(#E7E7E7, 10);
             }
 
@@ -71,17 +70,60 @@ header {
     display: flex;
     margin-top: 10px;
 
-    // Chacun des menus.
+    // Chacun des menus fermés et déroulés.
     >.dropdown {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
         color: white;
         font-family: "Lato", sans-serif;
         font-size: 18px;
-        width: 150px;
+        text-decoration: none;
+        width: 130px;
         height: 69px;
-        padding-left: 20px;
+        padding: 0 20px;
         border-radius: 5px;
+        &:hover {
+            cursor: pointer;
+        }
+        &:focus {
+            justify-content: flex-end;
+            width: 670px;
+            padding: 0;
+            >.closed-drop {
+                width: 40px; // POURQUOI ??
+            }
+            .drop-title {
+                display: none;
+            }
+            .up-arrow {
+                display: flex;
+                margin-right: 20px;
+            }
+            .down-arrow {
+                display: none;
+            }
+            >.expanded-drop {
+                display: flex;
+                align-items: flex-start;
+                flex-direction: row;
+                justify-content: space-between;
+                position: absolute;
+                left: 0;
+                top: 60%;
+                z-index: 1;
+            }
+        }
+    }
+
+    // Flèche descendante.
+    //.down-arrow {}
+
+    // Flèche montante.
+    .up-arrow {
+        display: none;
     }
 
     // Menu "Ingrédients".
@@ -101,14 +143,53 @@ header {
         background: #ED6454;
         margin: 0 0 10px 10px;
     }
+
+    // Menus fermés.
+    .closed-drop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 130px;
+    }
+
+    // Menus déroulés.
+    .expanded-drop {
+        display: none;
+        width: 630px;
+        height: 265px;
+        padding: 0 20px 20px 20px;
+        border-radius: 5px;
+
+        // Blocs de 10 lignes.
+        >#col1, >#col2, >#col3 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        // Chacune des lignes.
+        .exp-drop-line {
+            padding: 3px 0;
+            &:hover {
+                color: black;
+            }
+        }
+    }
+    #expanded-drop1 {
+        background: #3282F7;
+    }
+    #expanded-drop2 {
+        background: #68D9A4;
+    }
+    #expanded-drop3 {
+        background: #ED6454;
+    }
 }
 
 // Contenu principal.
 main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    border: 1px green solid;                   // SUPPRIMER
+    justify-content: space-between;             // SUPPRIMER
     margin-top: 10px;
 
     // Chaque carte de recette.
