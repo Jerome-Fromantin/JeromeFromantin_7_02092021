@@ -32,10 +32,9 @@ Travail réalisé :
 - Corrections d'erreurs dans les recettes 41 à 50,
 - Finition de l'affichage dynamique des recettes,
 - Affichage << en dur >> des 3 menus déroulants,
-- Début de mise en place du JS pour leur futur affichage dynamique.
+- Avancement du JS pour leur futur affichage dynamique.
 
 Travail à faire :
-- Amélioration de l'apparence du texte des cartes,
 - Intégration complète de la maquette,
 - Création de 2 versions d'un algorithme de recherche,
 - Et d'autres choses encore...
