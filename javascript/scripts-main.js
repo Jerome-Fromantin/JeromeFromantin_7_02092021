@@ -9,6 +9,21 @@ import { recipes } from '../recipes';
 import RecipeFactory from './recipeFactory';
 
 /*
+// Fonction test : récupération des ingrédients.
+function getIngredients() {
+  let ingr = [];
+  const ingred_arr = recipes[0].ingredients;
+  console.log(ingred_arr);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const ingred of ingred_arr) {
+    ingr = ingred.ingredient;
+    console.log(ingr);
+  }
+  console.log(ingr);
+  return ingr;
+}
+getIngredients();
+
 // Crée le lien englobant le premier menu.
 // eslint-disable-next-line no-shadow
 function fillDrop1Link(dropdown) {
@@ -22,7 +37,7 @@ function fillDrop1Link(dropdown) {
   fullDrop1Link.appendChild(open.toHTML());
   return fullDrop1Link;
 }
-fillDrop1Link(dropdown);
+// fillDrop1Link(dropdown);
 
 // Montre le premier menu rempli dynamiquement (1ère partie).
 // eslint-disable-next-line no-shadow
