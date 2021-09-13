@@ -2,7 +2,7 @@
 import CardTop from './cardTop';
 import CardBottom from './cardBottom';
 
-// Cette classe permet de construire la carte pour chaque photographe dans la page d'accueil.
+// Cette classe permet de construire la carte pour chaque recette dans la page d'accueil.
 export default class RecipeFactory {
   constructor(type, data) {
     if (!data) {
