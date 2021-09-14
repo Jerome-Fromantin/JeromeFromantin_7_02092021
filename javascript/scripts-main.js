@@ -3,26 +3,10 @@ import { recipes } from '../recipes';
 
 // PAGE D'ACCUEIL
 // Récupération des données dynamiques pour le premier menu déroulant.
-// import Dropdown1Factory from './dropdown1Factory';
+import Dropdown1Factory from './dropdown1Factory';
 
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
-
-/*
-// Fonction test : récupération des ingrédients.
-function getIngredients() {
-  let ingr = [];
-  const ingred_arr = recipes[0].ingredients;
-  console.log(ingred_arr);
-  // eslint-disable-next-line no-restricted-syntax
-  for (const ingred of ingred_arr) {
-    ingr = ingred.ingredient;
-    console.log(ingr);
-  }
-  console.log(ingr);
-  return ingr;
-}
-getIngredients();
 
 // Crée le lien englobant le premier menu.
 // eslint-disable-next-line no-shadow
@@ -56,7 +40,6 @@ function showDropdown1b() {
   showDropdown1a(recipes);
 }
 showDropdown1b();
-*/
 
 // Organise en carte toutes les données précédemment récupérées.
 function fillArticle(recipe) {
