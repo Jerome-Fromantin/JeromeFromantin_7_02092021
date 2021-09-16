@@ -11,6 +11,23 @@ import Dropdown3Factory from './dropdown3Factory';
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
+// Récupère le contenu du champ de recherche avec le bouton "loupe".
+// Cette récupération est actuellement dans la console.
+const searchInput = document.querySelector('#search-input');
+const searchButton = document.querySelector('#search-button');
+function clickSubmitSearch(el) {
+  el.preventDefault();
+  // eslint-disable-next-line no-console
+  console.log(searchInput.value);
+}
+searchButton.addEventListener('click', clickSubmitSearch);
+function keyDownSubmitSearch(el) {
+  if (el.key === 'Enter') {
+    clickSubmitSearch(el);
+  }
+}
+searchButton.addEventListener('keydown', keyDownSubmitSearch);
+
 // Constante au niveau global.
 const dropdown = [];
 
@@ -27,7 +44,16 @@ function fillDrop1Link(dropdown) {
 
 // Montre le premier menu rempli dynamiquement.
 function showDropdown1(dropdown) {
-  fillDrop1Link(dropdown);
+  const fullDrop1Link = document.querySelector('#drop_Ingr');
+  function clickShow1(el) {
+    el.preventDefault();
+    fillDrop1Link(dropdown);
+  }
+  fullDrop1Link.addEventListener('click', clickShow1);
+  function focusShow1(el) {
+    clickShow1(el);
+  }
+  fullDrop1Link.addEventListener('focus', focusShow1);
 }
 showDropdown1(dropdown);
 
@@ -44,7 +70,16 @@ function fillDrop2Link(dropdown) {
 
 // Montre le deuxième menu rempli dynamiquement.
 function showDropdown2(dropdown) {
-  fillDrop2Link(dropdown);
+  const fullDrop2Link = document.querySelector('#drop_Appa');
+  function clickShow2(el) {
+    el.preventDefault();
+    fillDrop2Link(dropdown);
+  }
+  fullDrop2Link.addEventListener('click', clickShow2);
+  function focusShow2(el) {
+    clickShow2(el);
+  }
+  fullDrop2Link.addEventListener('focus', focusShow2);
 }
 showDropdown2(dropdown);
 
@@ -61,7 +96,16 @@ function fillDrop3Link(dropdown) {
 
 // Montre le troisième menu rempli dynamiquement.
 function showDropdown3(dropdown) {
-  fillDrop3Link(dropdown);
+  const fullDrop3Link = document.querySelector('#drop_Uste');
+  function clickShow3(el) {
+    el.preventDefault();
+    fillDrop3Link(dropdown);
+  }
+  fullDrop3Link.addEventListener('click', clickShow3);
+  function focusShow3(el) {
+    clickShow3(el);
+  }
+  fullDrop3Link.addEventListener('focus', focusShow3);
 }
 showDropdown3(dropdown);
 
