@@ -1,9 +1,12 @@
+/* eslint-disable no-shadow */
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
 
 // PAGE D'ACCUEIL
-// Récupération des données dynamiques pour le premier menu déroulant.
+// Récupération des données dynamiques pour les trois menus déroulants.
 import Dropdown1Factory from './dropdown1Factory';
+import Dropdown2Factory from './dropdown2Factory';
+import Dropdown3Factory from './dropdown3Factory';
 
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
@@ -12,7 +15,6 @@ import RecipeFactory from './recipeFactory';
 const dropdown = [];
 
 // Crée le lien englobant le premier menu.
-// eslint-disable-next-line no-shadow
 function fillDrop1Link(dropdown) {
   const fullDrop1Link = document.createElement('a');
   fullDrop1Link.href = '';
@@ -24,13 +26,46 @@ function fillDrop1Link(dropdown) {
 }
 
 // Montre le premier menu rempli dynamiquement.
-// eslint-disable-next-line no-shadow
 function showDropdown1(dropdown) {
   fillDrop1Link(dropdown);
 }
 showDropdown1(dropdown);
 
-// Organise en carte toutes les données précédemment récupérées.
+// Crée le lien englobant le deuxième menu.
+function fillDrop2Link(dropdown) {
+  const fullDrop2Link = document.createElement('a');
+  fullDrop2Link.href = '';
+  fullDrop2Link.className = 'dropdown';
+  fullDrop2Link.id = 'drop_Appa';
+  const open = new Dropdown2Factory('open', dropdown);
+  fullDrop2Link.appendChild(open.toHTML());
+  return fullDrop2Link;
+}
+
+// Montre le deuxième menu rempli dynamiquement.
+function showDropdown2(dropdown) {
+  fillDrop2Link(dropdown);
+}
+showDropdown2(dropdown);
+
+// Crée le lien englobant le troisième menu.
+function fillDrop3Link(dropdown) {
+  const fullDrop3Link = document.createElement('a');
+  fullDrop3Link.href = '';
+  fullDrop3Link.className = 'dropdown';
+  fullDrop3Link.id = 'drop_Uste';
+  const open = new Dropdown3Factory('open', dropdown);
+  fullDrop3Link.appendChild(open.toHTML());
+  return fullDrop3Link;
+}
+
+// Montre le troisième menu rempli dynamiquement.
+function showDropdown3(dropdown) {
+  fillDrop3Link(dropdown);
+}
+showDropdown3(dropdown);
+
+// Organise en carte toutes les données de recettes précédemment récupérées.
 function fillArticle(recipe) {
   const fullArticle = document.createElement('section');
   fullArticle.className = 'section';
@@ -42,7 +77,6 @@ function fillArticle(recipe) {
 }
 
 // Montre toutes les cartes remplies dynamiquement (1ère partie).
-// eslint-disable-next-line no-shadow
 function showRecipes1(recipes) {
   const mainSection = document.querySelector('#main-section');
   mainSection.innerText = '';

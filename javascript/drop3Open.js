@@ -14,30 +14,27 @@ export default class DropOpen {
   drop_Open(data) {
     const expandedDiv = document.createElement('div');
     expandedDiv.className = 'expanded-drop';
-    expandedDiv.id = 'expanded-drop1';
+    expandedDiv.id = 'expanded-drop3';
 
-    let allIngredients = recipes.map((recipe) => recipe.ingredients);
+    let allUstensils = recipes.map((recipe) => recipe.ustensils);
     // Dans le tableau "recipes" des recettes, la fonction "map()" prend chaque élément,
-    // donc une recette, et récupère sa propriété "ingredients", qu'il inclut dans "allIngredients".
-    allIngredients = allIngredients.flat();
+    // donc une recette, et récupère sa propriété "ustensils", qu'il inclut dans "allUstensils".
+    allUstensils = allUstensils.flat();
     // La fonction "flat()" permet "d'aplatir" le tableau à un seul niveau en récupérant
-    // les données des sous-tableaux.
-    allIngredients = allIngredients.map((ingr) => ingr.ingredient);
-    // La fonction "map()" prend chaque élément, donc ici un ingrédient (nom, quantité, unité),
-    // et récupère sa propriété "ingredient" (le nom seulement), qu'il inclut dans "allIngredients".
-    allIngredients = allIngredients.sort();
-    // La fonction "sort()" range alphabétiquement les ingrédients.
-    allIngredients = new Set(allIngredients);
+    // les données sous forme de liste.
+    allUstensils = allUstensils.sort();
+    // La fonction "sort()" range alphabétiquement les ustensiles.
+    allUstensils = new Set(allUstensils);
     // Finalement, "new Set" élimine les doublons pour créer le tableau final.
 
-    const expandedDrop1 = document.querySelector('#expanded-drop1');
-    expandedDrop1.innerText = '';
+    const expandedDrop3 = document.querySelector('#expanded-drop3');
+    expandedDrop3.innerText = '';
     // eslint-disable-next-line no-restricted-syntax
-    for (const ingredient of allIngredients) {
+    for (const ustensil of allUstensils) {
       const dropLine = document.createElement('span');
       dropLine.className = 'exp-drop-line';
-      dropLine.innerText = ingredient;
-      expandedDrop1.appendChild(dropLine);
+      dropLine.innerText = ustensil;
+      expandedDrop3.appendChild(dropLine);
     }
     return expandedDiv;
   }
