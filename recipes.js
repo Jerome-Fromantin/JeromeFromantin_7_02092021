@@ -86,7 +86,7 @@ export const recipes = [
         unit: 'ml'
       },
       {
-        ingredient: 'Coulis de tomate',
+        ingredient: 'Coulis de tomates',
         quantity: 25,
         unit: 'cl'
       },
@@ -725,7 +725,7 @@ export const recipes = [
         quantity: 2
       },
       {
-        ingredient: 'Coulis de tomate',
+        ingredient: 'Coulis de tomates',
         quantity: 300,
         unit: 'grammes'
       },
@@ -810,7 +810,7 @@ export const recipes = [
         quantity: 3
       },
       {
-        ingredient: 'Crème fraîche',
+        ingredient: 'Crème fraiche',
         quantity: 20,
         unit: 'cl'
       },
@@ -1513,7 +1513,7 @@ export const recipes = [
         unit: 'grammes'
       },
       {
-        ingredient: 'farine',
+        ingredient: 'Farine',
         quantity: 40,
         unit: 'grammes'
       }
@@ -1614,7 +1614,7 @@ export const recipes = [
         unit: 'grammes'
       },
       {
-        ingredient: 'Crème Fraiche',
+        ingredient: 'Crème fraiche',
         quantity: 20,
         unit: 'cl'
       }
