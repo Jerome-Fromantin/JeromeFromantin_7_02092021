@@ -94,11 +94,17 @@ header > #search > #search-button > #loupe {
   display: flex;
   align-items: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   position: absolute;
+  overflow-y: scroll;
   left: 0;
   top: 60%;
   z-index: 1;
+}
+#dropdown-line > .dropdown:focus > .expanded-drop > .exp-drop-line {
+  display: inline-block;
+  width: 33%;
 }
 #dropdown-line .up-arrow {
   display: none;
@@ -124,18 +130,14 @@ header > #search > #search-button > #loupe {
 #dropdown-line .expanded-drop {
   display: none;
   width: 630px;
-  height: 265px;
+  height: 255px;
   padding: 0 20px 20px 20px;
   border-radius: 5px;
 }
-#dropdown-line .expanded-drop > #col1, #dropdown-line .expanded-drop > #col2, #dropdown-line .expanded-drop > #col3 {
-  display: flex;
-  flex-direction: column;
-}
-#dropdown-line .expanded-drop .exp-drop-line {
+#dropdown-line .expanded-drop > .exp-drop-line {
   padding: 3px 0;
 }
-#dropdown-line .expanded-drop .exp-drop-line:hover {
+#dropdown-line .expanded-drop > .exp-drop-line:hover {
   color: black;
 }
 #dropdown-line #expanded-drop1 {

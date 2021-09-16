@@ -1,5 +1,4 @@
-// Importation des classes nécessaires pour la classe générale.
-import DropClosed from './drop1Closed';
+// Importation de la classe nécessaire pour la classe générale.
 import DropOpen from './drop1Open';
 
 // Cette classe permet de construire le menu déroulant des ingrédients.
@@ -9,8 +8,6 @@ export default class Dropdown1Factory {
       throw new Error('Vous avez oublié des éléments !');
     }
     switch (type) {
-      case 'closed':
-        return new DropClosed();
       case 'open':
         return new DropOpen(data);
       default:
@@ -18,5 +15,3 @@ export default class Dropdown1Factory {
     }
   }
 }
-
-// CE PATTERN FACTORY SEMBLE TERMINE...

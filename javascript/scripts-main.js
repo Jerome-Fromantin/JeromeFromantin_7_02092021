@@ -8,6 +8,9 @@ import Dropdown1Factory from './dropdown1Factory';
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
+// Constante au niveau global.
+const dropdown = [];
+
 // Crée le lien englobant le premier menu.
 // eslint-disable-next-line no-shadow
 function fillDrop1Link(dropdown) {
@@ -15,31 +18,17 @@ function fillDrop1Link(dropdown) {
   fullDrop1Link.href = '';
   fullDrop1Link.className = 'dropdown';
   fullDrop1Link.id = 'drop_Ingr';
-  const closed = new Dropdown1Factory('closed', dropdown);
   const open = new Dropdown1Factory('open', dropdown);
-  fullDrop1Link.appendChild(closed.toHTML());
   fullDrop1Link.appendChild(open.toHTML());
   return fullDrop1Link;
 }
-// fillDrop1Link(dropdown);
 
-// Montre le premier menu rempli dynamiquement (1ère partie).
+// Montre le premier menu rempli dynamiquement.
 // eslint-disable-next-line no-shadow
-function showDropdown1a(recipes) {
-  const dropsLine = document.querySelector('#dropdown-line');
-  // dropsLine.innerText = '';
-  // eslint-disable-next-line no-restricted-syntax
-  for (const dropdown of recipes) {
-    const drop1 = fillDrop1Link(dropdown);
-    dropsLine.appendChild(drop1);
-  }
+function showDropdown1(dropdown) {
+  fillDrop1Link(dropdown);
 }
-
-// Montre le premier menu rempli dynamiquement (2ème partie).
-function showDropdown1b() {
-  showDropdown1a(recipes);
-}
-showDropdown1b();
+showDropdown1(dropdown);
 
 // Organise en carte toutes les données précédemment récupérées.
 function fillArticle(recipe) {

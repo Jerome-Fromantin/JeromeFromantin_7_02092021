@@ -109,11 +109,17 @@ header {
                 display: flex;
                 align-items: flex-start;
                 flex-direction: row;
+                flex-wrap: wrap;
                 justify-content: space-between;
                 position: absolute;
+                overflow-y: scroll;
                 left: 0;
                 top: 60%;
                 z-index: 1;
+                >.exp-drop-line {
+                    display: inline-block;
+                    width: 33%;
+                }
             }
         }
     }
@@ -156,18 +162,12 @@ header {
     .expanded-drop {
         display: none;
         width: 630px;
-        height: 265px;
+        height: 255px;
         padding: 0 20px 20px 20px;
         border-radius: 5px;
 
-        // Blocs de 10 lignes.
-        >#col1, >#col2, >#col3 {
-            display: flex;
-            flex-direction: column;
-        }
-
         // Chacune des lignes.
-        .exp-drop-line {
+        >.exp-drop-line {
             padding: 3px 0;
             &:hover {
                 color: black;
