@@ -38,7 +38,31 @@ export default class DropOpen {
       dropLine.className = 'exp-drop-line';
       dropLine.innerText = ingredient;
       expandedDrop1.appendChild(dropLine);
+      // eslint-disable-next-line no-inner-declarations
+      function showTag() {
+        const tagLine = document.querySelector('#tagLine');
+        const chosenTag = document.createElement('span');
+        chosenTag.className = 'chosen-tag';
+        chosenTag.id = 'chosen-tag-1';
+        const tagText = document.createElement('span');
+        tagText.className = 'tag-text';
+        tagText.innerText = ingredient;
+        const tagImg = document.createElement('img');
+        tagImg.src = 'Images/CloseTag.png';
+        chosenTag.appendChild(tagText);
+        chosenTag.appendChild(tagImg);
+        tagLine.appendChild(chosenTag);
+      }
+      dropLine.addEventListener('click', showTag);
     }
+    /*
+    const chosenTag = document.querySelector('.exp-drop-line');
+    function showTag() {
+      // el.preventDefault();
+      console.log('Fuck you !');
+    }
+    chosenTag.addEventListener('click', showTag);
+    */
     return expandedDiv;
   }
 

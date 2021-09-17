@@ -65,6 +65,48 @@ header {
     }
 }
 
+// Ligne d'apparition des tags.
+#tagLine {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 30px;
+
+    // Chacun des tags.
+    >.chosen-tag {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        font-family: "Lato", sans-serif;
+        font-size: 16px;
+        padding: 7px 20px;
+        border-radius: 5px;
+        margin: 0 10px 10px 0;
+
+        // Texte du tag.
+        >.tag-text {
+            margin-right: 10px;
+        }
+    }
+
+    // Chacun des tags "ingrédients".
+    >#chosen-tag-1 {
+        background: #3282F7;
+    }
+
+    // Chacun des tags "appareils". (A VENIR !!)
+    >#chosen-tag-2 {
+        background: #68D9A4;
+    }
+
+    // Chacun des tags "ustensiles". (A VENIR !!)
+    >#chosen-tag-3 {
+        background: #ED6454;
+    }
+}
+
 // Ligne des menus déroulants.
 #dropdown-line {
     display: flex;
