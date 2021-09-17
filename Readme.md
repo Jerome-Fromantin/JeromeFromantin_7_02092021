@@ -37,7 +37,9 @@ Travail réalisé :
 - Finition de l'affichage dynamique des recettes,
 - Affichage << en dur >> des 3 menus déroulants,
 - Finition de l'affichage dynamique des 3 menus déroulants,
-- Début de réflexion sur l'algorithme de "recherche séquentielle".
+- Début de réflexion sur l'algorithme de "recherche séquentielle",
+- Ajout d'un dossier "Algorithme" contenant plusieurs fichiers texte de réflexions sur l'algorithme et ses implémentations à mettre en place,
+- Mise en place de l'affichage dynamique des tags "ingrédients" par clic dans le menu déroulant correspondant.
 
 Travail à faire :
 - Intégration complète de la maquette,
