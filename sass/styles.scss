@@ -89,6 +89,11 @@ header {
         >.tag-text {
             margin-right: 10px;
         }
+
+        // Icône de fermeture.
+        >.tag-img {
+            cursor: pointer;
+        }
     }
 
     // Chacun des tags "ingrédients".
