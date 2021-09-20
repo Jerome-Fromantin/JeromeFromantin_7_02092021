@@ -39,7 +39,8 @@ Travail réalisé :
 - Finition de l'affichage dynamique des 3 menus déroulants,
 - Début de réflexion sur l'algorithme de "recherche séquentielle",
 - Ajout d'un dossier "Algorithme" contenant plusieurs fichiers texte de réflexions sur l'algorithme et ses implémentations à mettre en place,
-- Affichage et fermeture dynamique des 3 types de tags par clic dans le menu déroulant correspondant.
+- Affichage et fermeture dynamique des 3 types de tags par clic dans le menu déroulant correspondant,
+- Début de mise en place d'un champ de recherche pour chaque menu déroulant.
 
 Travail à faire :
 - Intégration complète de la maquette,
