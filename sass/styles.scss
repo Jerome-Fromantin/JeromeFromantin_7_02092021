@@ -35,7 +35,7 @@ header {
 
         // Champ de saisie et bouton.
         #search-input, >#search-button {
-            background: #E7E7E7;
+            background: $lightGrey;
             font-family: "Lato", sans-serif;
             font-size: 18px;
             width: 1130px;
@@ -54,7 +54,7 @@ header {
             padding: 0;
             border-radius: 0 5px 5px 0;
             &:hover, &:focus {
-                background: darken(#E7E7E7, 10);
+                background: darken($lightGrey, 10);
             }
 
             // Icône seule.
@@ -98,17 +98,17 @@ header {
 
     // Chacun des tags "ingrédients".
     >#chosen-tag-1 {
-        background: #3282F7;
+        background: $colorIngr;
     }
 
-    // Chacun des tags "appareils". (A VENIR !!)
+    // Chacun des tags "appareils".
     >#chosen-tag-2 {
-        background: #68D9A4;
+        background: $colorAppa;
     }
 
-    // Chacun des tags "ustensiles". (A VENIR !!)
+    // Chacun des tags "ustensiles".
     >#chosen-tag-3 {
-        background: #ED6454;
+        background: $colorUste;
     }
 }
 
@@ -136,11 +136,12 @@ header {
             cursor: pointer;
         }
         &:focus {
+            align-items: center;
             width: 670px;
             padding: 0;
             >.closed-drop {
                 width: 670px;
-                justify-content: flex-end;
+                justify-content: space-between;
             }
             .drop-title {
                 display: none;
@@ -152,6 +153,10 @@ header {
             .down-arrow {
                 display: none;
             }
+            .drop-input {
+                display: flex;
+                margin-left: 20px;
+            }
             >.expanded-drop {
                 display: flex;
                 align-items: flex-start;
@@ -159,9 +164,9 @@ header {
                 flex-wrap: wrap;
                 justify-content: space-between;
                 position: absolute;
-                overflow-y: scroll;
+                overflow-y: auto;
                 left: 0;
-                top: 60%;
+                top: 80%;
                 z-index: 1;
                 >.exp-drop-line {
                     display: inline-block;
@@ -181,19 +186,19 @@ header {
 
     // Menu "Ingrédients".
     >#drop_Ingr {
-        background: #3282F7;
+        background: $colorIngr;
         margin: 0 10px 10px 0;
     }
 
     // Menu "Appareils".
     >#drop_Appa {
-        background: #68D9A4;
+        background: $colorAppa;
         margin: 0 10px 10px 10px;
     }
 
     // Menu "Ustensiles".
     >#drop_Uste {
-        background: #ED6454;
+        background: $colorUste;
         margin: 0 0 10px 10px;
     }
 
@@ -221,14 +226,26 @@ header {
             }
         }
     }
-    #expanded-drop1 {
-        background: #3282F7;
+    #expanded-drop1, #drop1-input {
+        background: $colorIngr;
     }
-    #expanded-drop2 {
-        background: #68D9A4;
+    #expanded-drop2, #drop2-input {
+        background: $colorAppa;
     }
-    #expanded-drop3 {
-        background: #ED6454;
+    #expanded-drop3, #drop3-input {
+        background: $colorUste;
+    }
+
+    // Chaque champ de recherche de menu déroulant.
+    .drop-input {
+        display: none;
+        //outline: none;
+        color: lighten($lightGrey, 10);
+        font-size: 18px;
+        width: 630px;
+        height: 30px;
+        border-radius: 5px;
+        border-width: 2px;
     }
 }
 
@@ -254,7 +271,7 @@ main {
 
         // Bas de la carte pour les textes.
         >.section-bottom {
-            background: #E7E7E7;
+            background: $lightGrey;
             font-family: "Lato", sans-serif;
             width: $card;
             height: 186px;

@@ -28,6 +28,23 @@ function keyDownSubmitSearch(el) {
 }
 searchButton.addEventListener('keydown', keyDownSubmitSearch);
 
+// ******************** FONCTION EN TEST *****************************
+// Doit récupérer le contenu du champ de recherche des menus déroulants (mais ne fonctionne pas).
+// Cette récupération serait dans la console.
+const dropInput = document.querySelector('.drop-input');
+function clickDropInput(el) {
+  el.preventDefault();
+  // eslint-disable-next-line no-console
+  console.log(dropInput.value);
+}
+dropInput.addEventListener('click', clickDropInput);
+function keyDownDropInput(el) {
+  if (el.key === 'Enter') {
+    clickDropInput(el);
+  }
+}
+dropInput.addEventListener('keydown', keyDownDropInput);
+
 // Constante au niveau global.
 const dropdown = [];
 
@@ -37,7 +54,9 @@ function fillDrop1Link(dropdown) {
   fullDrop1Link.href = '';
   fullDrop1Link.className = 'dropdown';
   fullDrop1Link.id = 'drop_Ingr';
+  // const closed = new Dropdown1Factory('closed', dropdown);
   const open = new Dropdown1Factory('open', dropdown);
+  // fullDrop1Link.appendChild(closed.toHTML());
   fullDrop1Link.appendChild(open.toHTML());
   return fullDrop1Link;
 }
