@@ -28,9 +28,50 @@ function keyDownSubmitSearch(el) {
 }
 searchButton.addEventListener('keydown', keyDownSubmitSearch);
 
-// ******************** FONCTION EN TEST *****************************
-// Doit récupérer le contenu du champ de recherche des menus déroulants (mais ne fonctionne pas).
-// Cette récupération serait dans la console.
+// Constante globale pour le tableau des divers tags affichés.
+const chosenTags = [];
+
+// Constante au niveau global pour les menus déroulants.
+const dropdown = [];
+
+// Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
+// le tag correspondant est affiché au-dessus.
+function showTag1(ingredient) {
+  const tagLine = document.querySelector('#tagLine');
+  if (chosenTags.indexOf(ingredient) !== -1) {
+    // eslint-disable-next-line no-alert
+    alert('Ingrédient déjà choisi !');
+    return;
+  }
+  // Rajoute l'élément "ingredient" à la fin du tableau "chosenTags".
+  chosenTags.push(ingredient);
+  const chosenTag = document.createElement('span');
+  chosenTag.className = 'chosen-tag';
+  chosenTag.id = 'chosen-tag-1';
+  const tagText = document.createElement('span');
+  tagText.className = 'tag-text';
+  tagText.innerText = ingredient;
+  const tagImg = document.createElement('img');
+  tagImg.className = 'tag-img';
+  tagImg.src = 'Images/CloseTag.png';
+
+  // Supprime le tag avec un clic sur l'icône de fermeture.
+  function closeTag() {
+    // Supprime le span "chosenTag" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag);
+    const ingrIndex = chosenTags.indexOf(ingredient);
+    // Supprime l'élément "ingredient" du tableau "chosenTags" en fonction de son index.
+    chosenTags.splice(ingrIndex, 1);
+  }
+  tagImg.addEventListener('click', closeTag);
+
+  chosenTag.appendChild(tagText);
+  chosenTag.appendChild(tagImg);
+  tagLine.appendChild(chosenTag);
+}
+
+// Récupère le contenu du champ de recherche des menus déroulants.
+// Cette récupération est dans la console.
 const dropInput = document.querySelector('.drop-input');
 function clickDropInput(el) {
   el.preventDefault();
@@ -45,8 +86,15 @@ function keyDownDropInput(el) {
 }
 dropInput.addEventListener('keydown', keyDownDropInput);
 
-// Constante au niveau global.
-const dropdown = [];
+// Empêche le clic sur l'input de se propager à son parent,
+// et donc empêche la fermeture du menu (MAIS NE FONCTIONNE PAS CORRECTEMENT).
+function noClose1() {
+  const drop1Input = document.querySelector('#drop1-input');
+  drop1Input.onclick = (e) => {
+    e.stopPropagation();
+  };
+}
+noClose1();
 
 // Crée le lien englobant le premier menu.
 function fillDrop1Link(dropdown) {
@@ -54,9 +102,9 @@ function fillDrop1Link(dropdown) {
   fullDrop1Link.href = '';
   fullDrop1Link.className = 'dropdown';
   fullDrop1Link.id = 'drop_Ingr';
-  // const closed = new Dropdown1Factory('closed', dropdown);
-  const open = new Dropdown1Factory('open', dropdown);
-  // fullDrop1Link.appendChild(closed.toHTML());
+  const closed = new Dropdown1Factory('closed', dropdown);
+  const open = new Dropdown1Factory('open', dropdown, showTag1);
+  fullDrop1Link.appendChild(closed.toHTML());
   fullDrop1Link.appendChild(open.toHTML());
   return fullDrop1Link;
 }
@@ -76,13 +124,61 @@ function showDropdown1(dropdown) {
 }
 showDropdown1(dropdown);
 
+// Après un clic sur l'un des éléments du menu déroulant "Appareils",
+// le tag correspondant est affiché au-dessus.
+function showTag2(appli) {
+  const tagLine = document.querySelector('#tagLine');
+  if (chosenTags.indexOf(appli) !== -1) {
+    // eslint-disable-next-line no-alert
+    alert('Appareil déjà choisi !');
+    return;
+  }
+  // Rajoute l'élément "appli" à la fin du tableau "chosenTags".
+  chosenTags.push(appli);
+  const chosenTag = document.createElement('span');
+  chosenTag.className = 'chosen-tag';
+  chosenTag.id = 'chosen-tag-2';
+  const tagText = document.createElement('span');
+  tagText.className = 'tag-text';
+  tagText.innerText = appli;
+  const tagImg = document.createElement('img');
+  tagImg.className = 'tag-img';
+  tagImg.src = 'Images/CloseTag.png';
+
+  // Supprime le tag avec un clic sur l'icône de fermeture.
+  function closeTag() {
+    // Supprime le span "chosenTag" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag);
+    const appliIndex = chosenTags.indexOf(appli);
+    // Supprime l'élément "appli" du tableau "chosenTags" en fonction de son index.
+    chosenTags.splice(appliIndex, 1);
+  }
+  tagImg.addEventListener('click', closeTag);
+
+  chosenTag.appendChild(tagText);
+  chosenTag.appendChild(tagImg);
+  tagLine.appendChild(chosenTag);
+}
+
+// Empêche le clic sur l'input de se propager à son parent,
+// et donc empêche la fermeture du menu (MAIS NE FONCTIONNE PAS CORRECTEMENT).
+function noClose2() {
+  const drop2Input = document.querySelector('#drop2-input');
+  drop2Input.onclick = (e) => {
+    e.stopPropagation();
+  };
+}
+noClose2();
+
 // Crée le lien englobant le deuxième menu.
 function fillDrop2Link(dropdown) {
   const fullDrop2Link = document.createElement('a');
   fullDrop2Link.href = '';
   fullDrop2Link.className = 'dropdown';
   fullDrop2Link.id = 'drop_Appa';
-  const open = new Dropdown2Factory('open', dropdown);
+  const closed = new Dropdown2Factory('closed', dropdown);
+  const open = new Dropdown2Factory('open', dropdown, showTag2);
+  fullDrop2Link.appendChild(closed.toHTML());
   fullDrop2Link.appendChild(open.toHTML());
   return fullDrop2Link;
 }
@@ -102,13 +198,61 @@ function showDropdown2(dropdown) {
 }
 showDropdown2(dropdown);
 
+// Après un clic sur l'un des éléments du menu déroulant "Ustensiles",
+// le tag correspondant est affiché au-dessus.
+function showTag3(ustensil) {
+  const tagLine = document.querySelector('#tagLine');
+  if (chosenTags.indexOf(ustensil) !== -1) {
+    // eslint-disable-next-line no-alert
+    alert('Ustensile déjà choisi !');
+    return;
+  }
+  // Rajoute l'élément "ustensil" à la fin du tableau "chosenTags".
+  chosenTags.push(ustensil);
+  const chosenTag = document.createElement('span');
+  chosenTag.className = 'chosen-tag';
+  chosenTag.id = 'chosen-tag-3';
+  const tagText = document.createElement('span');
+  tagText.className = 'tag-text';
+  tagText.innerText = ustensil;
+  const tagImg = document.createElement('img');
+  tagImg.className = 'tag-img';
+  tagImg.src = 'Images/CloseTag.png';
+
+  // Supprime le tag avec un clic sur l'icône de fermeture.
+  function closeTag() {
+    // Supprime le span "chosenTag" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag);
+    const usteIndex = chosenTags.indexOf(ustensil);
+    // Supprime l'élément "appli" du tableau "chosenTags" en fonction de son index.
+    chosenTags.splice(usteIndex, 1);
+  }
+  tagImg.addEventListener('click', closeTag);
+
+  chosenTag.appendChild(tagText);
+  chosenTag.appendChild(tagImg);
+  tagLine.appendChild(chosenTag);
+}
+
+// Empêche le clic sur l'input de se propager à son parent,
+// et donc empêche la fermeture du menu (MAIS NE FONCTIONNE PAS CORRECTEMENT).
+function noClose3() {
+  const drop3Input = document.querySelector('#drop3-input');
+  drop3Input.onclick = (e) => {
+    e.stopPropagation();
+  };
+}
+noClose3();
+
 // Crée le lien englobant le troisième menu.
 function fillDrop3Link(dropdown) {
   const fullDrop3Link = document.createElement('a');
   fullDrop3Link.href = '';
   fullDrop3Link.className = 'dropdown';
   fullDrop3Link.id = 'drop_Uste';
-  const open = new Dropdown3Factory('open', dropdown);
+  const closed = new Dropdown3Factory('closed', dropdown);
+  const open = new Dropdown3Factory('open', dropdown, showTag3);
+  fullDrop3Link.appendChild(closed.toHTML());
   fullDrop3Link.appendChild(open.toHTML());
   return fullDrop3Link;
 }

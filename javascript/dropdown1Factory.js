@@ -4,7 +4,7 @@ import DropOpen from './drop1Open';
 
 // Cette classe permet de construire le menu déroulant des ingrédients.
 export default class Dropdown1Factory {
-  constructor(type, data) {
+  constructor(type, data, onTagClick) {
     if (!data) {
       throw new Error('Vous avez oublié des éléments !');
     }
@@ -12,7 +12,7 @@ export default class Dropdown1Factory {
       case 'closed':
         return new DropClosed(data);
       case 'open':
-        return new DropOpen(data);
+        return new DropOpen(data, onTagClick);
       default:
         throw new Error('Type de données non reconnu !');
     }

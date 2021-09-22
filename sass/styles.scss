@@ -34,7 +34,7 @@ header {
         justify-content: center;
 
         // Champ de saisie et bouton.
-        #search-input, >#search-button {
+        >#search-input, >#search-button {
             background: $lightGrey;
             font-family: "Lato", sans-serif;
             font-size: 18px;
@@ -43,7 +43,7 @@ header {
             padding: 0 20px;
             border-radius: 5px 0 0 5px;
         }
-        #search-input:focus {
+        >#search-input:focus {
             outline: none;
         }
 
@@ -136,26 +136,32 @@ header {
             cursor: pointer;
         }
         &:focus {
-            align-items: center;
             width: 670px;
             padding: 0;
             >.closed-drop {
                 width: 670px;
                 justify-content: space-between;
-            }
-            .drop-title {
-                display: none;
-            }
-            .up-arrow {
-                display: flex;
-                margin-right: 20px;
-            }
-            .down-arrow {
-                display: none;
-            }
-            .drop-input {
-                display: flex;
-                margin-left: 20px;
+                >.drop-title {
+                    display: none;
+                }
+                >.drop-input { //-open {
+                    display: flex;
+                    //outline: none;
+                    color: lighten($lightGrey, 10);
+                    font-size: 18px;
+                    width: 630px;
+                    height: 30px;
+                    border-radius: 5px;
+                    border-width: 2px;
+                    margin-left: 20px;
+                }
+                >.up-arrow {
+                    display: flex;
+                    margin-right: 20px;
+                }
+                >.down-arrow {
+                    display: none;
+                }
             }
             >.expanded-drop {
                 display: flex;
@@ -164,9 +170,9 @@ header {
                 flex-wrap: wrap;
                 justify-content: space-between;
                 position: absolute;
-                overflow-y: auto;
                 left: 0;
                 top: 80%;
+                overflow-y: auto;
                 z-index: 1;
                 >.exp-drop-line {
                     display: inline-block;
@@ -174,14 +180,53 @@ header {
                 }
             }
         }
-    }
 
-    // Flèche descendante.
-    //.down-arrow {}
+        // Menus fermés.
+        >.closed-drop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 130px;
+    
+            // Chaque champ de recherche de menu déroulant.
+            >.drop-input {
+                display: none;
+            }
+            
+            // Flèche montante.
+            >.up-arrow {
+                display: none;
+            }
+        }
 
-    // Flèche montante.
-    .up-arrow {
-        display: none;
+        // Menus déroulés.
+        >.expanded-drop {
+            display: none;
+            width: 630px;
+            height: 255px;
+            padding: 0 20px 20px 20px;
+            border-radius: 5px;
+    
+            // Chacune des lignes.
+            >.exp-drop-line {
+                padding: 3px 0;
+                &:hover {
+                    color: black;
+                }
+            }
+        }
+
+        >#expanded-drop1, #drop1-input {
+            background: $colorIngr;
+        }
+
+        >#expanded-drop2, #drop2-input {
+            background: $colorAppa;
+        }
+
+        >#expanded-drop3, #drop3-input {
+            background: $colorUste;
+        }
     }
 
     // Menu "Ingrédients".
@@ -200,52 +245,6 @@ header {
     >#drop_Uste {
         background: $colorUste;
         margin: 0 0 10px 10px;
-    }
-
-    // Menus fermés.
-    .closed-drop {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 130px;
-    }
-
-    // Menus déroulés.
-    .expanded-drop {
-        display: none;
-        width: 630px;
-        height: 255px;
-        padding: 0 20px 20px 20px;
-        border-radius: 5px;
-
-        // Chacune des lignes.
-        >.exp-drop-line {
-            padding: 3px 0;
-            &:hover {
-                color: black;
-            }
-        }
-    }
-    #expanded-drop1, #drop1-input {
-        background: $colorIngr;
-    }
-    #expanded-drop2, #drop2-input {
-        background: $colorAppa;
-    }
-    #expanded-drop3, #drop3-input {
-        background: $colorUste;
-    }
-
-    // Chaque champ de recherche de menu déroulant.
-    .drop-input {
-        display: none;
-        //outline: none;
-        color: lighten($lightGrey, 10);
-        font-size: 18px;
-        width: 630px;
-        height: 30px;
-        border-radius: 5px;
-        border-width: 2px;
     }
 }
 

@@ -4,14 +4,12 @@ import { recipes } from '../recipes';
 
 // Exporte la classe pour "dropdown1Factory.js".
 export default class DropOpen {
-  constructor(data) {
-    // eslint-disable-next-line object-curly-newline
-    // const { ingredients } = data;
-    this.open = this.drop_Open(data);
+  constructor(data, onTagClick) {
+    this.open = this.dropOpen(data, onTagClick);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  drop_Open(data) {
+  dropOpen(data, onTagClick) {
     const expandedDiv = document.createElement('div');
     expandedDiv.className = 'expanded-drop';
     expandedDiv.id = 'expanded-drop1';
@@ -32,6 +30,7 @@ export default class DropOpen {
 
     const expandedDrop1 = document.querySelector('#expanded-drop1');
     expandedDrop1.innerText = '';
+
     // eslint-disable-next-line no-restricted-syntax
     for (const ingredient of allIngredients) {
       const dropLine = document.createElement('span');
@@ -39,29 +38,7 @@ export default class DropOpen {
       dropLine.innerText = ingredient;
       expandedDrop1.appendChild(dropLine);
 
-      // eslint-disable-next-line no-inner-declarations
-      function showTag() {
-        const tagLine = document.querySelector('#tagLine');
-        const chosenTag = document.createElement('span');
-        chosenTag.className = 'chosen-tag';
-        chosenTag.id = 'chosen-tag-1';
-        const tagText = document.createElement('span');
-        tagText.className = 'tag-text';
-        tagText.innerText = ingredient;
-        const tagImg = document.createElement('img');
-        tagImg.className = 'tag-img';
-        tagImg.src = 'Images/CloseTag.png';
-
-        function closeTag() {
-          tagLine.removeChild(chosenTag);
-        }
-        tagImg.addEventListener('click', closeTag);
-
-        chosenTag.appendChild(tagText);
-        chosenTag.appendChild(tagImg);
-        tagLine.appendChild(chosenTag);
-      }
-      dropLine.addEventListener('click', showTag);
+      dropLine.addEventListener('click', () => { onTagClick(ingredient); });
     }
     return expandedDiv;
   }

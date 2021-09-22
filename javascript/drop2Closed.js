@@ -2,7 +2,7 @@
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
 
-// Exporte la classe pour "dropdown1Factory.js".
+// Exporte la classe pour "dropdown2Factory.js".
 export default class DropClosed {
   constructor(data) {
     this.closed = this.dropClosed(data);
@@ -12,34 +12,23 @@ export default class DropClosed {
   dropClosed(data) {
     const closedDiv = document.createElement('div');
     closedDiv.className = 'closed-drop';
-    closedDiv.id = 'closed-drop1';
-    closedDiv.innerText = '';
+    closedDiv.id = 'closed-drop2';
+    // closedDiv.innerText = '';
 
     const dropTitle = document.createElement('span');
     dropTitle.className = 'drop-title';
-    dropTitle.innerText = 'Ingrédients';
+    dropTitle.innerText = 'Appareils';
 
     const dropInput = document.createElement('input');
     dropInput.className = 'drop-input';
-    dropInput.id = 'drop1-input';
+    dropInput.id = 'drop2-input';
     // dropInput.type = 'text';
     dropInput.setAttribute('type', 'text');
-    // dropInput.placeholder = 'Voir un film'; // 'Rechercher un ingrédient';
-    dropInput.setAttribute('placeholder', 'Voir un film'); // 'Rechercher un ingrédient');
+    // dropInput.placeholder = 'Regarder une photo'; // 'Rechercher un appareil';
+    dropInput.setAttribute('placeholder', 'Regarder une photo'); // 'Rechercher un appareil');
     dropInput.onclick = (e) => {
       e.stopPropagation();
     };
-
-    /*
-    closedDiv.onfocus = () => {
-      dropInput.classList.remove('drop-input');
-      dropInput.classList.add('drop-input-open');
-    };
-    closedDiv.onblur = () => {
-      dropInput.classList.remove('drop-input-open');
-      dropInput.classList.add('drop-input');
-    };
-    */
 
     const upArrow = document.createElement('img');
     upArrow.className = 'up-arrow';
