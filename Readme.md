@@ -40,36 +40,10 @@ Travail réalisé :
 - Début de réflexion sur l'algorithme de "recherche séquentielle",
 - Ajout d'un dossier "Algorithme" contenant plusieurs fichiers texte de réflexions sur l'algorithme et ses implémentations à mettre en place,
 - Affichage et fermeture dynamique des 3 types de tags par clic dans le menu déroulant correspondant,
+- Ajout d'un contrôle des tags affichés empêchant les doublons,
 - Début de mise en place d'un champ de recherche pour chaque menu déroulant.
 
 Travail à faire :
 - Intégration complète de la maquette,
 - Création de 2 versions d'un algorithme de recherche,
 - Et d'autres choses encore...
-
-Travail du projet précédent à adapter éventuellement ici :
-- Installation de WebPack et mise en place de fonctions asynchrones,
-- Ajout d'un champ "description" dans les médias du fichier JSON,
-- Mise en place de la version mobile de la page de photographe,
-- Mise en place de la lightbox en statique (desktop et mobile),
-- Mise en place du pattern factory (page d'accueil),
-- Mise en place du formulaire de contact (desktop et mobile),
-- Modification des images (création d'un dossier "Thumbnails"),
-- Mise en place du tri du menu déroulant (par clic),
-- Mise en place du compteur de likes avec incrémentation,
-- Mise en place de la lightbox dynamique avec navigation dans les médias (par clic et clavier),
-- Amélioration d'apparence en version mobile,
-- Mise en place du tri du menu déroulant (par clavier),
-- Mise en place du tri par tags (par clic et clavier) en page d'accueil,
-- Accessibilité au clavier du formulaire,
-- Améliorations d'apparence de la lightbox en desktop et mobile,
-- Mise en place du pattern factory "médias" pour images et vidéos,
-- Amélioration d'apparence pour Chrome et de la navigation dans la lightbox,
-- Correction d'erreurs, améliorations pour NVDA et début d'ajout de tri par tag de cartes,
-- Réduction du poids des images les plus lourdes,
-- Améliorations diverses : apparence mobile, navigation au clavier, utilisation NVDA,
-- Fin de mise en place du tri par tags de cartes,
-- Ajout de media queries pour les résolutions "tablettes",
-- Dernières améliorations pour l'accessibilité,
-- Installation de ESLint et Prettier dans VSCode,
-- Correction du code des fichiers JS en fonction de ESLint.
