@@ -144,7 +144,7 @@ header {
                 >.drop-title {
                     display: none;
                 }
-                >.drop-input { //-open {
+                >#drop1-input, >#drop2-input, >#drop3-input { //.drop-input { //-open {
                     display: flex;
                     //outline: none;
                     color: lighten($lightGrey, 10);
@@ -340,4 +340,75 @@ main {
             }
         }
     }
+}
+
+// CLASSES ET ID EN TEST !!!
+.dropdown-closed {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    width: 130px;
+    height: 69px;
+    padding: 0 20px;
+    border-radius: 5px;
+    /*
+    &:focus {
+        display: none;
+        +.dropdown-open {
+            display: flex;
+        }
+    }
+    */
+}
+
+#drop_Ingr-closed {
+    background: $colorIngr;
+    margin: 0 10px 10px 0;
+}
+
+.dropdown-open {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    color: white;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    width: 630px;
+    height: 255px;
+    padding: 0 20px 20px 20px;
+    border-radius: 5px;
+}
+
+#drop_Ingr-open {
+    background: $colorIngr;
+    margin: 0 10px 10px 0;
+}
+
+.drop-input-test {
+    display: flex;
+    //outline: none;
+    color: lighten($lightGrey, 10);
+    font-size: 18px;
+    width: 630px;
+    height: 30px;
+    border-radius: 5px;
+    border-width: 2px;
+    margin-left: 20px;
+}
+
+#drop1-input-test {
+    background: $colorIngr;
+}
+
+.up-arrow-test {
+    display: flex;
 }

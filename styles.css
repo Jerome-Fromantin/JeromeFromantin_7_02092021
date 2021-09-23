@@ -117,7 +117,7 @@ header > #search > #search-button > #loupe {
 #dropdown-line > .dropdown:focus > .closed-drop > .drop-title {
   display: none;
 }
-#dropdown-line > .dropdown:focus > .closed-drop > .drop-input {
+#dropdown-line > .dropdown:focus > .closed-drop > #drop1-input, #dropdown-line > .dropdown:focus > .closed-drop > #drop2-input, #dropdown-line > .dropdown:focus > .closed-drop > #drop3-input {
   display: flex;
   color: white;
   font-size: 18px;
@@ -268,6 +268,75 @@ main > .section > .section-bottom > .bottom-descr > .bottom-recipe {
   overflow: hidden;
   padding-top: 5px;
   margin-bottom: 16px;
+}
+
+.dropdown-closed {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  color: white;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  width: 130px;
+  height: 69px;
+  padding: 0 20px;
+  border-radius: 5px;
+  /*
+  &:focus {
+      display: none;
+      +.dropdown-open {
+          display: flex;
+      }
+  }
+  */
+}
+
+#drop_Ingr-closed {
+  background: #3282F7;
+  margin: 0 10px 10px 0;
+}
+
+.dropdown-open {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  color: white;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  width: 630px;
+  height: 255px;
+  padding: 0 20px 20px 20px;
+  border-radius: 5px;
+}
+
+#drop_Ingr-open {
+  background: #3282F7;
+  margin: 0 10px 10px 0;
+}
+
+.drop-input-test {
+  display: flex;
+  color: white;
+  font-size: 18px;
+  width: 630px;
+  height: 30px;
+  border-radius: 5px;
+  border-width: 2px;
+  margin-left: 20px;
+}
+
+#drop1-input-test {
+  background: #3282F7;
+}
+
+.up-arrow-test {
+  display: flex;
 }
 
 /*# sourceMappingURL=styles.css.map */

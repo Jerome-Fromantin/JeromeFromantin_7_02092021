@@ -17,34 +17,7 @@ export default class DropClosed {
 
     const dropTitle = document.createElement('span');
     dropTitle.className = 'drop-title';
-    dropTitle.innerText = 'Ingrédients';
-
-    const dropInput = document.createElement('input');
-    dropInput.className = 'drop-input';
-    dropInput.id = 'drop1-input';
-    // dropInput.type = 'text';
-    dropInput.setAttribute('type', 'text');
-    // dropInput.placeholder = 'Voir un film'; // 'Rechercher un ingrédient';
-    dropInput.setAttribute('placeholder', 'Voir un film'); // 'Rechercher un ingrédient');
-    dropInput.onclick = (e) => {
-      e.stopPropagation();
-    };
-
-    /*
-    closedDiv.onfocus = () => {
-      dropInput.classList.remove('drop-input');
-      dropInput.classList.add('drop-input-open');
-    };
-    closedDiv.onblur = () => {
-      dropInput.classList.remove('drop-input-open');
-      dropInput.classList.add('drop-input');
-    };
-    */
-
-    const upArrow = document.createElement('img');
-    upArrow.className = 'up-arrow';
-    upArrow.src = 'Images/UpArrow.png';
-    upArrow.setAttribute('alt', '');
+    dropTitle.innerText = 'Ingridients';
 
     const downArrow = document.createElement('img');
     downArrow.className = 'down-arrow';
@@ -52,9 +25,37 @@ export default class DropClosed {
     downArrow.setAttribute('alt', '');
 
     closedDiv.appendChild(dropTitle);
-    closedDiv.appendChild(dropInput);
-    closedDiv.appendChild(upArrow);
     closedDiv.appendChild(downArrow);
+
+    function clickClosedDiv(e) {
+      e.preventDefault();
+      closedDiv.classList.replace('closed-drop', 'expanded-drop');
+      closedDiv.id.replace('closed-drop1', 'expanded-drop1');
+
+      const dropInput = document.createElement('input');
+      dropInput.className = 'drop-input';
+      dropInput.id = 'drop1-input';
+      dropInput.type = 'text';
+      dropInput.placeholder = 'Rechercher un ingridient';
+      dropInput.onclick = (el) => {
+        el.stopPropagation();
+      };
+
+      const upArrow = document.createElement('img');
+      upArrow.className = 'up-arrow';
+      upArrow.src = 'Images/UpArrow.png';
+      upArrow.setAttribute('alt', '');
+
+      closedDiv.replaceChild(dropInput, dropTitle);
+      closedDiv.replaceChild(upArrow, downArrow);
+    }
+    closedDiv.addEventListener('click', clickClosedDiv);
+    function keyDownClosedDiv(e) {
+      if (e.key === 'Enter') {
+        clickClosedDiv(e);
+      }
+    }
+    closedDiv.addEventListener('keydown', keyDownClosedDiv);
 
     return closedDiv;
   }

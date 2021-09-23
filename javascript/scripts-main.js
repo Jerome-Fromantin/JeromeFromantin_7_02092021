@@ -28,6 +28,47 @@ function keyDownSubmitSearch(el) {
 }
 searchButton.addEventListener('keydown', keyDownSubmitSearch);
 
+// FONCTION EN TEST !!!
+const menuTest = document.querySelector('.dropdown-closed');
+const dropTitle = document.createElement('span');
+dropTitle.className = 'drop-title-test';
+dropTitle.innerText = 'Ingridients';
+const downArrow = document.createElement('img');
+downArrow.className = 'down-arrow-test';
+downArrow.src = 'Images/DownArrow.png';
+downArrow.alt = '';
+menuTest.appendChild(dropTitle);
+menuTest.appendChild(downArrow);
+// menuTest.appendChild(dropInputTest);
+// menuTest.appendChild(upArrow);
+function clickMenuTest(el) {
+  el.preventDefault();
+  menuTest.appendChild(dropTitle);
+  menuTest.appendChild(downArrow);
+  menuTest.classList.replace('dropdown-closed', 'dropdown-open');
+  menuTest.id.replace('drop_Ingr-closed', 'drop_Ingr-open');
+  const dropInputTest = document.createElement('input');
+  dropInputTest.className = 'drop-input-test';
+  dropInputTest.id = 'drop1-input-test';
+  dropInputTest.type = 'text';
+  dropInputTest.placeholder = 'Rechercher un ingridient';
+  const upArrow = document.createElement('img');
+  upArrow.className = 'up-arrow-test';
+  upArrow.src = 'Images/UpArrow.png';
+  upArrow.alt = '';
+  console.log('Jérôme, ça buggue !');
+  menuTest.replaceChild(dropInputTest, dropTitle);
+  menuTest.replaceChild(upArrow, downArrow);
+}
+menuTest.addEventListener('click', clickMenuTest);
+function keyDownMenuTest(el) {
+  if (el.key === 'Enter') {
+    clickMenuTest(el);
+  }
+}
+menuTest.addEventListener('keydown', keyDownMenuTest);
+// FIN DE TEST
+
 // Constante globale pour le tableau des divers tags affichés.
 const chosenTags = [];
 
@@ -88,6 +129,7 @@ dropInput.addEventListener('keydown', keyDownDropInput);
 
 // Empêche le clic sur l'input de se propager à son parent,
 // et donc empêche la fermeture du menu (MAIS NE FONCTIONNE PAS CORRECTEMENT).
+/*
 function noClose1() {
   const drop1Input = document.querySelector('#drop1-input');
   drop1Input.onclick = (e) => {
@@ -95,6 +137,7 @@ function noClose1() {
   };
 }
 noClose1();
+*/
 
 // Crée le lien englobant le premier menu.
 function fillDrop1Link(dropdown) {
@@ -106,6 +149,7 @@ function fillDrop1Link(dropdown) {
   const open = new Dropdown1Factory('open', dropdown, showTag1);
   fullDrop1Link.appendChild(closed.toHTML());
   fullDrop1Link.appendChild(open.toHTML());
+  // console.log(closed);
   return fullDrop1Link;
 }
 
