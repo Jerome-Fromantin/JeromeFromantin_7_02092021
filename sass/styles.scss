@@ -357,14 +357,6 @@ main {
     height: 69px;
     padding: 0 20px;
     border-radius: 5px;
-    /*
-    &:focus {
-        display: none;
-        +.dropdown-open {
-            display: flex;
-        }
-    }
-    */
 }
 
 #drop_Ingr-closed {
@@ -375,16 +367,16 @@ main {
 .dropdown-open {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    //flex-wrap: wrap;
     justify-content: space-between;
-    position: relative;
     color: white;
     font-family: "Lato", sans-serif;
     font-size: 18px;
     text-decoration: none;
     width: 630px;
-    height: 255px;
-    padding: 0 20px 20px 20px;
+    height: 330px;
+    padding: 0 20px 0 20px;
     border-radius: 5px;
 }
 
@@ -393,16 +385,22 @@ main {
     margin: 0 10px 10px 0;
 }
 
+.drop1-open-1stLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 40px 0 40px;
+}
+
 .drop-input-test {
     display: flex;
     //outline: none;
     color: lighten($lightGrey, 10);
     font-size: 18px;
-    width: 630px;
+    width: 610px;
     height: 30px;
     border-radius: 5px;
     border-width: 2px;
-    margin-left: 20px;
 }
 
 #drop1-input-test {
@@ -411,4 +409,28 @@ main {
 
 .up-arrow-test {
     display: flex;
+}
+
+.expanded-drop-test {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-y: auto;
+    width: 630px;
+    padding: 0 20px 0 20px;
+    border-radius: 5px;
+    >.exp-drop-line-test {
+        display: inline-block;
+        width: 33%;
+        padding: 3px 0;
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+#expanded-drop1-test {
+    background: $colorIngr;
 }

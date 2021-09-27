@@ -28,8 +28,13 @@ function keyDownSubmitSearch(el) {
 }
 searchButton.addEventListener('keydown', keyDownSubmitSearch);
 
+/* ********************************************************************************************** */
 // FONCTION EN TEST !!!
-const menuTest = document.querySelector('.dropdown-closed');
+const dropdownLine = document.querySelector('#dropdown-line');
+const menuTest = document.createElement('a');
+menuTest.href = '';
+menuTest.className = 'dropdown-closed';
+menuTest.id = 'drop_Ingr-closed';
 const dropTitle = document.createElement('span');
 dropTitle.className = 'drop-title-test';
 dropTitle.innerText = 'Ingridients';
@@ -37,37 +42,86 @@ const downArrow = document.createElement('img');
 downArrow.className = 'down-arrow-test';
 downArrow.src = 'Images/DownArrow.png';
 downArrow.alt = '';
+
 menuTest.appendChild(dropTitle);
 menuTest.appendChild(downArrow);
-// menuTest.appendChild(dropInputTest);
-// menuTest.appendChild(upArrow);
+dropdownLine.appendChild(menuTest);
+
+const menuTestOpen = document.createElement('a');
+menuTestOpen.href = '';
+menuTestOpen.className = 'dropdown-open';
+menuTestOpen.id = 'drop_Ingr-open';
+const drop1Open1stLine = document.createElement('div');
+drop1Open1stLine.className = 'drop1-open-1stLine';
+const dropInputTest = document.createElement('input');
+dropInputTest.className = 'drop-input-test';
+dropInputTest.id = 'drop1-input-test';
+dropInputTest.type = 'text';
+dropInputTest.placeholder = 'Rechercher un ingridient';
+const upArrow = document.createElement('img');
+upArrow.className = 'up-arrow-test';
+upArrow.src = 'Images/UpArrow.png';
+upArrow.alt = '';
+const allIngredients = document.createElement('div');
+allIngredients.className = 'expanded-drop-test';
+allIngredients.id = 'expanded-drop1-test';
+
+drop1Open1stLine.appendChild(dropInputTest);
+drop1Open1stLine.appendChild(upArrow);
+menuTestOpen.appendChild(drop1Open1stLine);
+menuTestOpen.appendChild(allIngredients);
+
+function drop1TestOpen(showTag1) {
+  // *******************************************************************FIN DE LIGNE : onTagClick) {
+  let everyIngredient = recipes.map((recipe) => recipe.ingredients);
+  // Dans le tableau "recipes" des recettes, la fonction "map()" prend chaque élément,
+  // donc une recette, et récupère sa propriété "ingredients", qu'il inclut dans "everyIngredient".
+  everyIngredient = everyIngredient.flat();
+  // La fonction "flat()" permet "d'aplatir" le tableau à un seul niveau en récupérant
+  // les données des sous-tableaux.
+  everyIngredient = everyIngredient.map((ingr) => ingr.ingredient);
+  // La fonction "map()" prend chaque élément, donc ici un ingrédient (nom, quantité, unité),
+  // et récupère sa propriété "ingredient" (le nom seulement), qu'il inclut dans "everyIngredient".
+  everyIngredient = everyIngredient.sort();
+  // La fonction "sort()" range alphabétiquement les ingrédients.
+  everyIngredient = new Set(everyIngredient);
+  // Finalement, "new Set" élimine les doublons pour créer le tableau final.
+  console.log(everyIngredient);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const ingredient of everyIngredient) {
+    const dropLine = document.createElement('span');
+    dropLine.className = 'exp-drop-line-test';
+    dropLine.innerText = ingredient;
+    allIngredients.appendChild(dropLine);
+
+    dropLine.addEventListener('click', () => { showTag1(ingredient); });
+    // ***************************************************FIN DE LIGNE : onTagClick(ingredient); });
+  }
+  return allIngredients;
+}
+
 function clickMenuTest(el) {
   el.preventDefault();
-  menuTest.appendChild(dropTitle);
-  menuTest.appendChild(downArrow);
-  menuTest.classList.replace('dropdown-closed', 'dropdown-open');
-  menuTest.id.replace('drop_Ingr-closed', 'drop_Ingr-open');
-  const dropInputTest = document.createElement('input');
-  dropInputTest.className = 'drop-input-test';
-  dropInputTest.id = 'drop1-input-test';
-  dropInputTest.type = 'text';
-  dropInputTest.placeholder = 'Rechercher un ingridient';
-  const upArrow = document.createElement('img');
-  upArrow.className = 'up-arrow-test';
-  upArrow.src = 'Images/UpArrow.png';
-  upArrow.alt = '';
-  console.log('Jérôme, ça buggue !');
-  menuTest.replaceChild(dropInputTest, dropTitle);
-  menuTest.replaceChild(upArrow, downArrow);
+  dropdownLine.replaceChild(menuTestOpen, menuTest);
 }
 menuTest.addEventListener('click', clickMenuTest);
+
 function keyDownMenuTest(el) {
   if (el.key === 'Enter') {
     clickMenuTest(el);
   }
 }
 menuTest.addEventListener('keydown', keyDownMenuTest);
+
+function clickInput(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+dropInputTest.addEventListener('click', clickInput);
+
 // FIN DE TEST
+/* ********************************************************************************************** */
 
 // Constante globale pour le tableau des divers tags affichés.
 const chosenTags = [];
@@ -138,6 +192,35 @@ function noClose1() {
 }
 noClose1();
 */
+
+/* ********************************************************************************************** */
+// Récupère le lien englobant le menu test déroulé.
+// function fillDropTest1Link(dropdown) {
+// const fullDropTest1Link = document.querySelector('.dropdown-open');
+// const ingrList = drop1TestOpen(dropdown, showTag1);                             // onTagClick);
+// console.log(ingrList);
+// fullDropTest1Link.appendChild(ingrList);
+// return fullDropTest1Link;
+// menuTestOpen.appendChild(ingrList);
+// return menuTestOpen;
+// }
+
+// Montre le menu test rempli dynamiquement.
+function showDropdownTest1(dropdown) {
+  const fullDropTest1Link = document.querySelector('#drop_Ingr-closed');
+  function clickShow1(el) {
+    el.preventDefault();
+    // fillDropTest1Link(dropdown);
+    drop1TestOpen(dropdown, showTag1);
+  }
+  fullDropTest1Link.addEventListener('click', clickShow1);
+  function focusShow1(el) {
+    clickShow1(el);
+  }
+  fullDropTest1Link.addEventListener('focus', focusShow1);
+}
+showDropdownTest1(dropdown);
+/* ********************************************************************************************** */
 
 // Crée le lien englobant le premier menu.
 function fillDrop1Link(dropdown) {
