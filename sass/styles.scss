@@ -116,136 +116,6 @@ header {
 #dropdown-line {
     display: flex;
     margin-top: 10px;
-
-    // Chacun des menus fermés et déroulés.
-    >.dropdown {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        position: relative;
-        color: white;
-        font-family: "Lato", sans-serif;
-        font-size: 18px;
-        text-decoration: none;
-        width: 130px;
-        height: 69px;
-        padding: 0 20px;
-        border-radius: 5px;
-        &:hover {
-            cursor: pointer;
-        }
-        &:focus {
-            width: 670px;
-            padding: 0;
-            >.closed-drop {
-                width: 670px;
-                justify-content: space-between;
-                >.drop-title {
-                    display: none;
-                }
-                >#drop1-input, >#drop2-input, >#drop3-input { //.drop-input { //-open {
-                    display: flex;
-                    //outline: none;
-                    color: lighten($lightGrey, 10);
-                    font-size: 18px;
-                    width: 630px;
-                    height: 30px;
-                    border-radius: 5px;
-                    border-width: 2px;
-                    margin-left: 20px;
-                }
-                >.up-arrow {
-                    display: flex;
-                    margin-right: 20px;
-                }
-                >.down-arrow {
-                    display: none;
-                }
-            }
-            >.expanded-drop {
-                display: flex;
-                align-items: flex-start;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                position: absolute;
-                left: 0;
-                top: 80%;
-                overflow-y: auto;
-                z-index: 1;
-                >.exp-drop-line {
-                    display: inline-block;
-                    width: 33%;
-                }
-            }
-        }
-
-        // Menus fermés.
-        >.closed-drop {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 130px;
-    
-            // Chaque champ de recherche de menu déroulant.
-            >.drop-input {
-                display: none;
-            }
-            
-            // Flèche montante.
-            >.up-arrow {
-                display: none;
-            }
-        }
-
-        // Menus déroulés.
-        >.expanded-drop {
-            display: none;
-            width: 630px;
-            height: 255px;
-            padding: 0 20px 20px 20px;
-            border-radius: 5px;
-    
-            // Chacune des lignes.
-            >.exp-drop-line {
-                padding: 3px 0;
-                &:hover {
-                    color: black;
-                }
-            }
-        }
-
-        >#expanded-drop1, #drop1-input {
-            background: $colorIngr;
-        }
-
-        >#expanded-drop2, #drop2-input {
-            background: $colorAppa;
-        }
-
-        >#expanded-drop3, #drop3-input {
-            background: $colorUste;
-        }
-    }
-
-    // Menu "Ingrédients".
-    >#drop_Ingr {
-        background: $colorIngr;
-        margin: 0 10px 10px 0;
-    }
-
-    // Menu "Appareils".
-    >#drop_Appa {
-        background: $colorAppa;
-        margin: 0 10px 10px 10px;
-    }
-
-    // Menu "Ustensiles".
-    >#drop_Uste {
-        background: $colorUste;
-        margin: 0 0 10px 10px;
-    }
 }
 
 // Contenu principal.
@@ -359,9 +229,19 @@ main {
     border-radius: 5px;
 }
 
-#drop_Ingr-closed {
+#drop-ingr-closed, #drop-ingr-open {
     background: $colorIngr;
     margin: 0 10px 10px 0;
+}
+
+#drop-appa-closed, #drop-appa-open {
+    background: $colorAppa;
+    margin: 0 10px 10px 10px;
+}
+
+#drop-uste-closed, #drop-uste-open {
+    background: $colorUste;
+    margin: 0 0 10px 10px;
 }
 
 .dropdown-open {
@@ -369,7 +249,7 @@ main {
     align-items: center;
     flex-direction: column;
     //flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     color: white;
     font-family: "Lato", sans-serif;
     font-size: 18px;
@@ -379,13 +259,13 @@ main {
     padding: 0 20px 0 20px;
     border-radius: 5px;
 
-    >.drop1-open-1stLine {
+    >.drop-open-1stLine {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin: 20px 40px 0 40px;
-
-        >.drop-input-test {
+    
+        >.drop-input {
             display: flex;
             //outline: none;
             color: lighten($lightGrey, 10);
@@ -396,16 +276,24 @@ main {
             border-width: 2px;
         }
         
-        >#drop1-input-test {
+        >#drop1-input {
             background: $colorIngr;
         }
         
-        >.up-arrow-test {
+        >#drop2-input {
+            background: $colorAppa;
+        }
+        
+        >#drop3-input {
+            background: $colorUste;
+        }
+        
+        >.up-arrow {
             display: flex;
         }
     }
-
-    >.expanded-drop-test {
+    
+    >.expanded-drop {
         display: flex;
         align-items: flex-start;
         flex-direction: row;
@@ -415,8 +303,7 @@ main {
         width: 630px;
         padding: 0 20px 0 20px;
         border-radius: 5px;
-
-        >.exp-drop-line-test {
+        >.exp-drop-line {
             display: inline-block;
             width: 33%;
             padding: 3px 0;
@@ -426,12 +313,15 @@ main {
         }
     }
     
-    #expanded-drop1-test {
+    >#expanded-drop1 {
         background: $colorIngr;
     }
-}
-
-#drop_Ingr-open {
-    background: $colorIngr;
-    margin: 0 10px 10px 0;
+    
+    >#expanded-drop2 {
+        background: $colorAppa;
+    }
+    
+    >#expanded-drop3 {
+        background: $colorUste;
+    }
 }
