@@ -284,14 +284,6 @@ main > .section > .section-bottom > .bottom-descr > .bottom-recipe {
   height: 69px;
   padding: 0 20px;
   border-radius: 5px;
-  /*
-  &:focus {
-      display: none;
-      +.dropdown-open {
-          display: flex;
-      }
-  }
-  */
 }
 
 #drop_Ingr-closed {
@@ -302,45 +294,39 @@ main > .section > .section-bottom > .bottom-descr > .bottom-recipe {
 .dropdown-open {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   color: white;
   font-family: "Lato", sans-serif;
   font-size: 18px;
   text-decoration: none;
   width: 630px;
-  height: 255px;
-  padding: 0 20px 20px 20px;
+  height: 330px;
+  padding: 0 20px 0 20px;
   border-radius: 5px;
 }
-
-#drop_Ingr-open {
-  background: #3282F7;
-  margin: 0 10px 10px 0;
+.dropdown-open > .drop1-open-1stLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 40px 0 40px;
 }
-
-.drop-title-test-closed, .down-arrow-test-closed {
-  display: none;
-}
-
-.drop-input-test {
+.dropdown-open > .drop1-open-1stLine > .drop-input-test {
   display: flex;
   color: white;
   font-size: 18px;
-  width: 100%;
+  width: 610px;
   height: 30px;
   border-radius: 5px;
   border-width: 2px;
 }
-
-#drop1-input-test {
+.dropdown-open > .drop1-open-1stLine > #drop1-input-test {
   background: #3282F7;
 }
-
-.up-arrow-test {
+.dropdown-open > .drop1-open-1stLine > .up-arrow-test {
   display: flex;
 }
-
-.expanded-drop-test {
+.dropdown-open > .expanded-drop-test {
   display: flex;
   align-items: flex-start;
   flex-direction: row;
@@ -348,21 +334,24 @@ main > .section > .section-bottom > .bottom-descr > .bottom-recipe {
   justify-content: space-between;
   overflow-y: auto;
   width: 630px;
-  height: 255px;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 0 20px;
   border-radius: 5px;
 }
-.expanded-drop-test > .exp-drop-line-test {
+.dropdown-open > .expanded-drop-test > .exp-drop-line-test {
   display: inline-block;
   width: 33%;
   padding: 3px 0;
 }
-.expanded-drop-test > .exp-drop-line-test:hover {
+.dropdown-open > .expanded-drop-test > .exp-drop-line-test:hover {
   color: black;
 }
-
-#expanded-drop1-test {
+.dropdown-open #expanded-drop1-test {
   background: #3282F7;
+}
+
+#drop_Ingr-open {
+  background: #3282F7;
+  margin: 0 10px 10px 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
