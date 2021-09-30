@@ -41,7 +41,8 @@ Travail réalisé :
 - Ajout d'un dossier "Algorithme" contenant plusieurs fichiers texte de réflexions sur l'algorithme et ses implémentations à mettre en place,
 - Affichage et fermeture dynamique des 3 types de tags par clic dans le menu déroulant correspondant,
 - Ajout d'un contrôle des tags affichés empêchant les doublons,
-- Réorganisation de chaque menu déroulant pour la mise en place d'un champ de recherche.
+- Réorganisation de chaque menu déroulant pour la mise en place d'un champ de recherche,
+- Correction de défauts dans les champs de recherche des menus déroulants.
 
 Travail à faire :
 - Création de 2 versions d'un algorithme de recherche,
