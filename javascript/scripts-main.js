@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
 
@@ -22,72 +21,138 @@ function keyDownSubmitSearch(el) {
 }
 searchButton.addEventListener('keydown', keyDownSubmitSearch);
 
-/*
-// CI-DESSOUS A AMELIORER !!
-// Récupère le contenu du champ de recherche des menus déroulants.
-// Cette récupération est dans la console.
-const dropInput = document.querySelector('.drop-input');
-function clickDropInput(el) {
-  el.preventDefault();
-  // eslint-disable-next-line no-console
-  console.log(dropInput.value);
-}
-dropInput.addEventListener('click', clickDropInput);
-function keyDownDropInput(el) {
-  if (el.key === 'Enter') {
-    clickDropInput(el);
-  }
-}
-dropInput.addEventListener('keydown', keyDownDropInput);
-*/
+// TEST DE CONSTANTES GLOBALES POUR LES MENUS.
+const dropdownLine = document.querySelector('#dropdown-line');
+// Création du 1er menu déroulant au niveau global.
+const menu1 = document.createElement('a');
+menu1.href = '';
+menu1.className = 'dropdown-closed';
+menu1.id = 'drop-ingr-closed';
+const title1 = document.createElement('span');
+title1.className = 'drop-title';
+title1.innerText = 'Ingrédients';
+const downArrow1 = document.createElement('img');
+downArrow1.className = 'down-arrow';
+downArrow1.src = 'Images/DownArrow.png';
+downArrow1.alt = '';
 
-// Fonction de création et affichage du menu déroulant "Ingrédients", fermé et ouvert.
+menu1.appendChild(title1);
+menu1.appendChild(downArrow1);
+dropdownLine.appendChild(menu1);
+
+const menuOpen1 = document.createElement('a');
+menuOpen1.href = '';
+menuOpen1.className = 'dropdown-open';
+menuOpen1.id = 'drop-ingr-open';
+const firstLine1 = document.createElement('div');
+firstLine1.className = 'drop-open-1stLine';
+const input1 = document.createElement('input');
+input1.className = 'drop-input';
+input1.id = 'drop1-input';
+input1.type = 'text';
+input1.placeholder = 'Rechercher un ingrédient';
+const upArrow1 = document.createElement('img');
+upArrow1.className = 'up-arrow';
+upArrow1.src = 'Images/UpArrow.png';
+upArrow1.alt = '';
+const fullList1 = document.createElement('div');
+fullList1.className = 'expanded-drop';
+fullList1.id = 'expanded-drop1';
+
+firstLine1.appendChild(input1);
+firstLine1.appendChild(upArrow1);
+menuOpen1.appendChild(firstLine1);
+menuOpen1.appendChild(fullList1);
+
+// Création du 2ème menu déroulant au niveau global.
+const menu2 = document.createElement('a');
+menu2.href = '';
+menu2.className = 'dropdown-closed';
+menu2.id = 'drop-appa-closed';
+const title2 = document.createElement('span');
+title2.className = 'drop-title';
+title2.innerText = 'Appareils';
+const downArrow2 = document.createElement('img');
+downArrow2.className = 'down-arrow';
+downArrow2.src = 'Images/DownArrow.png';
+downArrow2.alt = '';
+
+menu2.appendChild(title2);
+menu2.appendChild(downArrow2);
+dropdownLine.appendChild(menu2);
+
+const menuOpen2 = document.createElement('a');
+menuOpen2.href = '';
+menuOpen2.className = 'dropdown-open';
+menuOpen2.id = 'drop-appa-open';
+const firstLine2 = document.createElement('div');
+firstLine2.className = 'drop-open-1stLine';
+const input2 = document.createElement('input');
+input2.className = 'drop-input';
+input2.id = 'drop2-input';
+input2.type = 'text';
+input2.placeholder = 'Rechercher un appareil';
+const upArrow2 = document.createElement('img');
+upArrow2.className = 'up-arrow';
+upArrow2.src = 'Images/UpArrow.png';
+upArrow2.alt = '';
+const fullList2 = document.createElement('div');
+fullList2.className = 'expanded-drop';
+fullList2.id = 'expanded-drop2';
+
+firstLine2.appendChild(input2);
+firstLine2.appendChild(upArrow2);
+menuOpen2.appendChild(firstLine2);
+menuOpen2.appendChild(fullList2);
+
+// Création du 3ème menu déroulant au niveau global.
+const menu3 = document.createElement('a');
+menu3.href = '';
+menu3.className = 'dropdown-closed';
+menu3.id = 'drop-uste-closed';
+const title3 = document.createElement('span');
+title3.className = 'drop-title';
+title3.innerText = 'Ustensiles';
+const downArrow3 = document.createElement('img');
+downArrow3.className = 'down-arrow';
+downArrow3.src = 'Images/DownArrow.png';
+downArrow3.alt = '';
+
+menu3.appendChild(title3);
+menu3.appendChild(downArrow3);
+dropdownLine.appendChild(menu3);
+
+const menuOpen3 = document.createElement('a');
+menuOpen3.href = '';
+menuOpen3.className = 'dropdown-open';
+menuOpen3.id = 'drop-uste-open';
+const firstLine3 = document.createElement('div');
+firstLine3.className = 'drop-open-1stLine';
+const input3 = document.createElement('input');
+input3.className = 'drop-input';
+input3.id = 'drop3-input';
+input3.type = 'text';
+input3.placeholder = 'Rechercher un ustensile';
+const upArrow3 = document.createElement('img');
+upArrow3.className = 'up-arrow';
+upArrow3.src = 'Images/UpArrow.png';
+upArrow3.alt = '';
+const fullList3 = document.createElement('div');
+fullList3.className = 'expanded-drop';
+fullList3.id = 'expanded-drop3';
+
+firstLine3.appendChild(input3);
+firstLine3.appendChild(upArrow3);
+menuOpen3.appendChild(firstLine3);
+menuOpen3.appendChild(fullList3);
+// FIN DE TEST
+
+// Fonction d'affichage du menu déroulant "Ingrédients", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle ci-dessous en exemple.
 // (function example() {
 // console.log('Bonjour !');
 // }());
 (function menuIngr() {
-  const dropdownLine = document.querySelector('#dropdown-line');
-  const menu = document.createElement('a');
-  menu.href = '';
-  menu.className = 'dropdown-closed';
-  menu.id = 'drop-ingr-closed';
-  const title = document.createElement('span');
-  title.className = 'drop-title';
-  title.innerText = 'Ingrédients';
-  const downArrow = document.createElement('img');
-  downArrow.className = 'down-arrow';
-  downArrow.src = 'Images/DownArrow.png';
-  downArrow.alt = '';
-
-  menu.appendChild(title);
-  menu.appendChild(downArrow);
-  dropdownLine.appendChild(menu);
-
-  const menuOpen = document.createElement('a');
-  menuOpen.href = '';
-  menuOpen.className = 'dropdown-open';
-  menuOpen.id = 'drop-ingr-open';
-  const firstLine = document.createElement('div');
-  firstLine.className = 'drop-open-1stLine';
-  const input = document.createElement('input');
-  input.className = 'drop-input';
-  input.id = 'drop1-input';
-  input.type = 'text';
-  input.placeholder = 'Rechercher un ingrédient';
-  const upArrow = document.createElement('img');
-  upArrow.className = 'up-arrow';
-  upArrow.src = 'Images/UpArrow.png';
-  upArrow.alt = '';
-  const fullList = document.createElement('div');
-  fullList.className = 'expanded-drop';
-  fullList.id = 'expanded-drop1';
-
-  firstLine.appendChild(input);
-  firstLine.appendChild(upArrow);
-  menuOpen.appendChild(firstLine);
-  menuOpen.appendChild(fullList);
-
   let everyIngredient = recipes.map((recipe) => recipe.ingredients);
   // Dans le tableau "recipes" des recettes, la fonction "map()" prend chaque élément,
   // donc une recette, et récupère sa propriété "ingredients", qu'il inclut dans "everyIngredient".
@@ -151,89 +216,63 @@ dropInput.addEventListener('keydown', keyDownDropInput);
 
   // Ouvre le menu déroulant et crée la liste des ingrédients.
   function fullMenu() {
-    // Ci-dessous, l'enfant "menuOpen" remplace l'enfant "menu".
-    dropdownLine.replaceChild(menuOpen, menu);
-    fullList.innerText = '';
+    if (dropdownLine.contains(menuOpen2)) {
+      dropdownLine.replaceChild(menu2, menuOpen2);
+    }
+    if (dropdownLine.contains(menuOpen3)) {
+      dropdownLine.replaceChild(menu3, menuOpen3);
+    }
+    // Ci-dessous, l'enfant "menuOpen1" remplace l'enfant "menu1".
+    dropdownLine.replaceChild(menuOpen1, menu1);
+    fullList1.innerText = '';
 
     // eslint-disable-next-line no-restricted-syntax
     for (const ingredient of everyIngredient) {
       const dropLine = document.createElement('span');
       dropLine.className = 'exp-drop-line';
       dropLine.innerText = ingredient;
-      fullList.appendChild(dropLine);
+      fullList1.appendChild(dropLine);
 
       dropLine.addEventListener('click', showTag);
     }
   }
-
-  // Un clic sur l'input ne se propage pas à son parent.
-  function clickInput(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-  input.addEventListener('click', clickInput);
-
-  // Referme le menu déroulant en cliquant dessus ou ailleurs.
-  function closeMenu(el) {
-    el.preventDefault();
-    if (dropdownLine.contains(menuOpen)) {
-      dropdownLine.replaceChild(menu, menuOpen);
-    }
-  }
-  document.addEventListener('click', closeMenu);
 
   // Montre le menu déroulant rempli dynamiquement.
   function showMenu(el) {
     el.preventDefault();
     fullMenu();
   }
-  menu.addEventListener('focus', showMenu);
+  menu1.addEventListener('focus', showMenu);
+
+  // Un clic sur l'input ne se propage pas à son parent.
+  function clickInput(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  input1.addEventListener('click', clickInput);
+
+  // Récupère le contenu du champ de recherche du menu déroulant.
+  // Cette récupération est dans la console.
+  function getInputText(el) {
+    el.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log(el.target.value);
+  }
+  input1.addEventListener('input', getInputText);
+
+  // Referme le menu déroulant en cliquant dessus ou ailleurs.
+  function closeMenu(el) {
+    el.preventDefault();
+    if (dropdownLine.contains(menuOpen1)) {
+      dropdownLine.replaceChild(menu1, menuOpen1);
+    }
+  }
+  document.addEventListener('click', closeMenu);
 }());
 
-// Fonction de création et affichage du menu déroulant "Appareils", fermé et ouvert.
+// Fonction d'affichage du menu déroulant "Appareils", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle au dessus.
 (function menuAppa() {
-  const dropdownLine = document.querySelector('#dropdown-line');
-  const menu = document.createElement('a');
-  menu.href = '';
-  menu.className = 'dropdown-closed';
-  menu.id = 'drop-appa-closed';
-  const title = document.createElement('span');
-  title.className = 'drop-title';
-  title.innerText = 'Appareils';
-  const downArrow = document.createElement('img');
-  downArrow.className = 'down-arrow';
-  downArrow.src = 'Images/DownArrow.png';
-  downArrow.alt = '';
-
-  menu.appendChild(title);
-  menu.appendChild(downArrow);
-  dropdownLine.appendChild(menu);
-
-  const menuOpen = document.createElement('a');
-  menuOpen.href = '';
-  menuOpen.className = 'dropdown-open';
-  menuOpen.id = 'drop-appa-open';
-  const firstLine = document.createElement('div');
-  firstLine.className = 'drop-open-1stLine';
-  const input = document.createElement('input');
-  input.className = 'drop-input';
-  input.id = 'drop2-input';
-  input.type = 'text';
-  input.placeholder = 'Rechercher un appareil';
-  const upArrow = document.createElement('img');
-  upArrow.className = 'up-arrow';
-  upArrow.src = 'Images/UpArrow.png';
-  upArrow.alt = '';
-  const fullList = document.createElement('div');
-  fullList.className = 'expanded-drop';
-  fullList.id = 'expanded-drop2';
-
-  firstLine.appendChild(input);
-  firstLine.appendChild(upArrow);
-  menuOpen.appendChild(firstLine);
-  menuOpen.appendChild(fullList);
-
   let everyAppliance = recipes.map((recipe) => recipe.appliance);
   // Dans le tableau "recipes" des recettes, la fonction "map()" prend chaque élément,
   // donc une recette, et récupère sa propriété "appliance", qu'il inclut dans "everyAppliance".
@@ -291,89 +330,64 @@ dropInput.addEventListener('keydown', keyDownDropInput);
 
   // Ouvre le menu déroulant et crée la liste des appareils.
   function fullMenu() {
-    // Ci-dessous, l'enfant "menuOpen" remplace l'enfant "menu".
-    dropdownLine.replaceChild(menuOpen, menu);
-    fullList.innerText = '';
+    if (dropdownLine.contains(menuOpen1)) {
+      dropdownLine.replaceChild(menu1, menuOpen1);
+    }
+    if (dropdownLine.contains(menuOpen3)) {
+      dropdownLine.replaceChild(menu3, menuOpen3);
+    }
+    // Ci-dessous, l'enfant "menuOpen2" remplace l'enfant "menu2".
+    dropdownLine.replaceChild(menuOpen2, menu2);
+    fullList2.innerText = '';
 
     // eslint-disable-next-line no-restricted-syntax
     for (const appli of everyAppliance) {
       const dropLine = document.createElement('span');
       dropLine.className = 'exp-drop-line';
       dropLine.innerText = appli;
-      fullList.appendChild(dropLine);
+      fullList2.appendChild(dropLine);
 
       dropLine.addEventListener('click', showTag);
     }
   }
-
-  // Un clic sur l'input ne se propage pas à son parent.
-  function clickInput(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-  input.addEventListener('click', clickInput);
-
-  // Referme le menu déroulant en cliquant dessus ou ailleurs.
-  function closeMenu(el) {
-    el.preventDefault();
-    if (dropdownLine.contains(menuOpen)) {
-      dropdownLine.replaceChild(menu, menuOpen);
-    }
-  }
-  document.addEventListener('click', closeMenu);
 
   // Montre le menu déroulant rempli dynamiquement.
   function showMenu(el) {
     el.preventDefault();
     fullMenu();
   }
-  menu.addEventListener('focus', showMenu);
+  menu2.addEventListener('focus', showMenu);
+
+  // Un clic sur l'input ne se propage pas à son parent.
+  function clickInput(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  input2.addEventListener('click', clickInput);
+
+  // Récupère le contenu du champ de recherche du menu déroulant.
+  // Cette récupération est dans la console.
+  function getInputText(el) {
+    el.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log(el.target.value);
+  }
+  input2.addEventListener('input', getInputText);
+
+  // Referme le menu déroulant en cliquant dessus ou ailleurs.
+  // Referme le menu déroulant en cliquant dessus ou ailleurs.
+  function closeMenu(el) {
+    el.preventDefault();
+    if (dropdownLine.contains(menuOpen2)) {
+      dropdownLine.replaceChild(menu2, menuOpen2);
+    }
+  }
+  document.addEventListener('click', closeMenu);
 }());
 
-// Fonction de création et affichage du menu déroulant "Ustensiles", fermé et ouvert.
+// Fonction d'affichage du menu déroulant "Ustensiles", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme les 2 au dessus.
 (function menuUste() {
-  const dropdownLine = document.querySelector('#dropdown-line');
-  const menu = document.createElement('a');
-  menu.href = '';
-  menu.className = 'dropdown-closed';
-  menu.id = 'drop-uste-closed';
-  const title = document.createElement('span');
-  title.className = 'drop-title';
-  title.innerText = 'Ustensiles';
-  const downArrow = document.createElement('img');
-  downArrow.className = 'down-arrow';
-  downArrow.src = 'Images/DownArrow.png';
-  downArrow.alt = '';
-
-  menu.appendChild(title);
-  menu.appendChild(downArrow);
-  dropdownLine.appendChild(menu);
-
-  const menuOpen = document.createElement('a');
-  menuOpen.href = '';
-  menuOpen.className = 'dropdown-open';
-  menuOpen.id = 'drop-uste-open';
-  const firstLine = document.createElement('div');
-  firstLine.className = 'drop-open-1stLine';
-  const input = document.createElement('input');
-  input.className = 'drop-input';
-  input.id = 'drop3-input';
-  input.type = 'text';
-  input.placeholder = 'Rechercher un ustensile';
-  const upArrow = document.createElement('img');
-  upArrow.className = 'up-arrow';
-  upArrow.src = 'Images/UpArrow.png';
-  upArrow.alt = '';
-  const fullList = document.createElement('div');
-  fullList.className = 'expanded-drop';
-  fullList.id = 'expanded-drop3';
-
-  firstLine.appendChild(input);
-  firstLine.appendChild(upArrow);
-  menuOpen.appendChild(firstLine);
-  menuOpen.appendChild(fullList);
-
   let everyUstensil = recipes.map((recipe) => recipe.ustensils);
   // Dans le tableau "recipes" des recettes, la fonction "map()" prend chaque élément,
   // donc une recette, et récupère sa propriété "ustensils", qu'il inclut dans "everyUstensil".
@@ -434,43 +448,58 @@ dropInput.addEventListener('keydown', keyDownDropInput);
 
   // Ouvre le menu déroulant et crée la liste des ustensiles.
   function fullMenu() {
-    // Ci-dessous, l'enfant "menuOpen" remplace l'enfant "menu".
-    dropdownLine.replaceChild(menuOpen, menu);
-    fullList.innerText = '';
+    if (dropdownLine.contains(menuOpen1)) {
+      dropdownLine.replaceChild(menu1, menuOpen1);
+    }
+    if (dropdownLine.contains(menuOpen2)) {
+      dropdownLine.replaceChild(menu2, menuOpen2);
+    }
+    // Ci-dessous, l'enfant "menuOpen3" remplace l'enfant "menu3".
+    dropdownLine.replaceChild(menuOpen3, menu3);
+    fullList3.innerText = '';
 
     // eslint-disable-next-line no-restricted-syntax
     for (const appli of everyUstensil) {
       const dropLine = document.createElement('span');
       dropLine.className = 'exp-drop-line';
       dropLine.innerText = appli;
-      fullList.appendChild(dropLine);
+      fullList3.appendChild(dropLine);
 
       dropLine.addEventListener('click', showTag);
     }
   }
-
-  // Un clic sur l'input ne se propage pas à son parent.
-  function clickInput(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-  input.addEventListener('click', clickInput);
-
-  // Referme le menu déroulant en cliquant dessus ou ailleurs.
-  function closeMenu(el) {
-    el.preventDefault();
-    if (dropdownLine.contains(menuOpen)) {
-      dropdownLine.replaceChild(menu, menuOpen);
-    }
-  }
-  document.addEventListener('click', closeMenu);
 
   // Montre le menu déroulant rempli dynamiquement.
   function showMenu(el) {
     el.preventDefault();
     fullMenu();
   }
-  menu.addEventListener('focus', showMenu);
+  menu3.addEventListener('focus', showMenu);
+
+  // Un clic sur l'input ne se propage pas à son parent.
+  function clickInput(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  input3.addEventListener('click', clickInput);
+
+  // Récupère le contenu du champ de recherche du menu déroulant.
+  // Cette récupération est dans la console.
+  function getInputText(el) {
+    el.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log(el.target.value);
+  }
+  input3.addEventListener('input', getInputText);
+
+  // Referme le menu déroulant en cliquant dessus ou ailleurs.
+  function closeMenu(el) {
+    el.preventDefault();
+    if (dropdownLine.contains(menuOpen3)) {
+      dropdownLine.replaceChild(menu3, menuOpen3);
+    }
+  }
+  document.addEventListener('click', closeMenu);
 }());
 
 // Organise en carte toutes les données de recettes précédemment récupérées.
@@ -485,6 +514,7 @@ function fillArticle(recipe) {
 }
 
 // Montre toutes les cartes remplies dynamiquement (1ère partie).
+// eslint-disable-next-line no-shadow
 function showRecipes1(recipes) {
   const mainSection = document.querySelector('#main-section');
   mainSection.innerText = '';
