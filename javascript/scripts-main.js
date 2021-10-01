@@ -4,7 +4,7 @@ import { recipes } from '../recipes';
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
-// Récupère le contenu du champ de recherche avec le bouton "loupe".
+// Récupère le contenu du champ de recherche avec le bouton "loupe" ou durant la frappe.
 // Cette récupération est actuellement dans la console.
 const searchInput = document.querySelector('#search-input');
 const searchButton = document.querySelector('#search-button');
@@ -20,10 +20,51 @@ function keyDownSubmitSearch(el) {
   }
 }
 searchButton.addEventListener('keydown', keyDownSubmitSearch);
+function getSearchInputText(el) {
+  el.preventDefault();
+  // eslint-disable-next-line no-console
+  console.log(el.target.value);
+}
+searchInput.addEventListener('input', getSearchInputText);
 
-// TEST DE CONSTANTES GLOBALES POUR LES MENUS.
+// ICI SE TROUVE TESTEE LA FONCTION DE L'IMPLEMENTATION 1.
+function triParBoucle() {
+  const contenu = searchInput.value;
+  // const contenuMin = contenu.toLowerCase();
+  const newRecipes = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const recipe of recipes) {
+    if (contenu.length >= 3) {
+      if (recipe.name.includes(contenu)) {
+        console.log(recipe.name);
+        newRecipes.push(recipe);
+        console.log(newRecipes);
+        // showRecipes1();
+      }
+      /* else {
+        console.log('Non !');
+      }
+      if (recipe.ingredients.ingredient.includes(contenu)) {
+        console.log('test');
+        console.log(recipe.ingredients.ingredient);
+      }
+      if (recipe.description.includes(contenu)) {
+        return recipe;
+      } */
+    }
+  }
+  /* if (recipe === []) {
+    // eslint-disable-next-line no-alert
+    alert('Aucune recette...');
+  } */
+  return newRecipes;
+}
+searchInput.addEventListener('input', triParBoucle);
+// FIN DE TEST.
+
+// Constantes globales pour les menus.
 const dropdownLine = document.querySelector('#dropdown-line');
-// Création du 1er menu déroulant au niveau global.
+// Création du 1er menu déroulant.
 const menu1 = document.createElement('a');
 menu1.href = '';
 menu1.className = 'dropdown-closed';
@@ -64,7 +105,7 @@ firstLine1.appendChild(upArrow1);
 menuOpen1.appendChild(firstLine1);
 menuOpen1.appendChild(fullList1);
 
-// Création du 2ème menu déroulant au niveau global.
+// Création du 2ème menu déroulant.
 const menu2 = document.createElement('a');
 menu2.href = '';
 menu2.className = 'dropdown-closed';
@@ -105,7 +146,7 @@ firstLine2.appendChild(upArrow2);
 menuOpen2.appendChild(firstLine2);
 menuOpen2.appendChild(fullList2);
 
-// Création du 3ème menu déroulant au niveau global.
+// Création du 3ème menu déroulant.
 const menu3 = document.createElement('a');
 menu3.href = '';
 menu3.className = 'dropdown-closed';
@@ -145,7 +186,6 @@ firstLine3.appendChild(input3);
 firstLine3.appendChild(upArrow3);
 menuOpen3.appendChild(firstLine3);
 menuOpen3.appendChild(fullList3);
-// FIN DE TEST
 
 // Fonction d'affichage du menu déroulant "Ingrédients", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle ci-dessous en exemple.
@@ -251,7 +291,7 @@ menuOpen3.appendChild(fullList3);
   }
   input1.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant.
+  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe.
   // Cette récupération est dans la console.
   function getInputText(el) {
     el.preventDefault();
@@ -365,7 +405,7 @@ menuOpen3.appendChild(fullList3);
   }
   input2.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant.
+  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe.
   // Cette récupération est dans la console.
   function getInputText(el) {
     el.preventDefault();
@@ -483,7 +523,7 @@ menuOpen3.appendChild(fullList3);
   }
   input3.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant.
+  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe.
   // Cette récupération est dans la console.
   function getInputText(el) {
     el.preventDefault();
