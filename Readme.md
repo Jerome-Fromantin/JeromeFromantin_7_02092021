@@ -42,7 +42,8 @@ Travail réalisé :
 - Affichage et fermeture dynamique des 3 types de tags par clic dans le menu déroulant correspondant,
 - Ajout d'un contrôle des tags affichés empêchant les doublons,
 - Réorganisation de chaque menu déroulant pour la mise en place d'un champ de recherche,
-- Correction de défauts dans les champs de recherche des menus déroulants.
+- Correction de défauts dans les champs de recherche des menus déroulants,
+- Création et mise en ligne de 2 sous-branches pour les 2 implémentations de l'algorithme.
 
 Travail à faire :
 - Création de 2 versions d'un algorithme de recherche,
