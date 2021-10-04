@@ -1,10 +1,13 @@
+/* eslint-disable no-use-before-define */
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
 
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
-// Récupère le contenu du champ de recherche avec le bouton "loupe" ou durant la frappe.
+// Récupère le contenu du champ de recherche principal
+// avec le bouton "loupe" (par clic ou avec la touche "Entrée")
+// ou durant la frappe (listener "input").
 // Cette récupération est actuellement dans la console.
 const searchInput = document.querySelector('#search-input');
 const searchButton = document.querySelector('#search-button');
@@ -28,35 +31,60 @@ function getSearchInputText(el) {
 searchInput.addEventListener('input', getSearchInputText);
 
 // ICI SE TROUVE TESTEE LA FONCTION DE L'IMPLEMENTATION 1.
-function triParBoucle() {
+function triParBoucle(/* ingredients */) {
   const contenu = searchInput.value;
+  const mainSection = document.querySelector('#main-section');
   // const contenuMin = contenu.toLowerCase();
-  const newRecipes = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const recipe of recipes) {
-    if (contenu.length >= 3) {
+  let newRecipes = [];
+
+  if (contenu.length <= 2) {
+    showRecipes2();
+  }
+  if (contenu.length >= 3) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const recipe of recipes) {
+      mainSection.innerText = '';
       if (recipe.name.includes(contenu)) {
-        console.log(recipe.name);
         newRecipes.push(recipe);
-        console.log(newRecipes);
-        // showRecipes1();
       }
-      /* else {
-        console.log('Non !');
-      }
-      if (recipe.ingredients.ingredient.includes(contenu)) {
+      /* const arrIngr = recipes.ingredients;
+      console.log('test');
+      console.log(arrIngr);
+      // eslint-disable-next-line no-restricted-syntax
+      for (const ingred of arrIngr) {
+        if (ingred.ingredient.includes(contenu)) {
+          newRecipes.push(recipe);
+          console.log(newRecipes);
+        }
+      } */
+      /* if (recipe.ingredients.ingredient.includes(contenu)) {
         console.log('test');
         console.log(recipe.ingredients.ingredient);
-      }
-      if (recipe.description.includes(contenu)) {
-        return recipe;
+        newRecipes.push(recipe);
+        console.log(newRecipes);
       } */
+      if (recipe.description.includes(contenu)) {
+        newRecipes.push(recipe);
+      }
+      newRecipes = [...new Set(newRecipes)];
+    }
+    if (newRecipes.length === 0) {
+      // eslint-disable-next-line no-alert
+      alert('Aucune recette ne correspond au terme recherché...');
     }
   }
-  /* if (recipe === []) {
-    // eslint-disable-next-line no-alert
-    alert('Aucune recette...');
-  } */
+
+  // Montre toutes les cartes remplies dynamiquement.
+  // eslint-disable-next-line no-shadow
+  function showNewRecipes(newRecipes) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const recipe of newRecipes) {
+      const card = fillArticle(recipe);
+      mainSection.appendChild(card);
+    }
+  }
+  showNewRecipes(newRecipes);
+
   return newRecipes;
 }
 searchInput.addEventListener('input', triParBoucle);
