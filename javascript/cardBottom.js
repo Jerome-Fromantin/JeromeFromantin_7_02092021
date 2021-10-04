@@ -4,11 +4,11 @@ export default class CardBottom {
   constructor(data) {
     // eslint-disable-next-line object-curly-newline
     const { name, time, ingredients, description } = data;
-    this.bottom = this.card_Bottom(name, time, ingredients, description);
+    this.bottom = this.cardBottom(name, time, ingredients, description);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  card_Bottom(name, time, ingredients, description) {
+  cardBottom(name, time, ingredients, description) {
     const bottom = document.createElement('article');
     bottom.className = 'section-bottom';
 
@@ -49,8 +49,6 @@ export default class CardBottom {
       else {
         each_Ingr.innerText = ingred.ingredient;
       }
-      // each_Ingr.innerText =
-      // `${ingred.ingredient} : ${ingred.quantity ?? ''} ${ingred.unit || ''}`;
       ingr.appendChild(each_Ingr);
     }
 
