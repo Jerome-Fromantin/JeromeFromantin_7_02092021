@@ -186,6 +186,23 @@ header > #search > #search-button > #loupe {
   background: #ED6454;
 }
 
+#no-recipe {
+  text-align: center;
+  margin-top: 20px;
+}
+#no-recipe > .no-recipe-line {
+  display: none;
+}
+#no-recipe > .no-recipe-line-open {
+  display: inline;
+  color: #D04F4F;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+  border: 2px black solid;
+  border-radius: 5px;
+}
+
 main {
   display: flex;
   flex-wrap: wrap;

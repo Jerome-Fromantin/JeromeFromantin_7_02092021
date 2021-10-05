@@ -30,51 +30,91 @@ function getSearchInputText(el) {
 }
 searchInput.addEventListener('input', getSearchInputText);
 
+// Constante globale pour le tableau des divers tags affichés.
+const chosenTags = [];
+
+// Variable globale pour chaque tag.
+let eachTag = '';
+
 // ICI SE TROUVE TESTEE LA FONCTION DE L'IMPLEMENTATION 1.
 function triParBoucle(/* ingredients */) {
+  // La ligne ci-dessous est nécessaire pour quand la fonction reviendra dans son propre fichier...
+  // const searchInput = document.querySelector('#search-input');
   const contenu = searchInput.value;
+
+  // Crée la ligne du message "Aucune recette...".
+  const noRecipe = document.querySelector('#no-recipe');
+  const noRecipeLine = document.createElement('p');
+  noRecipeLine.className = 'no-recipe-line';
+  noRecipeLine.innerText = 'Aucune recette ne correspond au terme recherché...';
+  noRecipe.appendChild(noRecipeLine);
+
+  // Crée le tableau des ingrédients qui sera trié pour son menu.
+  let newIngredients = recipes.map((element) => element.ingredients);
+  newIngredients = newIngredients.flat();
+  newIngredients = newIngredients.map((ingr) => ingr.ingredient);
+  newIngredients = newIngredients.sort();
+  newIngredients = [...new Set(newIngredients)];
+
+  // Crée le tableau des appareils qui sera trié pour son menu.
+  let newAppliances = recipes.map((recipe) => recipe.appliance);
+  newAppliances = newAppliances.sort();
+  newAppliances = [...new Set(newAppliances)];
+
+  // Crée le tableau des ustensiles qui sera trié pour son menu.
+  let newUstensils = recipes.map((recipe) => recipe.ustensils);
+  newUstensils = newUstensils.flat();
+  newUstensils = newUstensils.sort();
+  newUstensils = [...new Set(newUstensils)];
+
   const mainSection = document.querySelector('#main-section');
   // const contenuMin = contenu.toLowerCase();
   let newRecipes = [];
 
+  // Si 1 ou 2 caractères sont tapés.
   if (contenu.length <= 2) {
+    // Si le message "Aucune recette..." était affiché, il devrait disparaître.
+    // Mais ce n'est pas le cas car la condition n'est pas reconnue...
+    if (noRecipeLine.classList.contains('no-recipe-line-open')) {
+      console.log('après');
+      noRecipeLine.classList.replace('no-recipe-line-open', 'no-recipe-line');
+    }
+    if (noRecipeLine.classList.contains('no-recipe-line')) {
+      console.log('avant');
+    }
     showRecipes2();
   }
-  if (contenu.length >= 3) {
+  // Si 3 caractères ou plus sont tapés.
+  else {
     // eslint-disable-next-line no-restricted-syntax
     for (const recipe of recipes) {
       mainSection.innerText = '';
+      // La recherche et le tri se font sur le nom.
       if (recipe.name.includes(contenu)) {
         newRecipes.push(recipe);
       }
-      /* const arrIngr = recipes.ingredients;
-      console.log('test');
-      console.log(arrIngr);
       // eslint-disable-next-line no-restricted-syntax
-      for (const ingred of arrIngr) {
-        if (ingred.ingredient.includes(contenu)) {
+      /* for (const ingred of newIngredients) {
+        // La recherche et le tri se font sur les ingrédients.
+        if (ingred.includes(contenu)) {
           newRecipes.push(recipe);
           console.log(newRecipes);
         }
       } */
-      /* if (recipe.ingredients.ingredient.includes(contenu)) {
-        console.log('test');
-        console.log(recipe.ingredients.ingredient);
-        newRecipes.push(recipe);
-        console.log(newRecipes);
-      } */
+      // La recherche et le tri se font sur la description.
       if (recipe.description.includes(contenu)) {
         newRecipes.push(recipe);
       }
+      // Les doublons sont éliminés.
       newRecipes = [...new Set(newRecipes)];
     }
+    // Si le tableau est vide, le message "Aucune recette..." apparait.
     if (newRecipes.length === 0) {
-      // eslint-disable-next-line no-alert
-      alert('Aucune recette ne correspond au terme recherché...');
+      noRecipeLine.classList.replace('no-recipe-line', 'no-recipe-line-open');
     }
   }
 
-  // Montre toutes les cartes remplies dynamiquement.
+  // Montre toutes les recettes concernées remplies dynamiquement.
   // eslint-disable-next-line no-shadow
   function showNewRecipes(newRecipes) {
     // eslint-disable-next-line no-restricted-syntax
@@ -236,12 +276,6 @@ menuOpen3.appendChild(fullList3);
   // Finalement, "new Set" élimine les doublons.
   // Mais cela crée un ensemble. Il faut donc l'encadrer pour créer le tableau final.
 
-  // Constante globale pour le tableau des divers tags affichés.
-  const chosenTags = [];
-
-  // Variable globale pour chaque tag.
-  let eachTag = '';
-
   // Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
   // le tag correspondant est affiché au-dessus.
   function showTag(e) {
@@ -349,12 +383,6 @@ menuOpen3.appendChild(fullList3);
   everyAppliance = [...new Set(everyAppliance)];
   // Finalement, "new Set" élimine les doublons.
   // Mais cela crée un ensemble. Il faut donc l'encadrer pour créer le tableau final.
-
-  // Constante globale pour le tableau des divers tags affichés.
-  const chosenTags = [];
-
-  // Variable globale pour les tags "Appareils".
-  let eachTag = '';
 
   // Après un clic sur l'un des éléments du menu déroulant "Appareils",
   // le tag correspondant est affiché au-dessus.
@@ -467,12 +495,6 @@ menuOpen3.appendChild(fullList3);
   everyUstensil = [...new Set(everyUstensil)];
   // Finalement, "new Set" élimine les doublons.
   // Mais cela crée un ensemble. Il faut donc l'encadrer pour créer le tableau final.
-
-  // Constante globale pour le tableau des divers tags affichés.
-  const chosenTags = [];
-
-  // Variable globale pour les tags "Appareils".
-  let eachTag = '';
 
   // Après un clic sur l'un des éléments du menu déroulant "Appareils",
   // le tag correspondant est affiché au-dessus.

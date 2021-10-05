@@ -248,6 +248,28 @@ header {
     }
 }
 
+// Ligne du message "Aucune recette...".
+#no-recipe {
+    text-align: center;
+    margin-top: 20px;
+
+    // Paragraphe caché.
+    >.no-recipe-line {
+        display: none;
+    }
+    
+    // Paragraphe visible.
+    >.no-recipe-line-open {
+        display: inline;
+        color: #D04F4F;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 15px;
+        border: 2px black solid;
+        border-radius: 5px;
+    }
+}
+
 // Contenu principal.
 main {
     display: flex;
