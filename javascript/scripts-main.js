@@ -4,6 +4,7 @@ import { recipes } from '../recipes';
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
+// Récupération de l'implémentation 1 de l'algorithme de recherche.
 import triParBoucle from '../implementation1';
 
 // Récupère le contenu du champ de recherche principal
@@ -31,113 +32,9 @@ function getSearchInputText(el) {
 }
 searchInput.addEventListener('input', getSearchInputText);
 
-// Constante globale pour le tableau des divers tags affichés.
-const chosenTags = [];
-
-// Variable globale pour chaque tag.
-let eachTag = '';
-
-// Crée la ligne du message "Aucune recette...".
-const noRecipe = document.querySelector('#no-recipe');
-const noRecipeLine = document.createElement('p');
-noRecipeLine.className = 'no-recipe-line';
-noRecipeLine.innerText = 'Aucune recette ne correspond au terme recherché...';
-noRecipe.appendChild(noRecipeLine);
-
-// ICI SE TROUVE TESTEE LA FONCTION DE L'IMPLEMENTATION 1.
-/*
-function triParBoucle() {
-  const contenu = searchInput.value;
-
-  // Crée le tableau des ingrédients qui sera trié pour son menu.
-  let newIngredients = recipes.map((element) => element.ingredients);
-  newIngredients = newIngredients.flat();
-  newIngredients = newIngredients.map((ingr) => ingr.ingredient);
-  newIngredients = newIngredients.sort();
-  newIngredients = [...new Set(newIngredients)];
-  const newIngrTri = [];
-
-  // Crée le tableau des appareils qui sera trié pour son menu.
-  let newAppliances = recipes.map((recipe) => recipe.appliance);
-  newAppliances = newAppliances.sort();
-  newAppliances = [...new Set(newAppliances)];
-
-  // Crée le tableau des ustensiles qui sera trié pour son menu.
-  let newUstensils = recipes.map((recipe) => recipe.ustensils);
-  newUstensils = newUstensils.flat();
-  newUstensils = newUstensils.sort();
-  newUstensils = [...new Set(newUstensils)];
-
-  const mainSection = document.querySelector('#main-section');
-  // const contenuMin = contenu.toLowerCase();
-  let newRecipes = [];
-
-  // Si 1 ou 2 caractères sont tapés.
-  if (contenu.length <= 2) {
-    // Si le message "Aucune recette..." était affiché, il devrait disparaître.
-    // Mais ce n'est pas le cas car la condition n'est pas reconnue...
-    if (noRecipeLine.classList.contains('no-recipe-line-open')) {
-      // console.log('après');
-      console.log(noRecipeLine);
-      noRecipeLine.classList.replace('no-recipe-line-open', 'no-recipe-line');
-    }
-    if (noRecipeLine.classList.contains('no-recipe-line')) {
-      console.log('avant');
-      console.log(noRecipeLine);
-    }
-    showRecipes2();
-  }
-  // Si 3 caractères ou plus sont tapés.
-  else {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const recipe of recipes) {
-      mainSection.innerText = '';
-      // La recherche et le tri se font sur le nom.
-      if (recipe.name.includes(contenu)) {
-        newRecipes.push(recipe);
-        return;
-      }
-
-      // La recherche et le tri se font sur la description.
-      if (recipe.description.includes(contenu)) {
-        newRecipes.push(recipe);
-        return;
-      }
-
-      // eslint-disable-next-line no-restricted-syntax
-      for (const ingred of recipe.ingredients) {
-        // La recherche et le tri se font sur les ingrédients.
-        if (ingred.ingredient.includes(contenu)) {
-          newRecipes.push(recipe);
-          return;
-        }
-      }
-
-      // Les doublons sont éliminés.
-      newRecipes = [...new Set(newRecipes)];
-    }
-    // Si le tableau est vide, le message "Aucune recette..." apparait.
-    if (newRecipes.length === 0) {
-      noRecipeLine.classList.replace('no-recipe-line', 'no-recipe-line-open');
-    }
-  }
-
-  // Montre toutes les recettes concernées remplies dynamiquement.
-  // eslint-disable-next-line no-shadow
-  function showNewRecipes(newRecipes) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const recipe of newRecipes) {
-      const card = fillArticle(recipe);
-      mainSection.appendChild(card);
-    }
-  }
-  showNewRecipes(newRecipes);
-
-  return newRecipes;
-} */
+// Listener utilisant l'implémentation 1.
 // eslint-disable-next-line no-use-before-define
 searchInput.addEventListener('input', () => { triParBoucle(showRecipes2); });
-// FIN DE TEST.
 
 // Constantes globales pour les menus.
 const dropdownLine = document.querySelector('#dropdown-line');
@@ -263,6 +160,12 @@ firstLine3.appendChild(input3);
 firstLine3.appendChild(upArrow3);
 menuOpen3.appendChild(firstLine3);
 menuOpen3.appendChild(fullList3);
+
+// Constante globale pour le tableau des divers tags affichés.
+const chosenTags = [];
+
+// Variable globale pour chaque tag.
+let eachTag = '';
 
 // Fonction d'affichage du menu déroulant "Ingrédients", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle ci-dessous en exemple.
@@ -627,62 +530,6 @@ function showRecipes1(recipes) {
 // Montre toutes les cartes remplies dynamiquement (2ème partie).
 function showRecipes2(newRecipes) {
   const toShow = newRecipes || recipes;
-  console.log(recipes);
-  console.log(newRecipes);
-  console.log(toShow);
   showRecipes1(toShow);
 }
 showRecipes2();
-
-/*
-// Montre les photographes en fonction du tag choisi.
-// Ce tag est soit dans la barre de navigation du haut en version desktop ou mobile,
-// soit dans les cartes de photographes en dessous.
-function showByTag(tag) {
-  // eslint-disable-next-line consistent-return
-  const photographersByTopTag = photographers.filter((element) => {
-    if (element.tags.includes(tag)) {
-      return element;
-    }
-  });
-  showPhotographers2(photographersByTopTag);
-}
-*/
-
-/*
-// Récupère chacun des tags du haut en desktop et leur valeur pour la fonction suivante.
-const topTags = document.querySelectorAll('.barnavTag');
-let topTarget = null;
-topTags.forEach((tag) => {
-  tag.addEventListener('click', clickGetTag);
-  function clickGetTag(el) {
-    topTarget = el.currentTarget;
-    const tagValue = topTarget.id;
-    showByTag(tagValue);
-  }
-  tag.addEventListener('keydown', keyDownGetTag);
-  function keyDownGetTag(el) {
-    if (el.key === 'Enter') {
-      clickGetTag(el);
-    }
-  }
-});
-
-// Récupère chacun des tags du haut en mobile et leur valeur pour la fonction précédente.
-const topTagsMob = document.querySelectorAll('.barnavTagMob');
-let topTargetMob = null;
-topTagsMob.forEach((tag) => {
-  tag.addEventListener('click', clickGetTag);
-  function clickGetTag(el) {
-    topTargetMob = el.currentTarget;
-    const tagValue = topTargetMob.id.split('M')[0];
-    showByTag(tagValue);
-  }
-  tag.addEventListener('keydown', keyDownGetTag);
-  function keyDownGetTag(el) {
-    if (el.key === 'Enter') {
-      clickGetTag(el);
-    }
-  }
-});
-*/
