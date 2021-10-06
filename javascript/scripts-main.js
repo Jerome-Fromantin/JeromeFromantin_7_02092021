@@ -1,10 +1,10 @@
-/* eslint-disable no-continue */
-/* eslint-disable no-use-before-define */
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
 
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
+
+import triParBoucle from '../implementation1';
 
 // Récupère le contenu du champ de recherche principal
 // avec le bouton "loupe" (par clic ou avec la touche "Entrée")
@@ -45,7 +45,8 @@ noRecipeLine.innerText = 'Aucune recette ne correspond au terme recherché...';
 noRecipe.appendChild(noRecipeLine);
 
 // ICI SE TROUVE TESTEE LA FONCTION DE L'IMPLEMENTATION 1.
-function triParBoucle(/* ingredients */) {
+/*
+function triParBoucle() {
   const contenu = searchInput.value;
 
   // Crée le tableau des ingrédients qui sera trié pour son menu.
@@ -94,13 +95,13 @@ function triParBoucle(/* ingredients */) {
       // La recherche et le tri se font sur le nom.
       if (recipe.name.includes(contenu)) {
         newRecipes.push(recipe);
-        continue;
+        return;
       }
 
       // La recherche et le tri se font sur la description.
       if (recipe.description.includes(contenu)) {
         newRecipes.push(recipe);
-        continue;
+        return;
       }
 
       // eslint-disable-next-line no-restricted-syntax
@@ -133,8 +134,9 @@ function triParBoucle(/* ingredients */) {
   showNewRecipes(newRecipes);
 
   return newRecipes;
-}
-searchInput.addEventListener('input', triParBoucle);
+} */
+// eslint-disable-next-line no-use-before-define
+searchInput.addEventListener('input', () => { triParBoucle(showRecipes2); });
 // FIN DE TEST.
 
 // Constantes globales pour les menus.
@@ -623,8 +625,12 @@ function showRecipes1(recipes) {
 }
 
 // Montre toutes les cartes remplies dynamiquement (2ème partie).
-function showRecipes2() {
-  showRecipes1(recipes);
+function showRecipes2(newRecipes) {
+  const toShow = newRecipes || recipes;
+  console.log(recipes);
+  console.log(newRecipes);
+  console.log(toShow);
+  showRecipes1(toShow);
 }
 showRecipes2();
 
