@@ -1620,7 +1620,7 @@ export const recipes = [
       }
     ],
     time: 5,
-    description: 'Mélanger le jus de citron avec le sucre et la mascarpone. Ajouter la crème fraiche. Mélanger le tout et mettre au congélateur pendant 1 heure. Servir',
+    description: 'Mélanger le jus de citron avec le sucre et la mascarpone. Ajouter la crème fraiche. Mélanger le tout et mettre au congélateur pendant 1 heure. Servir.',
     appliance: 'Saladier',
     ustensils: ['Fouet', 'Verres', 'Cuillère en bois']
   },

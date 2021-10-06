@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 /* eslint-disable no-use-before-define */
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
@@ -36,18 +37,16 @@ const chosenTags = [];
 // Variable globale pour chaque tag.
 let eachTag = '';
 
+// Crée la ligne du message "Aucune recette...".
+const noRecipe = document.querySelector('#no-recipe');
+const noRecipeLine = document.createElement('p');
+noRecipeLine.className = 'no-recipe-line';
+noRecipeLine.innerText = 'Aucune recette ne correspond au terme recherché...';
+noRecipe.appendChild(noRecipeLine);
+
 // ICI SE TROUVE TESTEE LA FONCTION DE L'IMPLEMENTATION 1.
 function triParBoucle(/* ingredients */) {
-  // La ligne ci-dessous est nécessaire pour quand la fonction reviendra dans son propre fichier...
-  // const searchInput = document.querySelector('#search-input');
   const contenu = searchInput.value;
-
-  // Crée la ligne du message "Aucune recette...".
-  const noRecipe = document.querySelector('#no-recipe');
-  const noRecipeLine = document.createElement('p');
-  noRecipeLine.className = 'no-recipe-line';
-  noRecipeLine.innerText = 'Aucune recette ne correspond au terme recherché...';
-  noRecipe.appendChild(noRecipeLine);
 
   // Crée le tableau des ingrédients qui sera trié pour son menu.
   let newIngredients = recipes.map((element) => element.ingredients);
@@ -55,6 +54,7 @@ function triParBoucle(/* ingredients */) {
   newIngredients = newIngredients.map((ingr) => ingr.ingredient);
   newIngredients = newIngredients.sort();
   newIngredients = [...new Set(newIngredients)];
+  const newIngrTri = [];
 
   // Crée le tableau des appareils qui sera trié pour son menu.
   let newAppliances = recipes.map((recipe) => recipe.appliance);
@@ -76,11 +76,13 @@ function triParBoucle(/* ingredients */) {
     // Si le message "Aucune recette..." était affiché, il devrait disparaître.
     // Mais ce n'est pas le cas car la condition n'est pas reconnue...
     if (noRecipeLine.classList.contains('no-recipe-line-open')) {
-      console.log('après');
+      // console.log('après');
+      console.log(noRecipeLine);
       noRecipeLine.classList.replace('no-recipe-line-open', 'no-recipe-line');
     }
     if (noRecipeLine.classList.contains('no-recipe-line')) {
       console.log('avant');
+      console.log(noRecipeLine);
     }
     showRecipes2();
   }
@@ -92,19 +94,24 @@ function triParBoucle(/* ingredients */) {
       // La recherche et le tri se font sur le nom.
       if (recipe.name.includes(contenu)) {
         newRecipes.push(recipe);
+        continue;
       }
-      // eslint-disable-next-line no-restricted-syntax
-      /* for (const ingred of newIngredients) {
-        // La recherche et le tri se font sur les ingrédients.
-        if (ingred.includes(contenu)) {
-          newRecipes.push(recipe);
-          console.log(newRecipes);
-        }
-      } */
+
       // La recherche et le tri se font sur la description.
       if (recipe.description.includes(contenu)) {
         newRecipes.push(recipe);
+        continue;
       }
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const ingred of recipe.ingredients) {
+        // La recherche et le tri se font sur les ingrédients.
+        if (ingred.ingredient.includes(contenu)) {
+          newRecipes.push(recipe);
+          return;
+        }
+      }
+
       // Les doublons sont éliminés.
       newRecipes = [...new Set(newRecipes)];
     }
