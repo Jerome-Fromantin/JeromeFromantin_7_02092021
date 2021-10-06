@@ -383,7 +383,6 @@ let eachTag = '';
   input2.addEventListener('input', getInputText);
 
   // Referme le menu déroulant en cliquant dessus ou ailleurs.
-  // Referme le menu déroulant en cliquant dessus ou ailleurs.
   function closeMenu(el) {
     el.preventDefault();
     if (dropdownLine.contains(menuOpen2)) {
