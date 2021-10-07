@@ -45,7 +45,7 @@ Travail réalisé :
 - Correction de défauts dans les champs de recherche des menus déroulants,
 - Création et mise en ligne de 2 sous-branches pour les 2 implémentations de l'algorithme,
 - Début de mise en place de la première implémentation avec la boucle "for...of",
-- Avancement de la première implémentation.
+- Mise en place de différents tris pour l'implémentation 1 (à terminer).
 
 Travail à faire :
 - Création de 2 versions d'un algorithme de recherche,
