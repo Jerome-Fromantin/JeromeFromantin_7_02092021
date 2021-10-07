@@ -167,6 +167,12 @@ const chosenTags = [];
 // Variable globale pour chaque tag.
 let eachTag = '';
 
+// Constante globale pour la partie affichant les recettes.
+const mainSection = document.querySelector('#main-section');
+
+// Variable globale pour le tableau des recettes triées par les tags.
+let newTagRecipes = [];
+
 // Fonction d'affichage du menu déroulant "Ingrédients", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle ci-dessous en exemple.
 // (function example() {
@@ -190,6 +196,7 @@ let eachTag = '';
 
   // Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
   // le tag correspondant est affiché au-dessus.
+  // A RAJOUTER : Et les recettes SERONT triées en conséquence.
   function showTag(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -200,6 +207,7 @@ let eachTag = '';
       alert('Ingrédient déjà choisi !');
       return;
     }
+
     // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags".
     chosenTags.push(eachTag);
     const chosenTag = document.createElement('span');
@@ -211,6 +219,42 @@ let eachTag = '';
     const tagImg = document.createElement('img');
     tagImg.className = 'tag-img';
     tagImg.src = 'Images/CloseTag.png';
+
+    // TEST !!
+    console.log(eachTag);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const recipe of recipes) {
+      mainSection.innerText = '';
+      // La recherche et le tri se font sur le nom.
+      if (recipe.name.includes(eachTag)) {
+        console.log(recipe.name);
+        newTagRecipes.push(recipe);
+        console.log(newTagRecipes);
+      }
+
+      // La recherche et le tri se font sur la description.
+      if (recipe.description.includes(eachTag)) {
+        newTagRecipes.push(recipe);
+      }
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const ingred of recipe.ingredients) {
+        // La recherche et le tri se font sur les ingrédients.
+        if (ingred.ingredient.includes(eachTag)) {
+          newTagRecipes.push(recipe);
+        }
+      }
+
+      // Les doublons sont éliminés.
+      newTagRecipes = [...new Set(newTagRecipes)];
+      showRecipes2(newTagRecipes);
+    }
+    /* function showRecipes2(newTagRecipes) {
+      const toShow = newTagRecipes || recipes;
+      showRecipes1(toShow);
+    }
+    showRecipes2(); */
+    // FIN DE TEST !!
 
     // Supprime le tag avec un clic sur l'icône de fermeture.
     // eslint-disable-next-line no-inner-declarations
@@ -265,12 +309,46 @@ let eachTag = '';
   }
   input1.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe.
-  // Cette récupération est dans la console.
-  function getInputText(el) {
-    el.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log(el.target.value);
+  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe
+  // pour faire le tri dans la liste des ingrédients affichés.
+  function getInputText() {
+    const searchMenu = input1.value;
+
+    // Constante utilisée pour contenir les ingrédients triés.
+    const newIngredients = [];
+
+    // On vide la liste.
+    fullList1.innerText = '';
+
+    // Si 1 ou 2 caractères sont tapés.
+    if (searchMenu.length <= 2) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const ingredient of everyIngredient) {
+        const dropLine = document.createElement('span');
+        dropLine.className = 'exp-drop-line';
+        dropLine.innerText = ingredient;
+        fullList1.appendChild(dropLine);
+
+        dropLine.addEventListener('click', showTag);
+      }
+    }
+    // Si 3 caractères ou plus sont tapés.
+    // eslint-disable-next-line no-else-return
+    else {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const newIngred of everyIngredient) {
+        if (newIngred.includes(searchMenu)) {
+          newIngredients.push(newIngred);
+          const dropLine = document.createElement('span');
+          dropLine.className = 'exp-drop-line';
+          dropLine.innerText = newIngred;
+          fullList1.appendChild(dropLine);
+          menuOpen1.appendChild(fullList1);
+
+          dropLine.addEventListener('click', showTag);
+        }
+      }
+    }
   }
   input1.addEventListener('input', getInputText);
 
@@ -373,12 +451,46 @@ let eachTag = '';
   }
   input2.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe.
-  // Cette récupération est dans la console.
-  function getInputText(el) {
-    el.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log(el.target.value);
+  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe
+  // pour faire le tri dans la liste des appareils affichés.
+  function getInputText() {
+    const searchMenu = input2.value;
+
+    // Constante utilisée pour contenir les appareils triés.
+    const newAppliances = [];
+
+    // On vide la liste.
+    fullList2.innerText = '';
+
+    // Si 1 ou 2 caractères sont tapés.
+    if (searchMenu.length <= 2) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const appli of everyAppliance) {
+        const dropLine = document.createElement('span');
+        dropLine.className = 'exp-drop-line';
+        dropLine.innerText = appli;
+        fullList2.appendChild(dropLine);
+
+        dropLine.addEventListener('click', showTag);
+      }
+    }
+    // Si 3 caractères ou plus sont tapés.
+    // eslint-disable-next-line no-else-return
+    else {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const newAppli of everyAppliance) {
+        if (newAppli.includes(searchMenu)) {
+          newAppliances.push(newAppli);
+          const dropLine = document.createElement('span');
+          dropLine.className = 'exp-drop-line';
+          dropLine.innerText = newAppli;
+          fullList2.appendChild(dropLine);
+          menuOpen2.appendChild(fullList2);
+
+          dropLine.addEventListener('click', showTag);
+        }
+      }
+    }
   }
   input2.addEventListener('input', getInputText);
 
@@ -484,12 +596,46 @@ let eachTag = '';
   }
   input3.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe.
-  // Cette récupération est dans la console.
-  function getInputText(el) {
-    el.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log(el.target.value);
+  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe
+  // pour faire le tri dans la liste des ustensiles affichés.
+  function getInputText() {
+    const searchMenu = input3.value;
+
+    // Constante utilisée pour contenir les ustensiles triés.
+    const newUstensils = [];
+
+    // On vide la liste.
+    fullList3.innerText = '';
+
+    // Si 1 ou 2 caractères sont tapés.
+    if (searchMenu.length <= 2) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const uste of everyUstensil) {
+        const dropLine = document.createElement('span');
+        dropLine.className = 'exp-drop-line';
+        dropLine.innerText = uste;
+        fullList3.appendChild(dropLine);
+
+        dropLine.addEventListener('click', showTag);
+      }
+    }
+    // Si 3 caractères ou plus sont tapés.
+    // eslint-disable-next-line no-else-return
+    else {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const newUste of everyUstensil) {
+        if (newUste.includes(searchMenu)) {
+          newUstensils.push(newUste);
+          const dropLine = document.createElement('span');
+          dropLine.className = 'exp-drop-line';
+          dropLine.innerText = newUste;
+          fullList3.appendChild(dropLine);
+          menuOpen3.appendChild(fullList3);
+
+          dropLine.addEventListener('click', showTag);
+        }
+      }
+    }
   }
   input3.addEventListener('input', getInputText);
 
@@ -517,7 +663,6 @@ function fillArticle(recipe) {
 // Montre toutes les cartes remplies dynamiquement (1ère partie).
 // eslint-disable-next-line no-shadow
 function showRecipes1(recipes) {
-  const mainSection = document.querySelector('#main-section');
   mainSection.innerText = '';
   // eslint-disable-next-line no-restricted-syntax
   for (const recipe of recipes) {
