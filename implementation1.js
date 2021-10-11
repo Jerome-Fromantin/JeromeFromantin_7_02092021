@@ -4,7 +4,7 @@
 // Récupération des données "recipes" du fichier.
 import { recipes } from './recipes';
 
-// Récupère l'input principal de recherche.
+// Constante globale pour récupérer le contenu de l'input principal.
 const searchInput = document.querySelector('#search-input');
 
 // Crée la ligne du message "Aucune recette...".
@@ -36,8 +36,10 @@ export default function triParBoucle(callback) {
   newUstensils = newUstensils.sort();
   newUstensils = [...new Set(newUstensils)];
 
+  // Constante globale pour la partie affichant les recettes.
   const mainSection = document.querySelector('#main-section');
-  // const contenuMin = contenu.toLowerCase();
+
+  // Variable globale pour le tableau des recettes triées par l'input principal.
   let newRecipes = [];
 
   // Si 1 ou 2 caractères sont tapés.
