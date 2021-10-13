@@ -4,7 +4,7 @@ import { recipes } from '../recipes';
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
-// Récupération de l'implémentation 1 de l'algorithme de recherche.
+// Récupération de l'implémentation 1 de l'algorithme de recherche : tri des menus et des recettes.
 import triParBoucle from '../implementation1';
 
 // Constante globale pour récupérer le contenu de l'input principal.
@@ -159,6 +159,157 @@ let eachTag = '';
 // Constante globale pour la partie affichant les recettes.
 const mainSection = document.querySelector('#main-section');
 
+// Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
+// le tag correspondant est affiché au-dessus.
+// A RAJOUTER : Et les recettes SERONT triées en conséquence.
+function showTag(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  eachTag = e.target.innerText;
+  const tagLine = document.querySelector('#tagLine');
+  // Si le tag est déjà présent, une alerte est affichée mais pas le tag.
+  if (chosenTags.indexOf(eachTag) !== -1) {
+    // eslint-disable-next-line no-alert
+    alert('Ingrédient déjà choisi !');
+    return;
+  }
+
+  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags"
+  // et ajoute "visuellement" le tag dans la ligne.
+  chosenTags.push(eachTag);
+  const chosenTag = document.createElement('span');
+  chosenTag.className = 'chosen-tag';
+  chosenTag.id = 'chosen-tag-1';
+  const tagText = document.createElement('span');
+  tagText.className = 'tag-text';
+  tagText.innerText = eachTag;
+  const tagImg = document.createElement('img');
+  tagImg.className = 'tag-img';
+  tagImg.src = 'Images/CloseTag.png';
+
+  // TEST !!
+  mainSection.innerText = '';
+
+  // Variable pour le tableau des recettes triées par les tags.
+  let newTagRecipes = [];
+
+  let tagsStatus = true;
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const recipe of recipes) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const tag of chosenTags) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const ingred of recipe.ingredients) {
+        if (ingred.ingredient.includes(tag)) {
+          console.log('test ingr');
+          newTagRecipes.push(recipe);
+        }
+        else {
+          tagsStatus = false;
+        }
+      }
+    }
+    if (tagsStatus === true) {
+      newTagRecipes.push(recipe);
+    }
+    // Si chacun des tags présents est inclus dans le nom de la recette,
+    // la recette est incluse dans le tableau des recettes triées par les tags.
+    /* const recipeName = (element) => recipe.name.includes(element);
+    if (chosenTags.every(recipeName) === true) {
+      newTagRecipes.push(recipe);
+    } */
+
+    // Si chacun des tags présents est inclus dans la description de la recette,
+    // la recette est incluse dans le tableau des recettes triées par les tags.
+    /* const recipeDescr = (element) => recipe.description.includes(element);
+    if (chosenTags.every(recipeDescr) === true) {
+      newTagRecipes.push(recipe);
+    } */
+
+    // DIFFERENCE IMPORTANTE AVEC LES INGREDIENTS !!
+    // Si chacun des tags présents est inclus dans UN DES ingrédients de la recette,
+    // la recette est incluse dans le tableau des recettes triées par les tags.
+    // eslint-disable-next-line no-restricted-syntax
+    /* for (const ingred of recipe.ingredients) {
+      if (ingred.ingredient.includes(eachTag)) {
+        console.log('test ingr');
+        newTagRecipes.push(recipe);
+      }
+      const recipeIngr = (element) => ingred.ingredient.includes(element);
+      if (chosenTags.every(recipeIngr) === true) {
+        console.log('test ingr');
+        newTagRecipes.push(recipe);
+      }
+    } */
+
+    // Les doublons sont éliminés.
+    newTagRecipes = [...new Set(newTagRecipes)];
+    showRecipes2(newTagRecipes);
+  }
+
+  // Supprime le tag avec un clic sur l'icône de fermeture.
+  // eslint-disable-next-line no-inner-declarations
+  function closeTag() {
+    const tagIndex = chosenTags.indexOf(chosenTag.innerText);
+    // Supprime le span "chosenTag" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag);
+    // Supprime l'élément "eachTag" du tableau "chosenTags" en fonction de son index.
+    chosenTags.splice(tagIndex, 1);
+
+    mainSection.innerText = '';
+    newTagRecipes = [];
+
+    if (chosenTags.length === 0) {
+      showRecipes2();
+    }
+    else {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const recipe of recipes) {
+        /* const recipeName = (element) => recipe.name.includes(element);
+        if (chosenTags.every(recipeName) === true) {
+          newTagRecipes.push(recipe);
+        } */
+
+        /* const recipeDescr = (element) => recipe.description.includes(element);
+        if (chosenTags.every(recipeDescr) === true) {
+          newTagRecipes.push(recipe);
+        } */
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const ingred of recipe.ingredients) {
+          if (ingred.ingredient.includes(eachTag)) {
+            console.log('test ingr close');
+            newTagRecipes.push(recipe);
+          }
+          /* const recipeIngr = (element) => ingred.ingredient.includes(element);
+          if (chosenTags.every(recipeIngr) === true) {
+            console.log('test ingr');
+            newTagRecipes.push(recipe);
+          } */
+        }
+
+        // eslint-disable-next-line no-restricted-syntax
+        /* for (const ingred of recipe.ingredients) {
+          const recipeIngr = (element) => ingred.ingredient.includes(element);
+          if (chosenTags.every(recipeIngr) === true) {
+            console.log('test ingr');
+            newTagRecipes.push(recipe);
+          }
+        } */
+        newTagRecipes = [...new Set(newTagRecipes)];
+        showRecipes2(newTagRecipes);
+      }
+    }
+  }
+  tagImg.addEventListener('click', closeTag);
+  // FIN DE TEST !!
+
+  chosenTag.appendChild(tagText);
+  chosenTag.appendChild(tagImg);
+  tagLine.appendChild(chosenTag);
+}
+
 // Fonction d'affichage du menu déroulant "Ingrédients", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle ci-dessous en exemple.
 // (function example() {
@@ -180,141 +331,8 @@ const mainSection = document.querySelector('#main-section');
   // Finalement, "new Set" élimine les doublons.
   // Mais cela crée un ensemble. Il faut donc l'encadrer pour créer le tableau final.
 
-  // Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
-  // le tag correspondant est affiché au-dessus.
-  // A RAJOUTER : Et les recettes SERONT triées en conséquence.
-  function showTag(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    eachTag = e.target.innerText;
-    const tagLine = document.querySelector('#tagLine');
-    // Si le tag est déjà présent, une alerte est affichée mais pas le tag.
-    if (chosenTags.indexOf(eachTag) !== -1) {
-      // eslint-disable-next-line no-alert
-      alert('Ingrédient déjà choisi !');
-      return;
-    }
-
-    // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags"
-    // et ajoute "visuellement" le tag dans la ligne.
-    chosenTags.push(eachTag);
-    const chosenTag = document.createElement('span');
-    chosenTag.className = 'chosen-tag';
-    chosenTag.id = 'chosen-tag-1';
-    const tagText = document.createElement('span');
-    tagText.className = 'tag-text';
-    tagText.innerText = eachTag;
-    const tagImg = document.createElement('img');
-    tagImg.className = 'tag-img';
-    tagImg.src = 'Images/CloseTag.png';
-
-    // TEST !!
-    mainSection.innerText = '';
-
-    // Variable pour le tableau des recettes triées par les tags.
-    let newTagRecipes = [];
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const recipe of recipes) {
-      // Si chacun des tags présents est inclus dans le nom de la recette,
-      // la recette est incluse dans le tableau des recettes triées par les tags.
-      /* const recipeName = (element) => recipe.name.includes(element);
-      if (chosenTags.every(recipeName) === true) {
-        newTagRecipes.push(recipe);
-      } */
-
-      // Si chacun des tags présents est inclus dans la description de la recette,
-      // la recette est incluse dans le tableau des recettes triées par les tags.
-      /* const recipeDescr = (element) => recipe.description.includes(element);
-      if (chosenTags.every(recipeDescr) === true) {
-        newTagRecipes.push(recipe);
-      } */
-
-      // DIFFERENCE IMPORTANTE AVEC LES INGREDIENTS !!
-      // Si chacun des tags présents est inclus dans UN DES ingrédients de la recette,
-      // la recette est incluse dans le tableau des recettes triées par les tags.
-      // eslint-disable-next-line no-restricted-syntax
-      for (const ingred of recipe.ingredients) {
-        if (ingred.ingredient.includes(eachTag)) {
-          console.log('test ingr');
-          newTagRecipes.push(recipe);
-        }
-        /* const recipeIngr = (element) => ingred.ingredient.includes(element);
-        if (chosenTags.every(recipeIngr) === true) {
-          console.log('test ingr');
-          newTagRecipes.push(recipe);
-        } */
-      }
-
-      // Les doublons sont éliminés.
-      newTagRecipes = [...new Set(newTagRecipes)];
-      showRecipes2(newTagRecipes);
-    }
-
-    // Supprime le tag avec un clic sur l'icône de fermeture.
-    // eslint-disable-next-line no-inner-declarations
-    function closeTag() {
-      const tagIndex = chosenTags.indexOf(chosenTag.innerText);
-      // Supprime le span "chosenTag" de la ligne "tagLine".
-      tagLine.removeChild(chosenTag);
-      // Supprime l'élément "eachTag" du tableau "chosenTags" en fonction de son index.
-      chosenTags.splice(tagIndex, 1);
-
-      mainSection.innerText = '';
-      newTagRecipes = [];
-
-      if (chosenTags.length === 0) {
-        showRecipes2();
-      }
-      else {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const recipe of recipes) {
-          /* const recipeName = (element) => recipe.name.includes(element);
-          if (chosenTags.every(recipeName) === true) {
-            newTagRecipes.push(recipe);
-          } */
-
-          /* const recipeDescr = (element) => recipe.description.includes(element);
-          if (chosenTags.every(recipeDescr) === true) {
-            newTagRecipes.push(recipe);
-          } */
-
-          // eslint-disable-next-line no-restricted-syntax
-          for (const ingred of recipe.ingredients) {
-            if (ingred.ingredient.includes(eachTag)) {
-              console.log('test ingr');
-              newTagRecipes.push(recipe);
-            }
-            /* const recipeIngr = (element) => ingred.ingredient.includes(element);
-            if (chosenTags.every(recipeIngr) === true) {
-              console.log('test ingr');
-              newTagRecipes.push(recipe);
-            } */
-          }
-
-          // eslint-disable-next-line no-restricted-syntax
-          /* for (const ingred of recipe.ingredients) {
-            const recipeIngr = (element) => ingred.ingredient.includes(element);
-            if (chosenTags.every(recipeIngr) === true) {
-              console.log('test ingr');
-              newTagRecipes.push(recipe);
-            }
-          } */
-          newTagRecipes = [...new Set(newTagRecipes)];
-          showRecipes2(newTagRecipes);
-        }
-      }
-    }
-    tagImg.addEventListener('click', closeTag);
-    // FIN DE TEST !!
-
-    chosenTag.appendChild(tagText);
-    chosenTag.appendChild(tagImg);
-    tagLine.appendChild(chosenTag);
-  }
-
-  // Ouvre le menu déroulant et crée la liste des ingrédients.
-  function fullMenu() {
+  // Ouvre le menu déroulant et ferme les autres s'ils sont ouverts.
+  function openMenu() {
     if (dropdownLine.contains(menuOpen2)) {
       dropdownLine.replaceChild(menu2, menuOpen2);
     }
@@ -323,23 +341,12 @@ const mainSection = document.querySelector('#main-section');
     }
     // Ci-dessous, l'enfant "menuOpen1" remplace l'enfant "menu1".
     dropdownLine.replaceChild(menuOpen1, menu1);
-    fullList1.innerText = '';
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const ingredient of everyIngredient) {
-      const dropLine = document.createElement('span');
-      dropLine.className = 'exp-drop-line';
-      dropLine.innerText = ingredient;
-      fullList1.appendChild(dropLine);
-
-      dropLine.addEventListener('click', showTag);
-    }
   }
 
-  // Montre le menu déroulant rempli dynamiquement.
+  // Montre le menu déroulant ouvert.
   function showMenu(el) {
     el.preventDefault();
-    fullMenu();
+    openMenu();
   }
   menu1.addEventListener('focus', showMenu);
 
@@ -350,7 +357,7 @@ const mainSection = document.querySelector('#main-section');
   }
   input1.addEventListener('click', clickInput);
 
-  // Récupère le contenu du champ de recherche du menu déroulant durant la frappe
+  // Récupère le contenu de l'input du menu déroulant durant la frappe
   // pour faire le tri dans la liste des ingrédients affichés.
   function getInputText() {
     const searchMenu = input1.value;
@@ -701,7 +708,7 @@ function fillArticle(recipe) {
   return fullArticle;
 }
 
-// Montre toutes les cartes remplies dynamiquement (1ère partie).
+// Montre toutes les cartes de recettes remplies dynamiquement.
 // eslint-disable-next-line no-shadow
 function showRecipes1(recipes) {
   mainSection.innerText = '';
@@ -712,9 +719,37 @@ function showRecipes1(recipes) {
   }
 }
 
-// Montre toutes les cartes remplies dynamiquement (2ème partie).
+// Montre tous les ingrédients dans le premier menu.
+function showIngrs(everyIngredient) {
+  fullList1.innerText = '';
+  // eslint-disable-next-line no-restricted-syntax
+  for (const ingredient of everyIngredient) {
+    const dropLine = document.createElement('span');
+    dropLine.className = 'exp-drop-line';
+    dropLine.innerText = ingredient;
+    fullList1.appendChild(dropLine);
+
+    dropLine.addEventListener('click', showTag);
+  }
+}
+
+// Crée les ingrédients en fonction des recettes affichées.
+function showIngrsByRecipe(recettes) {
+  const showRec = recettes || recipes;
+  let everyIngredient = showRec.map((recipe) => recipe.ingredients);
+  everyIngredient = everyIngredient.flat();
+  everyIngredient = everyIngredient.map((ingr) => ingr.ingredient);
+  everyIngredient = everyIngredient.sort();
+  everyIngredient = [...new Set(everyIngredient)];
+
+  showIngrs(everyIngredient);
+}
+
+// Montre les cartes remplies dynamiquement, triées par l'input principal ou non.
+// Montre les ingrédients en fonction des recettes affichées.
 function showRecipes2(newRecipes) {
   const toShow = newRecipes || recipes;
   showRecipes1(toShow);
+  showIngrsByRecipe(toShow);
 }
 showRecipes2();
