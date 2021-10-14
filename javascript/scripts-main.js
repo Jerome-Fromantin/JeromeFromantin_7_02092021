@@ -159,9 +159,12 @@ let eachTag = '';
 // Constante globale pour la partie affichant les recettes.
 const mainSection = document.querySelector('#main-section');
 
+// Variable globale pour le tableau des recettes triées par les tags.
+let newTagRecipes = [];
+
 // Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
-// le tag correspondant est affiché au-dessus.
-// A RAJOUTER : Et les recettes SERONT triées en conséquence.
+// le tag correspondant est affiché au-dessus et les recettes sont triées en conséquence.
+// A AMELIORER : Le tri fonctionne pour UN tag, pas pour plusieurs...
 function showTag(e) {
   e.preventDefault();
   e.stopPropagation();
@@ -189,29 +192,36 @@ function showTag(e) {
 
   // TEST !!
   mainSection.innerText = '';
-
-  // Variable pour le tableau des recettes triées par les tags.
-  let newTagRecipes = [];
-
-  let tagsStatus = true;
+  newTagRecipes = [];
 
   // eslint-disable-next-line no-restricted-syntax
   for (const recipe of recipes) {
+    let tagsStatus = true;
     // eslint-disable-next-line no-restricted-syntax
     for (const tag of chosenTags) {
       // eslint-disable-next-line no-restricted-syntax
       for (const ingred of recipe.ingredients) {
         if (ingred.ingredient.includes(tag)) {
-          console.log('test ingr');
+          tagsStatus = true;
           newTagRecipes.push(recipe);
+          break;
         }
         else {
           tagsStatus = false;
         }
       }
+      if (tagsStatus === true) {
+        console.log('test');
+      }
+      if (tagsStatus === false) {
+        break;
+      }
     }
     if (tagsStatus === true) {
       newTagRecipes.push(recipe);
+    }
+    if (tagsStatus === false) {
+      continue;
     }
     // Si chacun des tags présents est inclus dans le nom de la recette,
     // la recette est incluse dans le tableau des recettes triées par les tags.
@@ -242,11 +252,10 @@ function showTag(e) {
         newTagRecipes.push(recipe);
       }
     } */
-
-    // Les doublons sont éliminés.
-    newTagRecipes = [...new Set(newTagRecipes)];
-    showRecipes2(newTagRecipes);
   }
+  // Les doublons sont éliminés.
+  newTagRecipes = [...new Set(newTagRecipes)];
+  showRecipes2(newTagRecipes);
 
   // Supprime le tag avec un clic sur l'icône de fermeture.
   // eslint-disable-next-line no-inner-declarations
