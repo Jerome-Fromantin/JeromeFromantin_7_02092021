@@ -4,40 +4,13 @@
 // Récupération des données "recipes" du fichier.
 import { recipes } from './recipes';
 
-let varTest = JSON.parse(JSON.stringify(recipes));
+const varTest = JSON.parse(JSON.stringify(recipes));
+// "JSON.stringify" convertit le tableau JS en chaîne JSON.
+// "JSON.parse" analyse la chaîne JSON et construit la valeur JS.
+// "varTest" est utilisé en ligne 54 (boucle for pour 3 caractères).
 
-// Constantes globales pour récupérer le contenu de l'input principal.
+// Constante globale pour récupérer le contenu de l'input principal.
 const searchInput = document.querySelector('#search-input');
-
-// Crée le tableau des ingrédients qui sera trié pour son menu.
-let newIngredients = recipes.map((element) => element.ingredients);
-newIngredients = newIngredients.flat();
-newIngredients = newIngredients.map((ingr) => ingr.ingredient);
-newIngredients = newIngredients.sort();
-newIngredients = [...new Set(newIngredients)];
-
-// Crée le tableau des appareils qui sera trié pour son menu.
-let newAppliances = recipes.map((recipe) => recipe.appliance);
-newAppliances = newAppliances.sort();
-newAppliances = [...new Set(newAppliances)];
-
-// Crée le tableau des ustensiles qui sera trié pour son menu.
-let newUstensils = recipes.map((recipe) => recipe.ustensils);
-newUstensils = newUstensils.flat();
-newUstensils = newUstensils.sort();
-newUstensils = [...new Set(newUstensils)];
-
-// Constantes globales pour les menus déroulants.
-const dropdownLine = document.querySelector('#dropdown-line');
-const menu1 = document.querySelector('#drop-ingr-closed');
-const menuOpen1 = document.querySelector('#drop-ingr-open');
-const fullList1 = document.querySelector('#expanded-drop1');
-const menu2 = document.querySelector('#drop-appa-closed');
-const menuOpen2 = document.querySelector('#drop-appa-open');
-const fullList2 = document.querySelector('#expanded-drop2');
-const menu3 = document.querySelector('#drop-uste-closed');
-const menuOpen3 = document.querySelector('#drop-uste-open');
-const fullList3 = document.querySelector('#expanded-drop3');
 
 // Crée la ligne du message "Aucune recette...".
 const noRecipe = document.querySelector('#no-recipe');
@@ -52,15 +25,11 @@ const mainSection = document.querySelector('#main-section');
 // Variable globale pour le tableau des recettes triées par l'input principal.
 let newRecipes = [];
 
-// Cette fonction effectue le tri des menus et le tri des recettes.
-// TRI DES MENUS ENCORE NON FONCTIONNEL !!
+// Cette fonction effectue le tri des recettes.
 export default function triParBoucle(callback) {
   mainSection.innerText = '';
-  const newIngrTri = [];
   // Si 1 ou 2 caractères sont tapés.
   if (searchInput.value.length <= 2) {
-    console.log(searchInput.value);
-    // console.log([fullList1]);
     if (noRecipeLine.classList.contains('no-recipe-line-open')) {
       noRecipeLine.classList.replace('no-recipe-line-open', 'no-recipe-line');
     }
@@ -79,10 +48,8 @@ export default function triParBoucle(callback) {
   // Si 3 caractères ou plus sont tapés.
   // eslint-disable-next-line no-else-return
   else {
-    console.log(searchInput.value);
     mainSection.innerText = '';
     newRecipes = [];
-    // Boucle "for...of" pour le tri des recettes.
     // eslint-disable-next-line no-restricted-syntax
     for (const recipe of varTest) {
       // La recherche et le tri se font sur le nom.
@@ -114,16 +81,6 @@ export default function triParBoucle(callback) {
     else if (noRecipeLine.classList.contains('no-recipe-line-open')) {
       noRecipeLine.classList.replace('no-recipe-line-open', 'no-recipe-line');
     }
-    // Boucle "for...of" pour le tri des menus. A METTRE AU DEBUT QUAND ELLE FONCTIONNERA !
-    // eslint-disable-next-line no-restricted-syntax
-    for (const newIngred of newIngredients) {
-      if (newIngred.includes(searchInput.value)) {
-        newIngrTri.push(newIngred);
-        console.log('coucou');
-        console.log(newIngrTri);
-      }
-    }
   }
   callback(newRecipes);
-  // callback(newIngrTri);
 }
