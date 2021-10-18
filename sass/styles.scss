@@ -73,8 +73,8 @@ header {
     justify-content: flex-start;
     margin-top: 30px;
 
-    // Chacun des tags.
-    >.chosen-tag {
+    // Chacun des tags dans chacun des 3 tableaux.
+    >.chosen-tag-1, >.chosen-tag-2, >.chosen-tag-3 {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -97,17 +97,17 @@ header {
     }
 
     // Chacun des tags "ingrédients".
-    >#chosen-tag-1 {
+    >.chosen-tag-1 {
         background: $colorIngr;
     }
 
     // Chacun des tags "appareils".
-    >#chosen-tag-2 {
+    >.chosen-tag-2 {
         background: $colorAppa;
     }
 
     // Chacun des tags "ustensiles".
-    >#chosen-tag-3 {
+    >.chosen-tag-3 {
         background: $colorUste;
     }
 }

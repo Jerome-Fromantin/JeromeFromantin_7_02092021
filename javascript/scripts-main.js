@@ -151,17 +151,22 @@ firstLine3.appendChild(upArrow3);
 menuOpen3.appendChild(firstLine3);
 menuOpen3.appendChild(fullList3);
 
-// Constante globale pour le tableau des divers tags affichés.
-const chosenTags = [];
+// Constantes globales pour les 3 tableaux des divers tags affichés.
+const chosenTags1 = [];
+const chosenTags2 = [];
+const chosenTags3 = [];
 
-// Variable globale pour chaque tag.
+// Variable globale pour chaque tag quel que soit le tableau.
 let eachTag = '';
 
 // Constante globale pour la partie affichant les recettes.
 const mainSection = document.querySelector('#main-section');
 
-// Variable globale pour le tableau des recettes triées par les tags.
-let newTagRecipes = [];
+// Variables globales pour les tableaux des recettes triées par les tags.
+// let newTagRecipes = [];
+let newTagRecipes1 = [];
+let newTagRecipes2 = [];
+let newTagRecipes3 = [];
 
 // Après un clic sur l'un des éléments du menu déroulant "Ingrédients",
 // le tag correspondant est affiché au-dessus et les recettes sont triées en conséquence.
@@ -172,18 +177,17 @@ function showTag1(e) {
   eachTag = e.target.innerText;
   const tagLine = document.querySelector('#tagLine');
   // Si le tag est déjà présent, une alerte est affichée mais pas le tag.
-  if (chosenTags.indexOf(eachTag) !== -1) {
+  if (chosenTags1.indexOf(eachTag) !== -1) {
     // eslint-disable-next-line no-alert
     alert('Ingrédient déjà choisi !');
     return;
   }
 
-  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags"
+  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags1"
   // et ajoute "visuellement" le tag dans la ligne.
-  chosenTags.push(eachTag);
-  const chosenTag = document.createElement('span');
-  chosenTag.className = 'chosen-tag';
-  chosenTag.id = 'chosen-tag-1';
+  chosenTags1.push(eachTag);
+  const chosenTag1 = document.createElement('span');
+  chosenTag1.className = 'chosen-tag-1';
   const tagText = document.createElement('span');
   tagText.className = 'tag-text';
   tagText.innerText = eachTag;
@@ -193,11 +197,12 @@ function showTag1(e) {
 
   // TEST !!
   mainSection.innerText = '';
-  newTagRecipes = [];
+  newTagRecipes1 = [];
 
-  for (const recipe of recipes) {
+  //MISE EN COMMENTAIRE !!
+  /* for (const recipe of recipes) {
     let tagsStatus = true;
-    for (const tag of chosenTags) {
+    for (const tag of chosenTags1) {
       for (const ingred of recipe.ingredients) {
         if (ingred.ingredient.includes(tag)) {
           tagsStatus = true;
@@ -218,7 +223,7 @@ function showTag1(e) {
     if (tagsStatus === false) {
       // eslint-disable-next-line no-continue
       continue;
-    }
+    } */
     // Si chacun des tags présents est inclus dans le nom de la recette,
     // la recette est incluse dans le tableau des recettes triées par les tags.
     /* const recipeName = (element) => recipe.name.includes(element);
@@ -248,24 +253,25 @@ function showTag1(e) {
         newTagRecipes.push(recipe);
       }
     } */
-  }
+  /* } */
   // Les doublons sont éliminés.
-  newTagRecipes = [...new Set(newTagRecipes)];
-  showRecipes2(newTagRecipes);
+  /* newTagRecipes = [...new Set(newTagRecipes)];
+  showRecipes2(newTagRecipes); */
+  //FIN DE MISE EN COMMENTAIRE !!
 
   // Supprime le tag avec un clic sur l'icône de fermeture.
   // eslint-disable-next-line no-inner-declarations
   function closeTag() {
-    const tagIndex = chosenTags.indexOf(chosenTag.innerText);
-    // Supprime le span "chosenTag" de la ligne "tagLine".
-    tagLine.removeChild(chosenTag);
-    // Supprime l'élément "eachTag" du tableau "chosenTags" en fonction de son index.
-    chosenTags.splice(tagIndex, 1);
+    const tagIndex = chosenTags1.indexOf(chosenTag1.innerText);
+    // Supprime le span "chosenTag1" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag1);
+    // Supprime l'élément "eachTag" du tableau "chosenTags1" en fonction de son index.
+    chosenTags1.splice(tagIndex, 1);
 
     mainSection.innerText = '';
-    newTagRecipes = [];
+    newTagRecipes1 = [];
 
-    if (chosenTags.length === 0) {
+    if (chosenTags1.length === 0) {
       showRecipes2();
     }
     else {
@@ -301,18 +307,76 @@ function showTag1(e) {
             newTagRecipes.push(recipe);
           }
         } */
-        newTagRecipes = [...new Set(newTagRecipes)];
-        showRecipes2(newTagRecipes);
+        newTagRecipes1 = [...new Set(newTagRecipes1)];
+        showRecipes2(newTagRecipes1);
       }
     }
   }
   tagImg.addEventListener('click', closeTag);
   // FIN DE TEST !!
 
-  chosenTag.appendChild(tagText);
-  chosenTag.appendChild(tagImg);
-  tagLine.appendChild(chosenTag);
+  chosenTag1.appendChild(tagText);
+  chosenTag1.appendChild(tagImg);
+  tagLine.appendChild(chosenTag1);
+
+  findByTags();
 }
+
+// TEST TEST !!
+function test1(chosenTags1, recipes) {
+  for (const tag of chosenTags1) {
+    for (const recipe of recipes) {
+      for (const ingred of recipe.ingredients) {
+        if (ingred.ingredient.includes(tag)) {
+          // newTagRecipes1.push(...recipes);
+          newTagRecipes1.push(recipe);
+        }
+      }
+    }
+  }
+  newTagRecipes1 = [...new Set(newTagRecipes1)];
+  // showRecipes2(newTagRecipes1);
+  return newTagRecipes1;
+}
+function test2(chosenTags2, newTagRecipes1) {
+  for (const tag of chosenTags2) {
+    for (const recipe of newTagRecipes1) {
+      for (const appli of recipe.appliance) {
+        if (appli.includes(tag)) {
+          // newTagRecipes2.push(...newTagRecipes1);
+          newTagRecipes2.push(recipe);
+        }
+      }
+    }
+  }
+  newTagRecipes2 = [...new Set(newTagRecipes2)];
+  // showRecipes2(newTagRecipes2);
+  return newTagRecipes2;
+}
+function test3(chosenTags3, newTagRecipes2) {
+  for (const tag of chosenTags3) {
+    for (const recipe of newTagRecipes2) {
+      for (const uste of recipe.ustensils) {
+        if (uste.includes(tag)) {
+          // newTagRecipes3.push(...newTagRecipes2);
+          newTagRecipes3.push(recipe);
+        }
+      }
+    }
+  }
+  newTagRecipes3 = [...new Set(newTagRecipes3)];
+  // showRecipes2(newTagRecipes3);
+  return newTagRecipes3;
+}
+
+function findByTags() {
+  test1(chosenTags1, recipes);
+  test2(chosenTags2, newTagRecipes1);
+  test3(chosenTags3, newTagRecipes2);
+  showRecipes2(newTagRecipes3);
+}
+// findByTags();
+// FIN TEST TEST !!
 
 // Fonction d'affichage du menu déroulant "Ingrédients", fermé et ouvert.
 // C'est une fonction "auto-exécutante" comme celle ci-dessous en exemple.
@@ -445,17 +509,16 @@ function showTag2(e) {
   eachTag = e.target.innerText;
   const tagLine = document.querySelector('#tagLine');
   // Si le tag est déjà présent, une alerte est affichée mais pas le tag.
-  if (chosenTags.indexOf(eachTag) !== -1) {
+  if (chosenTags2.indexOf(eachTag) !== -1) {
     // eslint-disable-next-line no-alert
     alert('Appareil déjà choisi !');
     return;
   }
-  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags"
+  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags2"
   // et ajoute "visuellement" le tag dans la ligne.
-  chosenTags.push(eachTag);
-  const chosenTag = document.createElement('span');
-  chosenTag.className = 'chosen-tag';
-  chosenTag.id = 'chosen-tag-2';
+  chosenTags2.push(eachTag);
+  const chosenTag2 = document.createElement('span');
+  chosenTag2.className = 'chosen-tag-2';
   const tagText = document.createElement('span');
   tagText.className = 'tag-text';
   tagText.innerText = eachTag;
@@ -465,12 +528,13 @@ function showTag2(e) {
 
   // TEST !!
   mainSection.innerText = '';
-  newTagRecipes = [];
+  newTagRecipes2 = [];
 
-  for (const recipe of recipes) {
+  //MISE EN COMMENTAIRE !!
+  /* for (const recipe of recipes) {
     const appareils = [recipe.appliance];
     let tagsStatus = true;
-    for (const tag of chosenTags) {
+    for (const tag of chosenTags2) {
       for (const appa of appareils) {
         if (appa.includes(tag)) {
           tagsStatus = true;
@@ -495,21 +559,22 @@ function showTag2(e) {
   }
   // Les doublons sont éliminés.
   newTagRecipes = [...new Set(newTagRecipes)];
-  showRecipes2(newTagRecipes);
+  showRecipes2(newTagRecipes); */
+  //FIN DE MISE EN COMMENTAIRE !!
 
   // Supprime le tag avec un clic sur l'icône de fermeture.
   // eslint-disable-next-line no-inner-declarations
   function closeTag() {
-    const tagIndex = chosenTags.indexOf(chosenTag.innerText);
-    // Supprime le span "chosenTag" de la ligne "tagLine".
-    tagLine.removeChild(chosenTag);
-    // Supprime l'élément "eachTag" du tableau "chosenTags" en fonction de son index.
-    chosenTags.splice(tagIndex, 1);
+    const tagIndex = chosenTags2.indexOf(chosenTag2.innerText);
+    // Supprime le span "chosenTag2" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag2);
+    // Supprime l'élément "eachTag" du tableau "chosenTags2" en fonction de son index.
+    chosenTags2.splice(tagIndex, 1);
 
     mainSection.innerText = '';
-    newTagRecipes = [];
+    newTagRecipes2 = [];
 
-    if (chosenTags.length === 0) {
+    if (chosenTags2.length === 0) {
       showRecipes2();
     }
     else {
@@ -545,17 +610,19 @@ function showTag2(e) {
             newTagRecipes.push(recipe);
           }
         } */
-        newTagRecipes = [...new Set(newTagRecipes)];
-        showRecipes2(newTagRecipes);
+        newTagRecipes2 = [...new Set(newTagRecipes2)];
+        showRecipes2(newTagRecipes2);
       }
     }
   }
   tagImg.addEventListener('click', closeTag);
   // FIN DE TEST !!
 
-  chosenTag.appendChild(tagText);
-  chosenTag.appendChild(tagImg);
-  tagLine.appendChild(chosenTag);
+  chosenTag2.appendChild(tagText);
+  chosenTag2.appendChild(tagImg);
+  tagLine.appendChild(chosenTag2);
+
+  findByTags();
 }
 
 // Fonction d'affichage du menu déroulant "Appareils", fermé et ouvert.
@@ -656,17 +723,16 @@ function showTag3(e) {
   eachTag = e.target.innerText;
   const tagLine = document.querySelector('#tagLine');
   // Si le tag est déjà présent, une alerte est affichée mais pas le tag.
-  if (chosenTags.indexOf(eachTag) !== -1) {
+  if (chosenTags3.indexOf(eachTag) !== -1) {
     // eslint-disable-next-line no-alert
     alert('Ustensile déjà choisi !');
     return;
   }
-  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags"
+  // Rajoute l'élément "eachTag" à la fin du tableau "chosenTags3"
   // et ajoute "visuellement" le tag dans la ligne.
-  chosenTags.push(eachTag);
-  const chosenTag = document.createElement('span');
-  chosenTag.className = 'chosen-tag';
-  chosenTag.id = 'chosen-tag-3';
+  chosenTags3.push(eachTag);
+  const chosenTag3 = document.createElement('span');
+  chosenTag3.className = 'chosen-tag-3';
   const tagText = document.createElement('span');
   tagText.className = 'tag-text';
   tagText.innerText = eachTag;
@@ -676,11 +742,12 @@ function showTag3(e) {
 
   // TEST !!
   mainSection.innerText = '';
-  newTagRecipes = [];
+  newTagRecipes3 = [];
 
-  for (const recipe of recipes) {
+  //MISE EN COMMENTAIRE !!
+  /* for (const recipe of recipes) {
     let tagsStatus = true;
-    for (const tag of chosenTags) {
+    for (const tag of chosenTags3) {
       for (const uste of recipe.ustensils) {
         if (uste.includes(tag)) {
           tagsStatus = true;
@@ -705,21 +772,22 @@ function showTag3(e) {
   }
   // Les doublons sont éliminés.
   newTagRecipes = [...new Set(newTagRecipes)];
-  showRecipes2(newTagRecipes);
+  showRecipes2(newTagRecipes); */
+  //FIN DE MISE EN COMMENTAIRE !!
 
   // Supprime le tag avec un clic sur l'icône de fermeture.
   // eslint-disable-next-line no-inner-declarations
   function closeTag() {
-    const tagIndex = chosenTags.indexOf(chosenTag.innerText);
-    // Supprime le span "chosenTag" de la ligne "tagLine".
-    tagLine.removeChild(chosenTag);
-    // Supprime l'élément "eachTag" du tableau "chosenTags" en fonction de son index.
-    chosenTags.splice(tagIndex, 1);
+    const tagIndex = chosenTags3.indexOf(chosenTag3.innerText);
+    // Supprime le span "chosenTag3" de la ligne "tagLine".
+    tagLine.removeChild(chosenTag3);
+    // Supprime l'élément "eachTag" du tableau "chosenTags3" en fonction de son index.
+    chosenTags3.splice(tagIndex, 1);
 
     mainSection.innerText = '';
-    newTagRecipes = [];
+    newTagRecipes3 = [];
 
-    if (chosenTags.length === 0) {
+    if (chosenTags3.length === 0) {
       showRecipes2();
     }
     else {
@@ -755,17 +823,19 @@ function showTag3(e) {
             newTagRecipes.push(recipe);
           }
         } */
-        newTagRecipes = [...new Set(newTagRecipes)];
-        showRecipes2(newTagRecipes);
+        newTagRecipes3 = [...new Set(newTagRecipes3)];
+        showRecipes2(newTagRecipes3);
       }
     }
   }
   tagImg.addEventListener('click', closeTag);
   // FIN DE TEST !!
 
-  chosenTag.appendChild(tagText);
-  chosenTag.appendChild(tagImg);
-  tagLine.appendChild(chosenTag);
+  chosenTag3.appendChild(tagText);
+  chosenTag3.appendChild(tagImg);
+  tagLine.appendChild(chosenTag3);
+
+  findByTags();
 }
 
 // Fonction d'affichage du menu déroulant "Ustensiles", fermé et ouvert.
