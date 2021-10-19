@@ -44,9 +44,9 @@ Travail réalisé :
 - Réorganisation de chaque menu déroulant pour la mise en place d'un champ de recherche,
 - Correction de défauts dans les champs de recherche des menus déroulants,
 - Création et mise en ligne de 2 sous-branches pour les 2 implémentations de l'algorithme,
-- Début de mise en place de la première implémentation avec la boucle "for...of",
-- Mise en place de différents tris pour l'implémentation 1 (à terminer).
+- Mise en place de la première implémentation avec la boucle "for...of",
+- Tri par tags en cours sur la branche implementation_1.
 
 Travail à faire :
 - Création de 2 versions d'un algorithme de recherche,
-- Et d'autres choses encore...
+- Et d'autres choses encore ???
