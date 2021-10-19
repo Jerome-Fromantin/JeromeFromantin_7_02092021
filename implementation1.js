@@ -33,15 +33,6 @@ export default function triParBoucle(callback) {
     if (noRecipeLine.classList.contains('no-recipe-line-open')) {
       noRecipeLine.classList.replace('no-recipe-line-open', 'no-recipe-line');
     }
-    // eslint-disable-next-line no-restricted-syntax
-    /* for (const ingredient of newIngredients) {
-      const dropLine = document.createElement('span');
-      dropLine.className = 'exp-drop-line';
-      dropLine.innerText = ingredient;
-      fullList1.appendChild(dropLine);
-
-      dropLine.addEventListener('click', showTag);
-    } */
     callback();
     return;
   }
@@ -73,6 +64,7 @@ export default function triParBoucle(callback) {
       // Les doublons sont éliminés.
       newRecipes = [...new Set(newRecipes)];
     }
+
     // Si le tableau est vide, le message "Aucune recette..." apparait.
     if (newRecipes.length === 0) {
       noRecipeLine.classList.replace('no-recipe-line', 'no-recipe-line-open');

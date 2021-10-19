@@ -323,57 +323,75 @@ function showTag1(e) {
 }
 
 // TEST TEST !!
-function test1(chosenTags1, recipes) {
-  for (const tag of chosenTags1) {
+function ingrRecipes(chosenTags1, recipes) {
+  if (chosenTags1.length !== 0) {
     for (const recipe of recipes) {
-      for (const ingred of recipe.ingredients) {
-        if (ingred.ingredient.includes(tag)) {
-          // newTagRecipes1.push(...recipes);
-          newTagRecipes1.push(recipe);
-        }
+      // Pour chaque recette, on crée le tableau de ses noms d'ingrédients.
+      let everyRecipeIngr = recipe.ingredients;
+      everyRecipeIngr = everyRecipeIngr.flat();
+      everyRecipeIngr = everyRecipeIngr.map((ingr) => ingr.ingredient);
+      everyRecipeIngr = everyRecipeIngr.sort();
+
+      // Si chacun des tags affichés est présent dans la recette,
+      // elle est ajoutée au tableau des recettes triées par tags.
+      const recipeIngr = (element) => everyRecipeIngr.includes(element);
+      if (chosenTags1.every(recipeIngr) === true) {
+        newTagRecipes1.push(recipe);
       }
     }
+    newTagRecipes1 = [...new Set(newTagRecipes1)];
   }
-  newTagRecipes1 = [...new Set(newTagRecipes1)];
-  // showRecipes2(newTagRecipes1);
+  console.log(newTagRecipes1);
+
   return newTagRecipes1;
 }
-function test2(chosenTags2, newTagRecipes1) {
-  for (const tag of chosenTags2) {
-    for (const recipe of newTagRecipes1) {
-      for (const appli of recipe.appliance) {
-        if (appli.includes(tag)) {
-          // newTagRecipes2.push(...newTagRecipes1);
+function appaRecipes(chosenTags2, recipes/*newTagRecipes1*/) {
+  if (chosenTags2.length !== 0) {
+    for (const recipe of recipes/*newTagRecipes1*/) {
+      // Pour chaque recette, on récupère son nom d'appareil (un seul par recette).
+      const everyRecipeApp = recipe.appliance;
+      for (const tag of chosenTags2) {
+        // Si le nom d'appareil contient le tag,
+        // la recette est ajoutée au tableau des recettes triées par tag.
+        if (everyRecipeApp.includes(tag)) {
           newTagRecipes2.push(recipe);
         }
       }
     }
+    newTagRecipes2 = [...new Set(newTagRecipes2)];
   }
-  newTagRecipes2 = [...new Set(newTagRecipes2)];
-  // showRecipes2(newTagRecipes2);
+  console.log(newTagRecipes2);
+
   return newTagRecipes2;
 }
-function test3(chosenTags3, newTagRecipes2) {
-  for (const tag of chosenTags3) {
-    for (const recipe of newTagRecipes2) {
-      for (const uste of recipe.ustensils) {
-        if (uste.includes(tag)) {
-          // newTagRecipes3.push(...newTagRecipes2);
-          newTagRecipes3.push(recipe);
-        }
+function usteRecipes(chosenTags3, recipes/*newTagRecipes2*/) {
+  if (chosenTags3.length !== 0) {
+    for (const recipe of recipes/*newTagRecipes2*/) {
+      // Pour chaque recette, on crée le tableau de ses noms d'ustensiles.
+      let everyRecipeUste = recipe.ustensils;
+      everyRecipeUste = everyRecipeUste.sort();
+
+      // Si chacun des tags affichés est présent dans la recette,
+      // elle est ajoutée au tableau des recettes triées par tags.
+      const recipeUste = (element) => everyRecipeUste.includes(element);
+      if (chosenTags3.every(recipeUste) === true) {
+        newTagRecipes3.push(recipe);
       }
     }
+    newTagRecipes3 = [...new Set(newTagRecipes3)];
   }
-  newTagRecipes3 = [...new Set(newTagRecipes3)];
-  // showRecipes2(newTagRecipes3);
+  console.log(newTagRecipes3);
+
   return newTagRecipes3;
 }
 
 function findByTags() {
-  test1(chosenTags1, recipes);
-  test2(chosenTags2, newTagRecipes1);
-  test3(chosenTags3, newTagRecipes2);
-  showRecipes2(newTagRecipes3);
+  ingrRecipes(chosenTags1, recipes);
+  appaRecipes(chosenTags2, recipes/*newTagRecipes1*/);
+  usteRecipes(chosenTags3, recipes/*newTagRecipes2*/);
+  // showRecipes2(newTagRecipes3);
+  // showRecipes2(newTagRecipes2);
+  showRecipes2(newTagRecipes1);
 }
 // findByTags();
 // FIN TEST TEST !!
