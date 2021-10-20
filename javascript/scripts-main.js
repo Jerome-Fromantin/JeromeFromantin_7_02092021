@@ -341,13 +341,16 @@ function ingrRecipes(chosenTags1, recipes) {
     }
     newTagRecipes1 = [...new Set(newTagRecipes1)];
   }
-  console.log(newTagRecipes1);
 
   return newTagRecipes1;
 }
-function appaRecipes(chosenTags2, recipes/*newTagRecipes1*/) {
+function appaRecipes(chosenTags2, newTagRecipes1) {
+  // Si absence de tags d'ingrédients.
+  if (chosenTags1.length === 0) {
+    newTagRecipes1 = recipes;
+  }
   if (chosenTags2.length !== 0) {
-    for (const recipe of recipes/*newTagRecipes1*/) {
+    for (const recipe of newTagRecipes1) {
       // Pour chaque recette, on récupère son nom d'appareil (un seul par recette).
       const everyRecipeApp = recipe.appliance;
       for (const tag of chosenTags2) {
@@ -360,13 +363,22 @@ function appaRecipes(chosenTags2, recipes/*newTagRecipes1*/) {
     }
     newTagRecipes2 = [...new Set(newTagRecipes2)];
   }
-  console.log(newTagRecipes2);
 
   return newTagRecipes2;
 }
-function usteRecipes(chosenTags3, recipes/*newTagRecipes2*/) {
+function usteRecipes(chosenTags3, newTagRecipes2) {
+  // Si absence de tags d'ingrédients et/ou d'appareils.
+  if (chosenTags1.length === 0) {
+    newTagRecipes1 = recipes;
+    if (chosenTags2.length === 0) {
+      newTagRecipes2 = recipes;
+    }
+  }
+  else if (chosenTags2.length === 0) {
+    newTagRecipes2 = newTagRecipes1;
+  }
   if (chosenTags3.length !== 0) {
-    for (const recipe of recipes/*newTagRecipes2*/) {
+    for (const recipe of newTagRecipes2) {
       // Pour chaque recette, on crée le tableau de ses noms d'ustensiles.
       let everyRecipeUste = recipe.ustensils;
       everyRecipeUste = everyRecipeUste.sort();
@@ -380,6 +392,11 @@ function usteRecipes(chosenTags3, recipes/*newTagRecipes2*/) {
     }
     newTagRecipes3 = [...new Set(newTagRecipes3)];
   }
+  else {
+    newTagRecipes3 = newTagRecipes2;
+  }
+  console.log(newTagRecipes1);
+  console.log(newTagRecipes2);
   console.log(newTagRecipes3);
 
   return newTagRecipes3;
@@ -387,11 +404,11 @@ function usteRecipes(chosenTags3, recipes/*newTagRecipes2*/) {
 
 function findByTags() {
   ingrRecipes(chosenTags1, recipes);
-  appaRecipes(chosenTags2, recipes/*newTagRecipes1*/);
-  usteRecipes(chosenTags3, recipes/*newTagRecipes2*/);
+  appaRecipes(chosenTags2, newTagRecipes1);
+  usteRecipes(chosenTags3, newTagRecipes2);
   // showRecipes2(newTagRecipes3);
   // showRecipes2(newTagRecipes2);
-  showRecipes2(newTagRecipes1);
+  showRecipes2(newTagRecipes3);
 }
 // findByTags();
 // FIN TEST TEST !!
