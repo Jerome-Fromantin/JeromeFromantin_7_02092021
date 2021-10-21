@@ -1,16 +1,12 @@
+/* eslint-disable implicit-arrow-linebreak */
 // Ce fichier contient le code nécessaire à la mise en place de la deuxième implémentation
 // de l'algorithme par le biais des propriétés de tableaux telles que filter().
 
 // Récupération des données "recipes" du fichier.
 import { recipes } from './recipes';
 
-const varTest = JSON.parse(JSON.stringify(recipes));
-// "JSON.stringify" convertit le tableau JS en chaîne JSON.
-// "JSON.parse" analyse la chaîne JSON et construit la valeur JS.
-
 // Constante globale pour récupérer le contenu de l'input principal.
 const searchInput = document.querySelector('#search-input');
-const lowerSearchInput = searchInput.value.toLowerCase();
 
 // Crée la ligne du message "Aucune recette...".
 const noRecipe = document.querySelector('#no-recipe');
@@ -24,17 +20,6 @@ const mainSection = document.querySelector('#main-section');
 
 // Variable globale pour le tableau des recettes triées par l'input principal.
 let newRecipes = [];
-
-// Variables globales "provisoires" pour les étapes de filtration.
-let newRecipes2 = [];
-let ingre = [];
-let newRecipes3 = [];
-
-// Variable globale pour le tableau d'ingrédients.
-/* let everyRecipeIngr = recipe.ingredients;
-everyRecipeIngr = everyRecipeIngr.flat();
-everyRecipeIngr = everyRecipeIngr.map((ingr) => ingr.ingredient);
-everyRecipeIngr = everyRecipeIngr.sort(); */
 
 // Cette fonction effectue le tri des recettes.
 export default function triParFilter(callback) {
@@ -50,55 +35,17 @@ export default function triParFilter(callback) {
   // Si 3 caractères ou plus sont tapés.
   // eslint-disable-next-line no-else-return
   else {
+    // Le contenu de l'input est mis en minuscule et ses accents sont retirés.
+    // La constante ci-dessous récupère ce contenu modifié.
+    const lowerSearchInput = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     mainSection.innerText = '';
 
-    // La filtration se fait sur le nom.
+    // La filtration se fait sur le nom ou sur la description ou sur les ingrédients.
     newRecipes = recipes.filter((element) =>
-    { return element.name.toLowerCase().includes(lowerSearchInput) || element.description.toLowerCase().includes(lowerSearchInput) ||
-    element.ingredients.map((ingr) => ingr.ingredient).some((ingredient) => ingredient.toLowerCase().includes(lowerSearchInput))
-    });
-    console.log(newRecipes);
-
-    /*// La filtration se fait ensuite sur la description.
-    newRecipes2 = recipes.filter((element) => element.description.includes(searchInput.value));
-    newRecipes.push(...newRecipes2);
-    console.log(newRecipes);*/
-
-    // La filtration se fait enfin sur les ingrédients.
-    /*newRecipes3 = recipes.filter((element) => element.ingredients.map((ingr) =>
-    ingr.ingredient).some((ingredient) => ingredient.includes(searchInput.value)));
-    //console.log(ingre);
-    //newRecipes3 = ingre.filter((element) => element.ingredient.includes(searchInput.value));
-    //console.log(newRecipes3);
-    newRecipes.push(...newRecipes3);
-    //console.log(newRecipes);*/
-
-    /* // eslint-disable-next-line no-restricted-syntax
-    for (const recipe of varTest) {
-      // La recherche et le tri se font sur le nom.
-      if (recipe.name.includes(searchInput.value)) {
-        newRecipes.push(recipe);
-      }
-
-      // La recherche et le tri se font sur la description.
-      if (recipe.description.includes(searchInput.value)) {
-        newRecipes.push(recipe);
-      }
-
-      // eslint-disable-next-line no-restricted-syntax
-      for (const ingred of recipe.ingredients) {
-        // La recherche et le tri se font sur les ingrédients.
-        if (ingred.ingredient.includes(searchInput.value)) {
-          newRecipes.push(recipe);
-        }
-      }
-
-      // Les doublons sont éliminés.
-      newRecipes = [...new Set(newRecipes)];
-    } */
-
-    // Les doublons sont éliminés.
-    newRecipes = [...new Set(newRecipes)];
+      element.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)
+      || element.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)
+      || element.ingredients.map((ingr) => ingr.ingredient).some((ingredient) =>
+        ingredient.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)));
 
     // Si le tableau est vide, le message "Aucune recette..." apparait.
     if (newRecipes.length === 0) {
