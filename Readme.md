@@ -17,37 +17,9 @@ Pour utiliser Sass dans VSCode :
 - Cliquer sur le menu "Terminal" puis "Nouveau terminal".
 - Dans le terminal, coller la commande : ./dart-sass/sass sass/styles.scss styles.css --watch
 
-Travail réalisé :
-- Création de ce fichier Readme,
-- Début d'intégration (HTML et CSS) de la page d'accueil,
-- Création du repository sur GitHub,
-- Premier dépôt d'images du site,
-- Premier dépôt des fichiers HTML, CSS et JS,
-- Hébergement du travail sur Git Pages,
-- Création du contenu d'une carte recette << en dur >> pour les styles CSS,
-- Début de mise en place du JS avec pattern factory pour les cartes recettes,
-- Transformation du fichier "recipes.js" en "recipes.json" et correction d'erreurs dans les 20 premières recettes,
-- Affichage partiel des 50 recettes en dynamique grâce au JavaScript,
-- Installation de Sass pour le CSS,
-- Installation du transpilateur Webpack,
-- Corrections d'erreurs dans les recettes 21 à 40,
-- Installation et configuration de ES Lint et Prettier pour le JS,
-- Correction du code JS en concordance,
-- Corrections d'erreurs dans les recettes 41 à 50,
-- Finition de l'affichage dynamique des recettes,
-- Affichage << en dur >> des 3 menus déroulants,
-- Finition de l'affichage dynamique des 3 menus déroulants,
-- Début de réflexion sur l'algorithme de "recherche séquentielle",
-- Ajout d'un dossier "Algorithme" contenant plusieurs fichiers texte de réflexions sur l'algorithme et ses implémentations à mettre en place,
-- Affichage et fermeture dynamique des 3 types de tags par clic dans le menu déroulant correspondant,
-- Ajout d'un contrôle des tags affichés empêchant les doublons,
-- Réorganisation de chaque menu déroulant pour la mise en place d'un champ de recherche,
-- Correction de défauts dans les champs de recherche des menus déroulants,
-- Création et mise en ligne de 2 sous-branches pour les 2 implémentations de l'algorithme,
-- Dans sa branche, mise en place complète de la première implémentation avec la boucle "for...of",
-- Dans la même branche, mise en place complète des autres tris.
+Travail réalisé dans cette branche "implementation_2" :
+- Mise en place de l'implémentation sur l'input principal avec la propriété "filter()",
+- Ajout des propriétés "toLowerCase()" pour mettre en minuscule et "normalize(...).replace(...) pour enlever les accents.
 
 Travail à faire :
-- Améliorations éventuelles de la 1ère implémentation,
-- Création de la 2ème implémentation de l'algorithme de recherche,
-- Et d'autres choses encore ???
+- Améliorations éventuelles...
