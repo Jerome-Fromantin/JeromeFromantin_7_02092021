@@ -3,6 +3,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
+
 // Récupération des données "recipes" du fichier.
 import { recipes } from '../recipes';
 
