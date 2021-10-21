@@ -9,8 +9,8 @@ import { recipes } from '../recipes';
 // Récupération des données dynamiques pour chaque carte recette.
 import RecipeFactory from './recipeFactory';
 
-// Récupération de l'implémentation 1 de l'algorithme de recherche : tri des menus et des recettes.
-import triParBoucle from '../implementation2';
+// Récupération de l'implémentation 2 de l'algorithme de recherche : tri des menus et des recettes.
+import triParFilter from '../implementation2';
 
 // Constante globale pour récupérer le contenu de l'input principal.
 const searchInput = document.querySelector('#search-input');
@@ -26,8 +26,8 @@ function getSearchInputText(el) {
 searchInput.addEventListener('input', getSearchInputText);
 */
 
-// Listener utilisant l'implémentation 1.
-searchInput.addEventListener('input', () => { triParBoucle(showRecipes2); });
+// Listener utilisant l'implémentation 2.
+searchInput.addEventListener('input', () => { triParFilter(showRecipes2); });
 
 // Constantes globales pour les menus.
 const dropdownLine = document.querySelector('#dropdown-line');
