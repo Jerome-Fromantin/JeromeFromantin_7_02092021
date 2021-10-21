@@ -57,7 +57,7 @@ header > #search > #search-button > #loupe {
   justify-content: flex-start;
   margin-top: 30px;
 }
-#tagLine > .chosen-tag {
+#tagLine > .chosen-tag-1, #tagLine > .chosen-tag-2, #tagLine > .chosen-tag-3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,19 +68,19 @@ header > #search > #search-button > #loupe {
   border-radius: 5px;
   margin: 0 10px 10px 0;
 }
-#tagLine > .chosen-tag > .tag-text {
+#tagLine > .chosen-tag-1 > .tag-text, #tagLine > .chosen-tag-2 > .tag-text, #tagLine > .chosen-tag-3 > .tag-text {
   margin-right: 10px;
 }
-#tagLine > .chosen-tag > .tag-img {
+#tagLine > .chosen-tag-1 > .tag-img, #tagLine > .chosen-tag-2 > .tag-img, #tagLine > .chosen-tag-3 > .tag-img {
   cursor: pointer;
 }
-#tagLine > #chosen-tag-1 {
+#tagLine > .chosen-tag-1 {
   background: #3282F7;
 }
-#tagLine > #chosen-tag-2 {
+#tagLine > .chosen-tag-2 {
   background: #68D9A4;
 }
-#tagLine > #chosen-tag-3 {
+#tagLine > .chosen-tag-3 {
   background: #ED6454;
 }
 
