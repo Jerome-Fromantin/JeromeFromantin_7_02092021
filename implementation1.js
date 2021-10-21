@@ -4,11 +4,6 @@
 // Récupération des données "recipes" du fichier.
 import { recipes } from './recipes';
 
-const varTest = JSON.parse(JSON.stringify(recipes));
-// "JSON.stringify" convertit le tableau JS en chaîne JSON.
-// "JSON.parse" analyse la chaîne JSON et construit la valeur JS.
-// "varTest" est utilisé en ligne 54 (boucle for pour 3 caractères).
-
 // Constante globale pour récupérer le contenu de l'input principal.
 const searchInput = document.querySelector('#search-input');
 
@@ -39,24 +34,28 @@ export default function triParBoucle(callback) {
   // Si 3 caractères ou plus sont tapés.
   // eslint-disable-next-line no-else-return
   else {
+    // Le contenu de l'input est mis en minuscule et ses accents sont retirés.
+    // La constante ci-dessous récupère ce contenu modifié.
+    const lowerSearchInput = searchInput.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     mainSection.innerText = '';
     newRecipes = [];
+
     // eslint-disable-next-line no-restricted-syntax
-    for (const recipe of varTest) {
+    for (const recipe of recipes) {
       // La recherche et le tri se font sur le nom.
-      if (recipe.name.includes(searchInput.value)) {
+      if (recipe.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)) {
         newRecipes.push(recipe);
       }
 
       // La recherche et le tri se font sur la description.
-      if (recipe.description.includes(searchInput.value)) {
+      if (recipe.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput.value)) {
         newRecipes.push(recipe);
       }
 
       // eslint-disable-next-line no-restricted-syntax
       for (const ingred of recipe.ingredients) {
         // La recherche et le tri se font sur les ingrédients.
-        if (ingred.ingredient.includes(searchInput.value)) {
+        if (ingred.ingredient.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput.value)) {
           newRecipes.push(recipe);
         }
       }
