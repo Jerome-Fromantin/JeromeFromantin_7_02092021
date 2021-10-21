@@ -10,7 +10,7 @@ import { recipes } from '../recipes';
 import RecipeFactory from './recipeFactory';
 
 // Récupération de l'implémentation 1 de l'algorithme de recherche : tri des menus et des recettes.
-import triParBoucle from '../implementation1';
+import triParBoucle from '../implementation2';
 
 // Constante globale pour récupérer le contenu de l'input principal.
 const searchInput = document.querySelector('#search-input');
