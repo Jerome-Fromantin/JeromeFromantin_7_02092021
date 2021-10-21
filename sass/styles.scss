@@ -1,3 +1,4 @@
+// Importation du fichier de variables.
 @import "libs/variables.scss";
 
 body {
@@ -178,7 +179,6 @@ header {
             // Input de chaque menu ouvert.
             >.drop-input {
                 display: flex;
-                //outline: none;
                 color: lighten($lightGrey, 10);
                 font-size: 18px;
                 width: 600px;
