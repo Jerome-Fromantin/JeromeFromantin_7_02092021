@@ -44,10 +44,12 @@ Travail réalisé :
 - Réorganisation de chaque menu déroulant pour la mise en place d'un champ de recherche,
 - Correction de défauts dans les champs de recherche des menus déroulants,
 - Création et mise en ligne de 2 sous-branches pour les 2 implémentations de l'algorithme,
-- Dans sa branche, mise en place complète de la première implémentation avec la boucle "for...of",
-- Dans la même branche, mise en place complète des autres tris.
+- Mise en place complète de la première implémentation avec la boucle "for...of",
+- Dans la même branche, mise en place complète des autres tris,
+- Mise en place complète de la deuxième implémentation avec la propriété "filter()",
+- Ajout dans les 2 branches des propriétés "toLowerCase()" et "normalize(...).replace(...)" (suppression des accents).
 
 Travail à faire :
-- Améliorations éventuelles de la 1ère implémentation,
-- Création de la 2ème implémentation de l'algorithme de recherche,
+- Comparaison des 2 implémentations de l'algorithme avec JSbench,
+- Remplissage des docs de soutenance,
 - Et d'autres choses encore ???
