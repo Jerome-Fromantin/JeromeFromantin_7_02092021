@@ -48,14 +48,14 @@ export default function triParBoucle(callback) {
       }
 
       // La recherche et le tri se font sur la description.
-      if (recipe.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput.value)) {
+      if (recipe.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)) {
         newRecipes.push(recipe);
       }
 
       // eslint-disable-next-line no-restricted-syntax
       for (const ingred of recipe.ingredients) {
         // La recherche et le tri se font sur les ingrédients.
-        if (ingred.ingredient.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput.value)) {
+        if (ingred.ingredient.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)) {
           newRecipes.push(recipe);
         }
       }
