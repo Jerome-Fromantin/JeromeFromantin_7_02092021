@@ -19,7 +19,7 @@ Pour utiliser Sass dans VSCode :
 
 Travail réalisé dans cette branche "implementation_2" :
 - Mise en place de l'implémentation sur l'input principal avec la propriété "filter()",
-- Ajout des propriétés "toLowerCase()" pour mettre en minuscule et "normalize(...).replace(...) pour enlever les accents.
+- Ajout des propriétés "toLowerCase()" pour mettre en minuscule et "normalize(...).replace(...)" pour enlever les accents.
 
 Travail à faire :
 - Améliorations éventuelles...
