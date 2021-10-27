@@ -19,9 +19,9 @@ Pour utiliser Sass dans VSCode :
 
 Travail réalisé dans cette branche "implementation_1" :
 - Mise en place de l'implémentation sur l'input principal avec la boucle "for...of",
-- Mise en place du tri par tags,
-- Mise en place du tri par inputs de menus,
+- Mise en place du tri des recettes par tags,
+- Mise en place du tri des menus par leur input,
 - Ajout des propriétés "toLowerCase()" pour mettre en minuscule et "normalize(...).replace(...)" pour enlever les accents.
 
 Travail à faire :
-- Améliorations éventuelles...
+- Ajout des test de comparaison avec l'implémentation 2.
