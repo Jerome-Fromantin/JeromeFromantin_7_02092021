@@ -330,6 +330,8 @@ function findByTags() {
   // Finalement, "new Set" élimine les doublons.
   // Mais cela crée un ensemble. Il faut donc l'encadrer pour créer le tableau final.
 
+  //const lowerEveryIngredient = everyIngredient.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
   // Ouvre le menu déroulant et ferme les autres s'ils sont ouverts.
   function openMenu() {
     if (dropdownLine.contains(menuOpen2)) {
@@ -359,7 +361,9 @@ function findByTags() {
   // Récupère le contenu de l'input du menu déroulant durant la frappe
   // pour faire le tri dans la liste des ingrédients affichés et dans les recettes.
   function getInputText() {
+    debugger;
     const searchMenu = input1.value;
+    const lowerSearchMenu = searchMenu.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
     // Constante utilisée pour contenir les ingrédients triés.
     const newIngredients = [];
@@ -388,7 +392,7 @@ function findByTags() {
     else {
       // Tri des ingrédients.
       for (const newIngred of everyIngredient) {
-        if (newIngred.includes(searchMenu)) {
+        if (newIngred.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchMenu)) {
           newIngredients.push(newIngred);
           const dropLine = document.createElement('span');
           dropLine.className = 'exp-drop-line';
@@ -400,7 +404,7 @@ function findByTags() {
         }
       }
       // Tri des recettes.
-      for (const recipe of recipes) {
+      /*for (const recipe of recipes) {
         // Pour chaque recette, on crée le tableau de ses noms d'ingrédients.
         let everyRecipeIngr = recipe.ingredients;
         everyRecipeIngr = everyRecipeIngr.flat();
@@ -414,7 +418,7 @@ function findByTags() {
           menuInputRecipes.push(recipe);
         }
       }
-      showRecipes2(menuInputRecipes);
+      showRecipes2(menuInputRecipes);*/
     }
   }
   input1.addEventListener('input', getInputText);
