@@ -42,13 +42,9 @@ export default function triParBoucle(callback) {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const recipe of recipes) {
-      // La recherche et le tri se font sur le nom.
-      if (recipe.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)) {
-        newRecipes.push(recipe);
-      }
-
-      // La recherche et le tri se font sur la description.
-      if (recipe.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)) {
+      // La recherche et le tri se font sur le nom ou sur la description.
+      if (recipe.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)
+      || recipe.description.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(lowerSearchInput)) {
         newRecipes.push(recipe);
       }
 
