@@ -49,6 +49,10 @@ header {
         >#search-input:focus {
             outline: none;
         }
+        // Pseudo-élément "placeholder" pour modifier son style.
+        >#search-input::placeholder {
+            color: darken($lightGrey, 60);
+        }
 
         // Bouton avec loupe.
         >#search-button {
