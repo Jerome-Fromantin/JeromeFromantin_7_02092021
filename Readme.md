@@ -21,7 +21,7 @@ Travail réalisé dans cette branche "implementation_1" :
 - Mise en place de l'implémentation sur l'input principal avec la boucle "for...of",
 - Mise en place du tri des recettes par tags,
 - Mise en place du tri des menus par leur input,
-- Ajout des propriétés "toLowerCase()" pour mettre en minuscule et "normalize(...).replace(...)" pour enlever les accents.
+- Ajout des propriétés "toLowerCase()" pour mettre en minuscule et "normalize(...).replace(...)" pour enlever les accents,
+- Ajout des tests de comparaison avec l'implémentation 2.
 
-Travail à faire :
-- Ajout des test de comparaison avec l'implémentation 2.
+Ce projet est désormais terminé mais peut éventuellement être amélioré.
