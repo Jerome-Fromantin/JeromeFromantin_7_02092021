@@ -47,9 +47,8 @@ Travail réalisé :
 - Mise en place complète de la première implémentation avec la boucle "for...of",
 - Dans la même branche, mise en place complète des autres tris,
 - Mise en place complète de la deuxième implémentation avec la propriété "filter()",
-- Ajout dans les 2 branches des propriétés "toLowerCase()" et "normalize(...).replace(...)" (suppression des accents).
-
-Travail à faire :
+- Ajout dans les 2 branches des propriétés "toLowerCase()" et "normalize(...).replace(...)" (suppression des accents),
 - Comparaison des 2 implémentations de l'algorithme avec JSbench,
-- Remplissage des docs de soutenance,
-- Et d'autres choses encore ???
+- Remplissage des documents de soutenance.
+
+Ce projet est désormais terminé mais peut éventuellement être amélioré.
